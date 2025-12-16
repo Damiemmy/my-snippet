@@ -7,16 +7,19 @@ command for Linux:
 	-wsl: to start ubuntu terminal
 	-exit: to exit ubuntu terminal
 docker-command:
-	-docker build -t(--tag) docker-image-name .
-	-docker run -d --name docker-container-name -p 8000:8000 docker-image-naem
-	-docker compose up -d --build 
-	-docker compose up -d
-	-docker images
-	-docker ps
-	-docker rm docker-container-name
-	-docker stop docker-container-name
+	-docker build -t(--tag) docker-new-image-name .(to build without a compose file)
+	-docker run -d --name docker-container-name -p 8000:8000 docker-image-name(to create a container without a compose file)
+	-docker compose up -d --build (ensure there's a build command in docker compose)
+	-docker compose up -d(when you already have an existing image already)
+	-docker images(to check images that where created already)
+	-docker ps(to check container that are created already)
+	-docker rm docker-container-name(to remove a docker container registery)
+	-docker stop docker-container-name(to stop a docker current running container)
 	-docker run -d --name new-container-name -v ./:app -p 8000:8000 docker-image-name
-	-docker system prune
+	-docker system prune(to stop all running container)
+	-docker login ghcr.io --username my-GitHub-username --password github-PAT-key
+	-docker build -t ghcr.io/my-GitHub-username/new-image-name .
+	-docker push ghcr.io/my-GitHub-username/new-image-name .
 3️⃣ Do ALL backend work inside WSL
 
 Python
