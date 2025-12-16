@@ -1,0 +1,205 @@
+installation of windows subsystem for linux:
+	-run " wsl --install "
+	-Then install Ubuntu LTS from Microsoft Store.
+
+command for Linux:
+	-wsl --shutdown: to shutdown all ubuntu systems
+	-wsl: to start ubuntu terminal
+	-exit: to exit ubuntu terminal
+docker-command:
+	-docker build -t(--tag) docker-image-name .
+	-docker run -d --name docker-container-name -p 8000:8000 docker-image-naem
+	-docker compose up -d --build 
+	-docker compose up -d
+	-docker images
+	-docker ps
+	-docker rm docker-container-name
+	-docker stop docker-container-name
+	-docker run -d --name new-container-name -v ./:app -p 8000:8000 docker-image-name
+	-docker system prune
+3️⃣ Do ALL backend work inside WSL
+
+Python
+
+Django
+
+DRF
+
+Celery
+
+Docker
+
+Git
+
+Nginx (for practice)
+
+4️⃣ Use VS Code with WSL Extension
+
+This gives you:
+
+Linux terminal
+
+Windows UI
+
+Best of both worlds
+
+🧪 Docker & WSL (Important)
+
+Docker works best on Windows with WSL.
+
+This aligns perfectly with:
+
+	-AWS
+
+	-Production servers
+
+	-CI/CD pipelines
+
+❌ When You SHOULD Switch Fully to Linux
+
+Only if:
+
+You enjoy Linux deeply
+
+You do low-level systems programming
+
+You manage servers daily
+
+You’re a DevOps engineer
+
+Otherwise — not required.
+
+🧠 Final Verdict (Clear & Honest)
+
+Do NOT change your OS.
+Do NOT dual boot.
+Use Windows + WSL + Ubuntu.
+This is the smart, professional, modern choice.
+
+
+
+
+1️⃣ Windows vs Linux — the reality (2026 standard)
+
+Most production servers (AWS, DigitalOcean, GCP) run on Linux.
+So as a backend engineer, Linux knowledge is mandatory — but Linux as your daily OS is optional.
+
+Many excellent engineers:
+
+Develop on Windows
+
+Deploy to Linux servers
+
+Use Linux tools through WSL
+
+2️⃣ The BEST option for you (strong recommendation)
+✅ Use Windows + WSL (Windows Subsystem for Linux)
+
+This gives you:
+
+A real Ubuntu Linux environment
+
+Native access to Linux commands
+
+No dual-boot stress
+
+No driver issues
+
+Ability to switch anytime
+
+📌 With WSL, you are not “converting” — you’re adding Linux to Windows.
+
+This is the most common setup for backend engineers in 2025–2026.
+
+3️⃣ When should you fully switch to Linux?
+
+Switch your entire OS only if:
+
+Your PC struggles with Windows
+
+You enjoy Linux daily
+
+You’re doing low-level systems work
+
+You want maximum performance on weak hardware
+
+Otherwise, WSL is enough.
+
+4️⃣ What matters more than OS (truth)
+
+Your skills, not your OS, make you a professional.
+
+These matter more:
+
+Linux command line confidence
+
+Git fluency
+
+Docker knowledge
+
+Debugging skills
+
+Reading documentation
+
+System thinking
+
+📌 A strong engineer on Windows > a weak engineer on Linux.
+
+5️⃣ What I recommend for YOU specifically
+
+Based on your journey (Django, DRF, Docker, AWS, Celery):
+
+🔥 Do THIS:
+
+Stay on Windows
+
+Install WSL (Ubuntu LTS)
+
+Do all backend work inside WSL
+
+Use VS Code connected to WSL
+
+Deploy to Linux servers confidently
+
+This matches real-world backend workflows.
+
+6️⃣ Skills you must learn inside Linux (WSL)
+
+Practice these until they feel normal:
+
+cd, ls, chmod, chown
+
+nano, vim
+
+systemctl
+
+journalctl
+
+SSH keys
+
+Environment variables
+
+Nginx
+
+Gunicorn / Uvicorn
+
+Docker CLI
+
+If you can do these, your OS no longer matters.
+
+7️⃣ Simple analogy
+
+Windows = your office desk
+
+Linux = the factory where real work happens
+
+You don’t need to sleep in the factory —
+but you must know how to work there confidently.
+
+8️⃣ Clear final verdict
+
+✔ Stay on Windows
+✔ Install and master WSL
+✔ Learn Linux deeply
+❌ No need to dual boot now
+❌ No need to “convert” your OS

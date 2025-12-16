@@ -1,0 +1,47 @@
+1.)
+
+	2 WAYS TO RETRIEVE SECRETE_KEY:
+		a.)	-import secrets
+			-print(secrets.token_urlsafe(50))
+		b.)	-python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
+
+2.)	
+
+	SETUP FOR DEPLOYMENT:
+		a.)✅ dj-database-url installed
+
+		b.)✅ psycopg2-binary installed
+
+		c.)✅ Added both to requirements.txt
+
+		d.)✅ prod.py uses:
+
+	CHEAT SHEET:
+		a.)
+		i.)sqlite:///db.sqlite3
+		ii.)sqlite:////absolute/path/db.sqlite3
+		iii.)sqlite:///:memory:
+
+		b.)postgres://user:pass@host:5432/dbname
+		c.)mysql://user:pass@host:3306/dbname
+		d.)DATABASES = {
+    			"default": dj_database_url.config(
+        			default="sqlite:///db.sqlite3"
+    				)
+			}
+e.)project structure :
+from pathlib import Path
+import dj_database_url
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+db_path = BASE_DIR / "Project" / "db.sqlite3"  # adjust folder hierarchy
+
+DATABASES = {
+    'default': dj_database_url.config(
+        default=f"sqlite:///{db_path}"
+    )
+}
+
+
+
