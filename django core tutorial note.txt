@@ -24,10 +24,13 @@ docker-command:
 	-docker exec -it docker-container-name python manage.py createsuperuser(For database services in a container e.g docker-compose.yml file)
 
 docker-container db snippet:
+		volumes:
+			- postgres_data:/var/lib/postgresql/data
 	volumes:
-		- postgres_data:/var/lib/postgresql/data
-volumes:
-	postgres_data:
+		postgres_data:
+
+CELERY CMD:
+	-celery -A django-project-name worker -l info
 
 	
 
