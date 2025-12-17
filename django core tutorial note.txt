@@ -19,7 +19,18 @@ docker-command:
 	-docker system prune(to stop all running container)
 	-docker login ghcr.io --username my-GitHub-username --password github-PAT-key
 	-docker build -t ghcr.io/my-GitHub-username/new-image-name .
-	-docker push ghcr.io/my-GitHub-username/new-image-name .
+	-docker push ghcr.io/my-GitHub-username/new-image-name ("To GitHub/profile/packages" having an existing image set for deployment)
+	-docker exec -it docker-container-name python manage.py migrate(For database services in a container e.g docker-compose.yml file)
+	-docker exec -it docker-container-name python manage.py createsuperuser(For database services in a container e.g docker-compose.yml file)
+
+docker-container db snippet:
+	volumes:
+		- postgres_data:/var/lib/postgresql/data
+volumes:
+	postgres_data:
+
+	
+
 3️⃣ Do ALL backend work inside WSL
 
 Python

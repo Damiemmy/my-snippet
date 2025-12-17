@@ -1,0 +1,5 @@
+celery:a distributed task queue that would let you offload anywork from your application
+
+TO MAKE USE OF CELERY YOU NEED:
+-Django Application and a celery server running e.g windows,linux or mac
+-Task Broker to mitigate all of our task RabbitMQ or Redis

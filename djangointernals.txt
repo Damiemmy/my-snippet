@@ -1,0 +1,152 @@
+cannot import name X from partially initialized module: 
+    Error due to naming conflicts or circular imports
+
+module not found:
+    module not found    
+
+3 BIG BUG CATEGORIES :
+    1 - Environment issues
+    2️ - Import / configuration issues
+    3️ - Runtime logic issues
+
+    ENVIRONMENT ISSUES (“Setup” Problems): Problems caused by where or how your code is running, not the code itself.
+        HOW TO IDENTIFY ENVIRONMENT ERRORS:
+            Ask: “If I copy this code to another machine, would it still fail?”
+                If yes → environment issue
+        
+        WHAT TO THINK:
+            Think:
+                - Python version
+                - Virtual environment
+                - Installed packages
+                - OS differences
+                - Missing services (Redis, Postgres)
+            
+            Common signs
+                Errors like:
+                    - ModuleNotFoundError
+                    - No module named 'xyz'
+                    - command not found
+                    - python is not recognized
+                    - Connection refused
+
+            Examples:
+                - Celery installed globally but not in venv
+                - Redis not running
+                - Wrong Python version
+                - .env not loaded
+
+            🛠 Typical fix approach
+                - Activate venv
+                - Install missing package
+                - Start required service
+                - Fix PATH or env variables
+
+    Import / Configuration Issues (The “Wiring” Problems): Your code exists, but things are connected wrongly
+        Errors like:
+            - ImportError
+            - partially initialized module
+            - ImproperlyConfigured
+            - settings are not configured
+            - AppRegistryNotReady
+
+
+        Examples:
+            - Wrong DJANGO_SETTINGS_MODULE
+            - Naming conflict (celery, django.py, jwt.py)
+            - Circular imports
+            - App not added to INSTALLED_APPS
+        
+        Ask: 
+            “Is this failing before my app even starts?”
+            If yes → import/config issue
+
+        🛠 Typical fix approach:
+            - Check file paths in traceback
+            - Check project/app names
+            - Check settings wiring
+            - Check imports order
+        
+RUNTIME LOGIC ISSUES(The “Your Code” Problems):Your app starts successfully, 
+    but something goes wrong while running.
+    These are logic mistakes.
+
+    Errors like:
+        - TypeError
+        - ValueError
+        - AttributeError
+        - DoesNotExist
+        - IntegrityError
+        - IndexError
+        - KeyError
+
+    Examples:
+        - Calling a function wrong
+        - Accessing missing object
+        - Wrong queryset logic
+        - Bad conditionals
+        - Off-by-one errors
+    
+    How to recognize fast:
+        Ask:
+            “Did the server start fine, then crash when I hit an endpoint?”
+            If yes → runtime logic issue
+    
+    🛠 Typical fix approach
+
+        - Print/debug values
+        - Read error line carefully
+        - Test assumptions
+        - Write small tests
+
+    Final Debugging Rule (Write This Down)
+        - Don’t fix bugs. Classify them first: Fixing comes naturally after that.
+
+    Why This Classification Is Powerful
+
+    Once you classify:
+        -You don’t panic
+        -You don’t reinstall randomly
+        -You don’t rewrite code unnecessarily
+        -You move directly to the right layer.
+
+        That’s senior behavior.
+
+    Finally:
+
+        Ultra-Fast Classification Cheat Sheet: When you see an error, ask these in order:
+
+            Question 1
+
+                -Did the app fail to start?
+                    - Yes → Environment or Import
+                    - No → Runtime logic
+
+            Question 2
+
+                - Is Python complaining about missing things?
+                - Packages, commands, services → Environment
+                - Modules, settings, imports → Import/Config
+
+            Question 3
+
+                Did my code logic cause this?
+
+                - Wrong data
+                - Wrong function usage
+                - Wrong assumptions → Runtime logic
+
+
+            Apply This to Your Celery Bug
+
+            Let’s classify it properly:
+
+                App failed to start ✅
+
+                Error was during import ✅
+
+                Traceback showed wrong module path ✅
+
+                👉 Import / configuration issue
+
+                Not environment. Not logic.
