@@ -220,3 +220,25 @@ but you must know how to work there confidently.
 ✔ Learn Linux deeply
 ❌ No need to dual boot now
 ❌ No need to “convert” your OS(operating system)
+
+
+DIFFERENCE BETWEEN git switch -c dev and git checkout -b dev
+
+they only achieve the same thing in term of branches alone,git switch was introduce for the purpose of
+Safety:
+
+	- git switch is safer
+	- It prevents accidental file overwrites
+	- Git introduced it to reduce beginner mistakes
+
+this is what git checkout -b dev does:
+
+	- git checkout can:
+	- switch branches
+	- create branches
+	- restore files
+	- detach HEAD
+	- overwrite working files
+	
+git switch only handles branches — nothing else.
+
