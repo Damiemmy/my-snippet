@@ -3,3 +3,24 @@ celery:a distributed task queue that would let you offload anywork from your app
 TO MAKE USE OF CELERY YOU NEED:
 -Django Application and a celery server running e.g windows,linux or mac
 -Task Broker to mitigate all of our task RabbitMQ or Redis
+
+TASK OF CELERY:
+-generating complex reports,processing lots of dataset,potentially performing computationally intensive operations,
+-running machine learning models,
+-sending confirmation emails,
+-webscraping and crawling
+-processing images
+-generating reports
+-data analysis/processing
+
+CELERY TASKS:
+-Asynchronous Task Execution
+-Distributed Task Queue
+-Task Scheduling and Periodic Tasks
+-Results Handling
+-Error Handling and Retry Mechanism
+-Monitoring and Management
+
+django(message provider)-redis(message brocker)-celery(celery worker)-DB(Result Backend)
+
+celery- worker that handles time consuming tasks effortlessly offloading the work from the app itself
