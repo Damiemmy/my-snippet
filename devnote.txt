@@ -1,0 +1,46 @@
+ERROR:
+❌ Never name your project after a popular Python package
+(django, celery, rest, requests, redis, flask, fastapi)
+
+    FIXES:
+
+
+    ERROR:
+        -Server Error 500,
+    CHECK:
+        -Environmental Variables
+        -Turn on debug to True for quick efficient Debugging
+    SOLUTION:
+        -Fix environmental errors e.g naming errors e.g Debug,secret_key,database e.t.c
+
+
+SNIPPET CODE:
+'''
+    raw_host=os.environ.get('ALLOWED_HOSTS')
+
+    if raw_host:
+        ALLOWED_HOSTS=raw_host.split(',')
+    else:
+        ALLOWED_HOSTS=["*"]
+'''
+    NOTE: To set up raw host logic environmental variable must be fetched first before splitting inside the if statement to avoid app crashing
+
+    Your code assumes this is always safe:
+    if "os.environ.get("ALLOWED_HOSTS").split(",")" is placed above the if statement without checking for absent or existence
+        -But if the env var does not exist:
+        -None.split(",")  #  AttributeError
+
+
+    So your program:
+
+    -crashes
+    -never reaches if
+    -never reaches else
+
+    Final takeaway (this is the “aha moment”):
+
+    Conditionals must test the thing that can be absent.
+    Not the thing you derived from it.
+
+    That’s why .split() must happen after the existence check.
+

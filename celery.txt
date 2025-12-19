@@ -24,3 +24,8 @@ CELERY TASKS:
 django(message provider)-redis(message brocker)-celery(celery worker)-DB(Result Backend)
 
 celery- worker that handles time consuming tasks effortlessly offloading the work from the app itself
+
+celery workers-they excute the task that was produce by the task producers,they form the backbone of the celery architecture,they also listen to the message broker for incoming tasks and performs the assigned operations,this then potentionally produced a result that is sent back to the message provider for further processing,they can also be distributed across multiple machines or run on seperate processes on the same machine,to handle task concurrently and be scalable,workers are design to be highly available and full tolerant ensuring that task are processed reliably and efficiently,they communicate with the message broker report task status,and handle task priotization,and support various advance features e.g task routing,error handling,retry mechanism
+
+redis-hidden memory data-structure store,that can be use as a database message cache broker store because of how it works compare to traditional datbase,it is know for allowing quick read and write operations and it supports whole range of data structures
+
