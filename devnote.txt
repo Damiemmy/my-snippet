@@ -1,9 +1,7 @@
-ERROR:
-❌ Never name your project after a popular Python package
-(django, celery, rest, requests, redis, flask, fastapi)
-
-    FIXES:
-
+NOTE:
+    -❌ Never name your project after a popular Python package
+    (django, celery, rest, requests, redis, flask, fastapi)
+ERROR/FIX:
 
     ERROR:
         -Server Error 500,
@@ -30,6 +28,19 @@ SNIPPET CODE:
         -But if the env var does not exist:
         -None.split(",")  #  AttributeError
 
+    Python evaluation order:
+
+        os.environ.get('ALLOWED_HOSTS') → None
+
+        None.split(',') → 💥 AttributeError
+
+        Program crashes immediately
+
+        if raw_host: is never reached
+
+        else block is never executed
+
+        📌 This is not a theory. This is guaranteed behavior.
 
     So your program:
 

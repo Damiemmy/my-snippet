@@ -29,3 +29,7 @@ celery workers-they excute the task that was produce by the task producers,they 
 
 redis-hidden memory data-structure store,that can be use as a database message cache broker store because of how it works compare to traditional datbase,it is know for allowing quick read and write operations and it supports whole range of data structures
 
+Entrypoint.sh- entrypoint.sh is a shell script (or any executable script) that Docker runs automatically when the container starts.
+
+Think of it as the first command your container executes — the “entry point” into your app.
+
