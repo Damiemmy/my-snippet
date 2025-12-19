@@ -4,12 +4,18 @@ NOTE:
 ERROR/FIX:
 
     ERROR:
-        -Server Error 500,
-    CHECK:
-        -Environmental Variables
-        -Turn on debug to True for quick efficient Debugging
-    SOLUTION:
-        -Fix environmental errors e.g naming errors e.g Debug,secret_key,database e.t.c
+        -Server Error 500:
+            CHECK:
+                -Environmental Variables
+                -Turn on debug to True for quick efficient Debugging
+            SOLUTION:
+                -Fix environmental errors e.g naming errors e.g Debug,secret_key,database e.t.c
+    ERROR: 
+        /bin/ash: No such file or directory:
+            CHECK:
+                if the right shebang shell interpreter was used
+            SOLUTION:
+                use compatible shebang with python version e.g python:3.12:slim
 
 
 SNIPPET CODE:
