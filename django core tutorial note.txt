@@ -21,6 +21,8 @@ docker-command:
 	-docker build -t ghcr.io/my-GitHub-username/new-image-name .
 	-docker push ghcr.io/my-GitHub-username/new-image-name ("To GitHub/profile/packages" having an existing image set for deployment)
 	-docker exec -it docker-container-name python manage.py migrate(For database services in a container e.g docker-compose.yml file)
+	-docker exec -it docker-container-name /bin/sh then run "python manage.py shell" to activate the shell
+	
 	-docker exec -it docker-container-name python manage.py createsuperuser(For database services in a container e.g docker-compose.yml file)
 
 docker-container db snippet:
@@ -30,7 +32,8 @@ docker-container db snippet:
 		postgres_data:
 
 CELERY CMD:
-	-celery -A django-project-name worker -l info
+	-celery -A django-project-name worker -l info 
+	or celery --app=project_name worker -l Info
 
 	
 
