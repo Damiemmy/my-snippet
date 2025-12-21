@@ -10,6 +10,13 @@ ERROR/FIX:
                 -Turn on debug to True for quick efficient Debugging
             SOLUTION:
                 -Fix environmental errors e.g naming errors e.g Debug,secret_key,database e.t.c
+    ERROR:
+        -django.db.utils.OperationalError: no such table: auth_user:
+            CHECK:
+                -if migrations have been made
+            SOLUTION:
+                -makemigrations and migrate
+                
     ERROR: 
         /bin/ash: No such file or directory:
             CHECK:

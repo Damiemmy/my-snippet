@@ -3,4 +3,4 @@ pip install celery
 pip install redis
 pip install -r requirements.txt
 chmod +x ./entrypoint.sh
-celery -A core worker -l --info
+celery -A core worker -l info
