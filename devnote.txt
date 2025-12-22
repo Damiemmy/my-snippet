@@ -19,10 +19,19 @@ ERROR/FIX:
                 
     ERROR: 
         /bin/ash: No such file or directory:
+            PROBLEM:Wrong interpreter
             CHECK:
                 if the right shebang shell interpreter was used
             SOLUTION:
                 use compatible shebang with python version e.g python:3.12:slim
+
+    ERROR: 
+        NoReverseMatch: Reverse for 'send-notification' not found.
+            PROBLEM: Django tried to do a reverse("send-notification") (or {% url 'send-notification' %}) but could not find any URL pattern with the name 'send-notification'.:
+            CHECK:
+                if urls route matches
+            SOLUTION:
+                fix url route naming error
 
 
 SNIPPET CODE:
