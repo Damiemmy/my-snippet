@@ -34,7 +34,11 @@ docker-container db snippet:
 CELERY CMD:
 	-celery -A django-project-name worker -l info 
 	or celery --app=project_name worker -l Info
-
+	-c
+CHANNELS/UVICORN CMD:
+	uvicorn project-foldername.asgi:application --port 8000 --workers 4 --log-level debug --reload
+	uvicorn project-foldername.asgi:application --host 0.0.0.0 --port 8000 --workers 4 --log-level debug --reload
+	uvicorn core.asgi:application --port 8000 --workers 4 --log-level debug --reload
 	
 
 3️⃣ Do ALL backend work inside WSL

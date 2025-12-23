@@ -32,6 +32,13 @@ ERROR/FIX:
                 if urls route matches
             SOLUTION:
                 fix url route naming error
+    ERROR: 
+        ValueError: No route found for path 'ws/notifications/'.
+            PROBLEM: Django tried to do a reverse("send-notification") (or {% url 'send-notification' %}) but could not find any URL pattern with the name 'send-notification'.:
+            CHECK:
+                if urls route matches
+            SOLUTION:
+                fix url route naming error
 
 
 SNIPPET CODE:
