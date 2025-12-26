@@ -39,6 +39,10 @@ CHANNELS/UVICORN CMD:
 	uvicorn project-foldername.asgi:application --port 8000 --workers 4 --log-level debug --reload
 	uvicorn project-foldername.asgi:application --host 0.0.0.0 --port 8000 --workers 4 --log-level debug --reload(docker-compose.yml command)
 	uvicorn core.asgi:application --port 8000 --workers 4 --log-level debug --reload
+
+OTHER CMD:
+	chmod +x entrypoint.sh: it means changemode(chmod) executablecommand(+x) and name 
+							of the file to test Execution(entrypoint.sh)
 	
 
 3️⃣ Do ALL backend work inside WSL
