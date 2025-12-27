@@ -24,6 +24,23 @@ docker-command:
 	-docker exec -it docker-container-name /bin/sh then run "python manage.py shell" to activate the shell
 	
 	-docker exec -it docker-container-name python manage.py createsuperuser(For database services in a container e.g docker-compose.yml file)
+	-docker compose down : stops everything
+	-docker builder prune -af : Prune broken BuildKit cache (IMPORTANT)
+	-docker system prune -af --volumes : Clean Docker images & layers
+		This removes:
+			Old images
+
+			Stopped containers
+
+			Unused volumes
+			(Safe if you’re not running production containers)
+	-docker compose build --no-cache and docker compose up -d : To Build without cache
+	-In your Dockerfile:
+		To speed up installs
+			RUN pip install --upgrade pip \
+			&& pip install --no-cache-dir -r /app/requirements.txt
+
+
 
 docker-container db snippet:
 		volumes:
