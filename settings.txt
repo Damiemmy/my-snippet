@@ -1,0 +1,17 @@
+Use a .env file per project (with python-dotenv or django-environ):
+
+# project1/.env
+SECRET_KEY=project1-secret-key
+
+# project2/.env
+SECRET_KEY=project2-secret-key
+
+
+Then in settings.py:
+
+import os
+from dotenv import load_dotenv
+
+load_dotenv()  # loads variables from .env
+
+SECRET_KEY = os.environ.get("SECRET_KEY")
