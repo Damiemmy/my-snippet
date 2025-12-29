@@ -21,7 +21,7 @@ docker-command:
 	-docker build -t ghcr.io/my-GitHub-username/new-image-name .
 	-docker push ghcr.io/my-GitHub-username/new-image-name ("To GitHub/profile/packages" having an existing image set for deployment)
 	-docker exec -it docker-container-name python manage.py migrate(For database services in a container e.g docker-compose.yml file)
-	-docker exec -it docker-container-name /bin/sh then run "python manage.py shell" to activate the shell
+	-docker exec -it docker-container-name /bin/sh then run "python manage.py shell" to activate the shell(run each script line after line)
 	
 	-docker exec -it docker-container-name python manage.py createsuperuser(For database services in a container e.g docker-compose.yml file)
 	-docker compose down : stops everything
