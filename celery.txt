@@ -108,7 +108,7 @@ This will help you know what commands/syntax are safe in /bin/sh (POSIX) and wha
 
 Task Priotization-involves the managing execution order,and result allocation of task,to define the relative importance and urgency of tasks,so that critical task are handled promptly and resources are utilized efficiently
 
-Task Priority: This is the act of carrying out high priority tasks before lower priority tasks(0-9) Allowing you to manage the order in which tasks are executed, in other words it empowers us to manage the execution order of task
+Task Priority: This is the act of carrying out high priority tasks before lower priority tasks(0-9) Allowing you to manage the order in which tasks are executed, in other words it empowers us to manage the execution order of task,helps us to optimize results allocation,helps us to meet deadlines and effectively handle deadlines critical or time sensitive requests in our application.
 Why Prioritize task?
     1.)Ensure Critical task are executed first
     2.)optimized resource utilization
