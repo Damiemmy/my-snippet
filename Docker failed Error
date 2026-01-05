@@ -1,3 +1,7 @@
 -Error: pg_config executable not found.
     -Problem:pg_config is required to build psycopg2 from source.
     -solution:use psycopg2-binary
+
+-Error:JSONArgsRecommended: JSON arguments recommended for CMD to prevent unintended behavior related to OS signals
+    -problem: single quotes ('') Error (json does not understand single quotes)
+    -solution: replace single quotes with double quotes("")
