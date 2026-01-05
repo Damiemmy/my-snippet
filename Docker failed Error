@@ -1,0 +1,3 @@
+-Error: pg_config executable not found.
+    -Problem:pg_config is required to build psycopg2 from source.
+    -solution:use psycopg2-binary
