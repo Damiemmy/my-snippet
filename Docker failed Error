@@ -5,3 +5,8 @@
 -Error:JSONArgsRecommended: JSON arguments recommended for CMD to prevent unintended behavior related to OS signals
     -problem: single quotes ('') Error (json does not understand single quotes)
     -solution: replace single quotes with double quotes("")
+
+-Error:Export[django/celery] exporting to image 385060s                                                                           
+    target celery: failed to solve: mount callback failed on /var/lib/desktop-containerd/daemon/tmpmounts/containerd-mount624012122: mount callback failed on /var/lib/desktop-containerd/daemon/tmpmounts/containerd-mount3220187345: failed to open writer: lease does not exist: not found
+    -problem:slow network causing Docker Desktop froze. it might also be a Disk/cache issues,BuildKit lost track of its “lease” while exporting layers due to slow network,So by the time Docker tries to export the image, the lease is already gone → 💥 build fails.
+    -solution:add dockerignore files to reduce unneccessary exports,solution 2 faster network to export before lease is no more
