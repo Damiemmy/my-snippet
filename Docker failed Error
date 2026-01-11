@@ -1,3 +1,20 @@
+NOTE: for slow networks that may cause failure in building(four things are suggested) to run docker smoothly
+    note: before carrying any of this three steps you must ensure python version in dockerfile is pulled  e.g docker pull python:3.11, docker pull python:3.10, docker pull python:3.12
+        1- docker pull image-name(if there's no "build" included in it) e.g docker pullredis 8.4.0, docker pull postgres:15,docker pull python
+        2- docker compose build service-name(if the service has "build")e.g celery service, django service
+        3- finally if you get such error below e.g
+            Error:
+                Error response from daemon: failed to resolve reference "docker.io/library/redis:8.4.0": failed to do request: Head "https://registry-1.docker.io/v2/library/redis/manifests/8.4.0": net/http: TLS handshake timeout
+            solution : in Settings → Docker Engine
+                Add (or confirm):
+                    {
+                    "max-concurrent-downloads": 1,
+                    "max-concurrent-uploads": 1
+                    }
+                Save & restart Docker.
+                This slows downloads but prevents EOF errors.
+            Finall Note: step 3 is the list recommended, step one and step 2 should work well
+
 -Error: pg_config executable not found.
     -Problem:pg_config is required to build psycopg2 from source.
     -solution:use psycopg2-binary
@@ -10,15 +27,5 @@
     target celery: failed to solve: mount callback failed on /var/lib/desktop-containerd/daemon/tmpmounts/containerd-mount624012122: mount callback failed on /var/lib/desktop-containerd/daemon/tmpmounts/containerd-mount3220187345: failed to open writer: lease does not exist: not found
     -problem:slow network causing Docker Desktop froze. it might also be a Disk/cache issues,BuildKit lost track of its “lease” while exporting layers due to slow network,So by the time Docker tries to export the image, the lease is already gone → 💥 build fails.
     -solution:add dockerignore files to reduce unneccessary exports,solution 2 faster network to export before lease is no more
-Error:
-    ror response from daemon: failed to resolve reference "docker.io/library/redis:8.4.0": failed to do request: Head "https://registry-1.docker.io/v2/library/redis/manifests/8.4.0": net/http: TLS handshake timeout
 
-solution : in Settings → Docker Engine
-    Add (or confirm):
-        {
-        "max-concurrent-downloads": 1,
-        "max-concurrent-uploads": 1
-        }
-    Save & restart Docker.
 
-    This slows downloads but prevents EOF errors.
