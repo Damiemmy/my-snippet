@@ -63,7 +63,7 @@ ERROR/FIX:
                 EDIT:
                     "FROM python:3.12-slim to python:3.12-slim" to a stable version of python to "FROM python:3.12-slim to python:3.12-slim"
                 SUMMARY:
-                    Python 3.12 removed pkg_resources; install setuptools or use Python 3.11
+                    Python 3.12, removed pkg_resources; install setuptools or use Python 3.11
                 
 
 SNIPPET CODE:

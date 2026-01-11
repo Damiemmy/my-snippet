@@ -27,6 +27,7 @@ docker-command:
 	-docker compose down : stops everything
 	-docker builder prune -af : Prune broken BuildKit cache (IMPORTANT)
 	-docker system prune -af --volumes : Clean Docker images & layers
+	- docker pull postgres:15(you can use the docker pull command to pull each image at a time when there's credential issues or lease not found)
 		This removes:
 			Old images
 
