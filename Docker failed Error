@@ -1,8 +1,11 @@
 NOTE: for slow networks that may cause failure in building(four things are suggested) to run docker smoothly
-    note: before carrying any of this three steps you must ensure python version in dockerfile is pulled  e.g docker pull python:3.11, docker pull python:3.10, docker pull python:3.12
-        1- docker pull image-name(if there's no "build" included in it) e.g docker pullredis 8.4.0, docker pull postgres:15,docker pull python
-        2- docker compose build service-name(if the service has "build")e.g celery service, django service
-        3- finally if you get such error below e.g
+    note: before carrying any of this two solutions you must ensure python version in dockerfile is pulled  e.g docker pull python:3.11, docker pull python:3.10, docker pull python:3.12
+        1- docker pull image-name(it only works if there's no "build" included in it) e.g docker pullredis 8.4.0, docker pull postgres:15,docker pull python
+         - docker compose build service-name(it only works if the service has "build" )e.g celery service, django service
+         - docker compose up -d service-name(to run each container it works for both build and pull services)
+         - docker compose up -d --build service-name(to build and run each container with the providede service name but note, it only works for services with "build",for other services like redis and postgres you will have to pull the image first and run "docker compose up -d service name")
+
+        2- finally if you get such error below e.g
             Error:
                 Error response from daemon: failed to resolve reference "docker.io/library/redis:8.4.0": failed to do request: Head "https://registry-1.docker.io/v2/library/redis/manifests/8.4.0": net/http: TLS handshake timeout
             solution : in Settings → Docker Engine
@@ -13,7 +16,8 @@ NOTE: for slow networks that may cause failure in building(four things are sugge
                     }
                 Save & restart Docker.
                 This slows downloads but prevents EOF errors.
-            Finall Note: step 3 is the list recommended, step one and step 2 should work well
+            Finall Note: solution 2 is the list recommended, solution one should work well if implimented correctly
+            -acronym of EOF means-End Of File
 
 -Error: pg_config executable not found.
     -Problem:pg_config is required to build psycopg2 from source.
