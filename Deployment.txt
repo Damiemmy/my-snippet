@@ -58,3 +58,23 @@ FOR FALL BACK DEVELOPMENT SECRET_KEY CONFIGURAION:
         "SECRET_KEY",
         "unsafe-secret-key-for-build-only"
     )
+
+
+DEPLOYEMENT FOR NEXT.JS APP:
+    package.json file must have :
+    {
+        "scripts": {
+            "dev": "next dev",
+            "build": "next build",
+            "start": "next start -p $PORT"
+        }
+     }
+
+    {
+        "engines": {
+            "node": ">=18"
+        }
+    }
+
+    BUILD COMMAND FOR NEXT.JS ON RENDER: npm install; npm run build
+    START COMMAND FOR NEXT.JS ON RENDER: npm install; npm run start
