@@ -5,3 +5,5 @@ pip install -r requirements.txt
 chmod +x ./entrypoint.sh
 celery -A core worker -l info
 sudo apt remove nodejs -y- :to  remove packages install by yarn
+python manage.py dumpdata > data.json
+python manage.py loaddata data.json
