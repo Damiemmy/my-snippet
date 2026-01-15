@@ -25,6 +25,8 @@ CMD ["gunicorn", "ecommerce_site.wsgi:application", "--bind", "0.0.0.0:8000"]"
     DJANGO_SECRET_KEY=your-secret-key
     DEBUG=False
     DATABASE_URL=postgres://...
+6.) install drf-yasg and include it in settings.installed_apps configure in urls.py adding "title" and "description" (note: django and djangorestframework must be installed for yasg to work)
+7.) add all packages to requirements.txt (very important):
 
 ❌ What You Should NOT Do
 Mistake	Why
@@ -32,3 +34,27 @@ Using runserver	Not production
 Using docker-compose	Render ignores it
 Using volumes	Render containers are read-only
 Exposing secrets in Dockerfile	Security risk
+
+ERROR IN DEPLOYEMENT:
+1.) ERROR:-whitenoise.storage.MissingFileError:
+The file
+'drf-yasg/swagger-ui-dist/swagger-ui-es-bundle-core.js.map'
+could not be found
+
+    SOLUTION: replace storage with this "STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
+    },
+}
+
+WHITENOISE_MANIFEST_STRICT = False"
+
+FOR FALL BACK DEVELOPMENT SECRET_KEY CONFIGURAION:
+
+    SECRET_KEY = os.environ.get(
+        "SECRET_KEY",
+        "unsafe-secret-key-for-build-only"
+    )

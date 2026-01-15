@@ -33,3 +33,38 @@ NOTE: for slow networks that may cause failure in building(four things are sugge
     -solution:add dockerignore files to reduce unneccessary exports,solution 2 faster network to export before lease is no more
 
 
+-ERROR: error during connect: Head "http://%2F%2F.%2Fpipe%2FdockerDesktopLinuxEngine/_ping": open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.
+    -solution: start docker desktop
+
+ERROR:ERROR:-whitenoise.storage.MissingFileError:
+The file
+'drf-yasg/swagger-ui-dist/swagger-ui-es-bundle-core.js.map'
+could not be found
+    -problem: What’s happening internally
+
+        You’re using WhiteNoise
+
+        With Manifest-based static storage
+
+        Django hashes static files
+
+        drf_yasg references a .js.map file
+
+        That .map file is missing
+
+        WhiteNoise treats this as a fatal error
+
+        So collectstatic crashes 
+
+
+    -solution: replace settings.STORAGE with this 
+        "STORAGES = {
+            "default": {
+                "BACKEND": "django.core.files.storage.FileSystemStorage",
+            },
+            "staticfiles": {
+                "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
+            },
+        }
+
+        WHITENOISE_MANIFEST_STRICT = False"
