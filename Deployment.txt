@@ -165,4 +165,10 @@ DEPLOYMENT TO GITHUB PAGES VITE.JS(VITE APP):
     npm install gh-pages --save-dev
     npm run deploy
 
+DEPLOYMENT DIFFERENCE BETWEEN NEXT / VITE
 
+    - ON SERVER ENVIRONMENT VARIABLES-NEXT_PUBLIC_BASE_URL=backend_url while vite uses VITE_BASE_URL=backend_url
+    - ON LOCAL MACHINE BASE_URL:process.env.NEXT_PUBLIC_BASE_URL || "http://127.0.0.1:8000/" while vite uses import.meta.env.VITE_BASE_URL || 'http://127.0.0.1:8000/';
+    - ON .env.development FILE- NEXT_PUBLIC_BASE_URL=http://localhost:8000 while vite uses VITE_BASE_URL='http://127.0.0.1:8000/'
+    -ON .env.production FILE- NEXT_PUBLIC_BASE_URL=https://backend-ecommerce-store-1.onrender.com while vite uses VITE_BASE_URL='https://backend-blog-app-8cul.onrender.com/'
+ 
