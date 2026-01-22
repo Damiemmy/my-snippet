@@ -1,0 +1,1 @@
+Emailnode- get client id/secret Id (don't forget to Enable "Gmail API" and add a Test User and a redirect Url)
