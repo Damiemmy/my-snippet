@@ -1,2 +1,7 @@
 Emailnode- get client id/secret Id (don't forget to Enable "Gmail API" and add a Test User and a redirect Url)
 connect Email node on n8n
+
+
+ERRORS ON AIRTABLE:
+-Invalid input for 'Phone Number' [item 0] 'Phone Number' expects one of the following values: [Todo, In progress, Done] but we got '2347043777486'
+REASONS AND SOLUTION: This error occurs because Airtable field Column was deleted but n8n still keeps track of table ID the perfect fix was to delete Airtable Node and reconnect Again to gain track of modified table ID
