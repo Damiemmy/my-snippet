@@ -1,7 +1,66 @@
+COMMAND_LINE:
+    - docker run -it --rm -p 5678:5678 n8nio/n8n
+
+
+
+1️⃣ Self-host n8n using Docker (no Node coding required)
+
+Since you’re familiar with Django, I’m assuming you already use Docker sometimes — if not, it’s just installing Docker Desktop on Windows.
+
+docker run -it --rm \
+  -p 5678:5678 \
+  n8nio/n8n
+
+
+This spins up n8n on http://localhost:5678
+
+Works forever for free
+
+No trial, no payment
+
+💡 You can then call your Django APIs from n8n nodes (HTTP Request node) and send messages, generate PDFs, etc.
+
+2️⃣ Use your Django backend to handle logic
+
+Instead of trying to run Node inside your project:
+
+Keep Django as the main engine (database, authentication, business logic)
+
+Use n8n only as an automation tool
+
+Example: Trigger a workflow when a new user registers → n8n sends an email
+
+n8n can call your Django endpoints via HTTP — completely language-agnostic
+
+3️⃣ Optional: Hosting online (if you want it accessible)
+
+You can run n8n on a free hosting platform:
+
+Render Free Tier
+
+Railway Free Tier
+
+Fly.io Free Tier
+
+You just push the Docker container, and it runs 24/7 online. No Node coding needed.
+
+Basically, the way you avoid paying n8n Cloud forever is:
+
+Django + self-hosted n8n via Docker ✅
+
+
+
+
+
 Emailnode- get client id/secret Id (don't forget to Enable "Gmail API" and add a Test User and a redirect Url)
 connect Email node on n8n
 
 
 ERRORS ON AIRTABLE:
--Invalid input for 'Phone Number' [item 0] 'Phone Number' expects one of the following values: [Todo, In progress, Done] but we got '2347043777486'
-REASONS AND SOLUTION: This error occurs because Airtable field Column was deleted but n8n still keeps track of table ID the perfect fix was to delete Airtable Node and reconnect Again to gain track of modified table ID
+    -Invalid input for 'Phone Number' [item 0] 'Phone Number' expects one of the following values: [Todo, In progress, Done] but we got '2347043777486'
+
+    REASONS AND SOLUTION: This error occurs because Airtable field Column was deleted but n8n still keeps track of table ID the perfect fix was to delete Airtable Node and reconnect Again to gain track of modified table ID
+
+ERROR ON PRODUCTION STARTUP:
+    -My airtable refuses to safe data automatically, i literally have to visit my airtable node to trigger execution manually
+    SOLUTION: publish first before and listen to event before automation can be carried out automatically
