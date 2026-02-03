@@ -1,0 +1,2 @@
+docker-compose up -d
+ngrok http 5678 (optional but for testing)
