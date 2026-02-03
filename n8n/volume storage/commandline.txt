@@ -1,7 +1,11 @@
 
 - docker pull n8nio/n8n
-- docker run -it --rm \
+-docker run -it --rm \
   -p 5678:5678 \
   -v n8n-data:/home/node/.n8n \
+  -e N8N_HOST=insides-chelsea-aromatically.ngrok-free.dev \
+  -e N8N_PROTOCOL=https \
+  -e WEBHOOK_URL=https://insides-chelsea-aromatically.ngrok-free.dev \
   n8nio/n8n
 
+💡 Important: Once Zapier is on, the n8n webhook must be accessible publicly. Your localhost URL won’t work — you need either a deployed n8n instance or use ngrok for testing.
