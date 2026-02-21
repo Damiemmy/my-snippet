@@ -1,0 +1,1 @@
+python manage.py import_truckstops --file=data/truckstops.csv
