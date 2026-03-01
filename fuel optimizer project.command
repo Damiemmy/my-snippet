@@ -58,7 +58,37 @@ Record Loom
 Optional: Jazzmin if you want
 
 
+Django>=4.2,<5.0
+djangorestframework>=3.14
+djangorestframework-simplejwt>=5.3
+drf-spectacular>=0.27
+requests>=2.31
+python-dotenv>=1.0
+psycopg2-binary>=2.9
+django-cors-headers>=4.3
+django-filter>=23.5
+gunicorn>=21.2
+whitenoise>=6.6
 
 http://127.0.0.1:8000/api/truckstops/
 http://127.0.0.1:8000/api/truckstops/?search=Houston
 http://127.0.0.1:8000/api/truckstops/?ordering=-retail_price
+
+
+
+#This command is used for test in Linux or windows system and django server must be running before initiallizing the command :
+curl "http://127.0.0.1:8000/api/route?start=-74.0060,40.7128&finish=-118.2437,34.0522"
+
+
+
+3️⃣ Using Postman / Insomnia (Recommended)
+
+Tools like Postman or Insomnia are much better for testing APIs.
+
+You can:
+
+Set the method to GET.
+
+Paste the URL.
+
+Send the request and see nicely formatted JSON.
