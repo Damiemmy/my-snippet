@@ -31,3 +31,9 @@ npm audit
 npm audit fix 
 npm install next@latest
 npm audit // to check if the error has finnaly been fixed
+
+6.//when debugging action.js which contain cookies file
+⚠️ After Fixing
+- Restart the dev server so Next.js reloads the server actions:
+- npm run dev
+- Then reload your page.
