@@ -1,0 +1,15 @@
+1.)
+executed_code:
+    alter table bio modify user_id int primary key auto_increment
+
+Error:
+    Error Code: 1068. Multiple primary key defined,
+
+problem:You already have a primary key — I can’t add another one
+
+fix:
+    ALTER TABLE bio DROP PRIMARY KEY;
+
+    ALTER TABLE bio 
+    MODIFY user_id INT AUTO_INCREMENT,
+    ADD PRIMARY KEY (user_id);
