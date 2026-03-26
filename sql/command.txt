@@ -1,2 +1,17 @@
 show create table name;
 set SQL_SAFE_UPDATES=0;
+
+MODIFYING TABLES WITH A PRIMARY KEY:
+//
+ALTER TABLE bio DROP PRIMARY KEY;
+
+    ALTER TABLE bio 
+    MODIFY user_id INT AUTO_INCREMENT,
+    ADD PRIMARY KEY (user_id);
+//
+
+DATES:
+//
+insert into mydate(newdate,newtime,newdatetime,newtimestamp)
+values(current_date(),current_time(),now(),current_timestamp())
+//
