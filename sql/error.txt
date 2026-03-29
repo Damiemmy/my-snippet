@@ -13,3 +13,7 @@ fix:
     ALTER TABLE bio 
     MODIFY user_id INT AUTO_INCREMENT,
     ADD PRIMARY KEY (user_id);
+
+
+
+
