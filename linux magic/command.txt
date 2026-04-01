@@ -1,0 +1,12 @@
+Move your project into Linux filesystem:
+    Moving projects
+    cd ~
+    mkdir projects
+    cd projects
+    cp -r /mnt/c/Users/blog/Desktop/myprojects/nextjs/Airbnb/Backend .
+    cd Backend
+    
+    THEN RUN:
+        docker build -t ghcr.io/damiemmy/airbnb_backend .
+        🔥 You’ll see build time drop from:
+            ❌ HOURS → ✅ SECONDS

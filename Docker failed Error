@@ -68,3 +68,43 @@ could not be found
         }
 
         WHITENOISE_MANIFEST_STRICT = False"
+ERRORS:
+    MESSAGE:failed to Lchown ... Packages.lz4: no such file or directory
+
+    FULL ERROR DETAILS :ERROR: failed to build: failed to solve: failed to extract layer sha256:92437924129a40633d8e22e64d6c168f1c59e753209c485738578430aa07b6d8: failed to Lchown "/var/lib/desktop-containerd/daemon/io.containerd.snapshotter.v1.overlayfs/snapshots/3556/fs/var/lib/apt/lists/deb.debian.org_debian_dists_trixie_main_binary-amd64_Packages.lz4" for UID 0, GID 0: lchown /var/lib/desktop-containerd/daemon/io.containerd.snapshotter.v1.overlayfs/snapshots/3556/fs/var/lib/apt/lists/deb.debian.org_debian_dists_trixie_main_binary-amd64_Packages.lz4: no such file or directory
+
+    PROBLEM/DESCRIPTION OF ERROR:
+    Docker is trying to:
+        change file ownership (lchown)
+        on a file inside /var/lib/apt/lists/...
+        But the file is missing during the build export phase.
+        This usually happens because of:
+            PROBLEM: 
+            Corrupted or interrupted layer creation,corrupted cache,disk/storage issues,BuildKit bug and missing file issues,
+    SOLUTION 1:
+    remove corrupted layers,clear cache,fix missing file issues
+        -docker builder prune -a
+        - docker system prune -a --volumes
+    SOLUTION 2:
+        - restart docker desktop
+    SOLUTION 3:
+        -rebuild without cache:
+            docker build --no-cache -t airbnb_backend .
+    
+    WHY THIS WORKS:
+        i.-the error happen here: "/var/lib/apt/lists/..."
+        ii.-That folder at (i) is created when you run: RUN apt-get update
+        But Docker cached a broken state where:
+            the file existed before
+            then disappeared
+            then Docker tried to reuse it
+            💥 Boom → build fails
+
+    FUTURE PREVENTION(UPDATE DOCKER FILE):
+        RUN apt-get update && apt-get install -y \
+        build-essential \
+        && rm -rf /var/lib/apt/lists/*
+        DOING THIS:
+            -prevents layer corruption
+            -keeps image smaller
+            -avoids this exact error

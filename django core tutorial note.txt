@@ -10,6 +10,9 @@ docker command:
  flushing of cache and rebuilding :
 	docker builder prune -a
 	docker build -t ghcr.io/damiemmy/airbnb_backend .
+ flushing cache and volume:
+	docker builder prune -a
+	docker system prune -a --volumes
 docker-command:
 	#n8n:
 		-docker run -it --rm -p 5678:5678 n8nio/n8n
