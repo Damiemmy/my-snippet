@@ -1,0 +1,16 @@
+THE THREE(3) OPTIONS FOR DEPLOYEMENT
+| Action                      | Works?   |
+| --------------------------- | -------- |
+| `git push` only             | ❌ No     |THIS WON'T WORK
+| `docker build + push`       | ✅ Yes    | GITHUB PACKAGE
+| GitHub Actions automation   | ✅🔥 Best | AUTOMATION
+| Render auto-build from repo | ✅ Simple | DIRECT TO AUTO-BUILD FROM REPO
+
+
+"python manage.py createsuperuser --noinput || true": ##for superuser in entrypoint.sh
+"ENVIRONMENT=production python3 manage.py createsuperuser": ## to convert to production DB and use .env.production file
+"DEVELOPMENT=production python3 manage.py createsuperuser": ## to convert to development DB and use .env.development file
+
+DOCKER COMPOSE COMMAND CONFIGURATION:
+- command: gunicorn Airbnb.wsgi:application --bind 0.0.0.0:8000
+- command: python manage.py runserver

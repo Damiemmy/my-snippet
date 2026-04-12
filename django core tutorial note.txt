@@ -17,6 +17,8 @@ docker-command:
 	#n8n:
 		-docker run -it --rm -p 5678:5678 n8nio/n8n
 	-docker build -t(--tag) docker-new-image-name .(to build without a compose file)
+	-docker compose up
+	-docker-compose build --no-cache
 	-docker run -d --name docker-container-name -p 8000:8000 docker-image-name(to create a container without a compose file)
 	-docker compose up -d --build (ensure there's a build command in docker compose)
 	-docker compose up -d(when you already have an existing image already)

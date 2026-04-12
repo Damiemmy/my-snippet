@@ -5,8 +5,18 @@ Move your project into Linux filesystem:
     cd projects
     cp -r /mnt/c/Users/blog/Desktop/myprojects/nextjs/Airbnb/Backend .
     cd Backend
-    
+
+    OR
+    cd ~
+    mkdir -p projects
+    mv /mnt/c/Users/blog/Desktop/myprojects/nextjs/Airbnb/Backend ~/projects/
+    cd ~/projects/Backend
+
     THEN RUN:
         docker build -t ghcr.io/damiemmy/airbnb_backend .
         🔥 You’ll see build time drop from:
             ❌ HOURS → ✅ SECONDS
+
+"python manage.py createsuperuser --noinput || true": ##for superuser in entrypoint.sh
+"ENVIRONMENT=production python3 manage.py createsuperuser": ## to convert to production DB and use .env.production file
+"DEVELOPMENT=production python3 manage.py createsuperuser": ## to convert to development DB and use .env.development file
