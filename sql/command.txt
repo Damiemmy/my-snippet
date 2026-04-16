@@ -98,3 +98,12 @@ ADD CONSTRAINT fk_student_id
 FOREIGN KEY(STUDENT_ID) REFERENCES(STUDENT_ID)
 
 id SERIAL FOREIGN KEY
+
+🔥 How Django Performs JOIN
+Query:
+students = Student.objects.select_related('studentinfo')
+
+👉 Django automatically does JOIN behind the scenes
+
+
+//
