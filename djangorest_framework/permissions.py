@@ -104,3 +104,34 @@ Even if they can't edit, data leakage is already a problem
 👉 Admin users seeing everything
 👉 Role-based permissions (like staff vs normal users)
 👉 Field-level protection (e.g., price cannot be changed)
+
+
+In real-world apps:
+Authentication = Who are you?
+Permissions = What can you do?
+
+Skip them… and your app becomes chaos.
+
+Let’s fix that with Django 🔐
+
+Imagine a banking app without authentication & permission classes…
+
+Your money = my money
+My money = your money
+
+Basically… OUR money 😭
+
+That’s why backend security matters.
+
+No authentication. No permissions.
+
+Congrats… you just built a public wallet 💀
+
+This is why Django auth & permission classes matter.
+
+
+Imagine a banking app with no authentication or permissions…
+Your money becomes my money 😳
+And mine becomes yours.
+
+That’s why authentication & permission classes in Django are NOT optional.
