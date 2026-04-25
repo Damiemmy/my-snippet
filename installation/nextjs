@@ -1,0 +1,2 @@
+npx create-next-app@latest dj_restframework --javascript
+npx create-next-app@latest dj_restframework --typescript
