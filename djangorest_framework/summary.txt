@@ -1,0 +1,12 @@
+permission-level security=who can access and Endpoint
+field-level security=what they can change
+
+🚀 YOU JUST UNLOCKED
+Field-level protection
+Real production API behavior
+Secure data mutation
+
+Layer 1 — Permission
+Can you enter the building?
+Layer 2 — Serializer
+What rooms can you access inside?

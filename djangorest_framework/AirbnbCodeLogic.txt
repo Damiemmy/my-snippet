@@ -1,0 +1,5 @@
+FIELD-LEVEL PROTECTION:
+    ADVANCED VERSION (REAL AIRBNB LOGIC):Instead of permanent lock:
+        Use conditions:
+        if product.has_bookings:
+            block_price_change

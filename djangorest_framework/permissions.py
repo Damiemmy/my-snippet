@@ -101,15 +101,39 @@ Even if they can't edit, data leakage is already a problem
 
 
 
-MY ROADMAP:
+MY ROADMAPBackend:
     👉 Admin users seeing everything
     👉 Role-based permissions (like staff vs normal users)
-    👉 Field-level protection (e.g., price cannot be changed)
+    👉 Field-level protection (e.g., price cannot be changed){
+        Lock Price after booking
+        Lock title after booking{
+            Lock price only after booking
+            Add has_booking logic
+            Add admin approval for price changes
+        }
+        Prevent editing after approval
+        Time-based locks (e.g., cannot edit after 24h)
+        Multi-field protection rules
+    }
     👉 Add host approval system (like real Airbnb)
-    👉 Add email verification before becoming host
+    👉 Add email verification before becoming host/upgrade
     👉 Or integrate this directly into your current project step-by-step
 
 Just tell me 👍
+
+⚡ Next Level After This
+We can go deeper into:
+    -frontend(👉 
+        -Move to frontend:
+        -Disable price input dynamically
+        -Show “locked” UI)
+    - Login system in React (store token properly)
+    - Protected routes
+    - Image upload
+    - Full e-commerce frontend
+
+
+
 
 In real-world apps:
 Authentication = Who are you?
@@ -261,3 +285,10 @@ PROMPT:
 draw a visual diagram of your permission flow
 '''
 
+RBAC System:
+    🎭 Think of your system like a company:
+    👤 User → customer
+    🏠 Host → seller
+    🧑‍💼 Staff → support agent
+    🛡️ Admin → manager
+    👑 Superuser → CEO
