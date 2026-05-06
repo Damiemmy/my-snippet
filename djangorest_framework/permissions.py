@@ -123,8 +123,16 @@ Just tell me 👍
 
 ⚡ Next Level After This
 We can go deeper into:
+
+👉 Connect frontend (React / Next.js)
+
+    Show “Become Host” button
+    Show request status
+    Admin dashboard (approve/reject UI)
+
     -frontend(👉 
         -Move to frontend:
+        
         -Disable price input dynamically
         -Show “locked” UI)
     - Login system in React (store token properly)

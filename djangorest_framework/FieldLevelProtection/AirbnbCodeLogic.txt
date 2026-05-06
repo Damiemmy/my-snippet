@@ -1,0 +1,19 @@
+
+WHEN SHOULD YOU LOCK FIELDS?
+    Lock price when:
+    - After creation
+    - After first booking
+    - After admin approval
+    
+    Allow price change when:
+    - Draft listing
+    - No bookings yet
+    - Admin approves
+    
+FIELD-LEVEL PROTECTION:
+    ADVANCED VERSION (REAL AIRBNB LOGIC):Instead of permanent lock:
+        Use conditions:
+        if product.has_bookings:
+            block_price_change
+
+        
