@@ -26,4 +26,14 @@
     solution:
         i use the token from devtool>Network>Response and request went successful
 .
+4.)Error: Cannot destructure property 'basename' of useContext(...) as it is null
+
+    Cause:
+    `Header` and `Footer` used `Link` from React Router outside `<BrowserRouter>`.
+
+    Why it happened:
+    `Link` needs Router Context from `<BrowserRouter>`. Without it, `useContext()` returns `null`.
+
+    Fix:
+    Wrap the entire app (`Header`, `Routes`, and `Footer`) inside one `<BrowserRouter>` in `main.jsx/main.tsx`.
 
