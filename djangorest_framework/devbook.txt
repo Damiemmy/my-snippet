@@ -1,0 +1,17 @@
+Professional React Router Navigation Rules
+
+| Situation               | Best Tool       |
+| ----------------------- | --------------- |
+| Button click navigation | `useNavigate()` |
+| Navigation links        | `Link`          |
+| Route loaders/actions   | `redirect()`    |
+
+Key Insight:
+
+* `useNavigate()` → programmatic navigation
+* `Link` → UI anchor navigation
+* `redirect()` → routing logic outside components
+
+
+
+Serializer Overshadows logic in views in terms of "def create" in serializer and "def perform_create" in views

@@ -14,3 +14,61 @@ THE THREE(3) OPTIONS FOR DEPLOYEMENT
 DOCKER COMPOSE COMMAND CONFIGURATION:
 - command: gunicorn Airbnb.wsgi:application --bind 0.0.0.0:8000
 - command: python manage.py runserver
+
+
+FRONT-END NAVIGATION VISIBILITY
+Guest:
+
+* Login
+* Register
+
+Normal User:
+
+* Favourites
+* Reservations
+* Logout
+
+Host:
+
+* Favourites
+* Reservations
+* My Properties
+* Logout
+
+Admin:
+
+* Admin Dashboard
+* Logout
+
+
+PAGES OF AIRBNB SITE:
+
+Recommended Structure
+
+Home Page (/)
+
+* Hero section
+* Categories
+* Featured listings (few)
+* Become host Call to Action(CTA)
+* Experiences
+* Testimonials
+
+Listings Page (/listings)
+
+* All properties
+* Filters
+* Categories
+* Search
+* Pagination
+* Price sorting
+
+Property Detail Page (/listings/:id)
+
+* Full property images
+* Description
+* Amenities
+* Reviews
+* Booking form
+* Reservation system
+
