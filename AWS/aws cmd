@@ -1,0 +1,27 @@
+LINUX IS STRUCTURED LIKE A TREE: /root everything starts here
+
+pwd-            -print working directory
+ls-             -show me files and folders here
+cd desktop-     -move into desktop folders
+mkdir aws-      -training- Create Folders
+touch notes.txt -create empty files
+rm note.txt     -remove file note.txt
+mv              -rename file or move file depending on usage
+cp              -copy to a directory
+cat             -to print out data in a file on terminal
+.               -current directory
+..              -go one folder back e.g cd..
+whoami          -shows the current linux user
+ls -linux       -file Ownership
+chmod +x script.sh -to make script file executable
+sudo            -carrying out adminitrative task
+apt             -linux package manager for installation e.g sudo apt nginx
+sudo chown ubuntu:ubuntu app.py: changing ownership name
+sudo apt upgrade-updating packages
+sudo apt update -updating packages
+ip addr         -view ip address
+ss -tulnp       -listen for ports/active services
+sudo apt install curl - package for carrying out HTTP Request
+curl http://127.0.0.1:8000- a raw http request manually
+
+

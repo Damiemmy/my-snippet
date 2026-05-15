@@ -36,4 +36,3 @@
 
     Fix:
     Wrap the entire app (`Header`, `Routes`, and `Footer`) inside one `<BrowserRouter>` in `main.jsx/main.tsx`.
-

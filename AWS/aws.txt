@@ -1,0 +1,364 @@
+Amazon Web Services is basically:Renting computers, databases, storage, networking, and infrastructure from Amazon instead of buying physical servers yourself.
+
+Instead of this:
+
+Your Laptop → Runs Django
+
+You move to this:
+
+Users → Internet → AWS Servers → Django App → Database
+
+A webistite is  a domainName--->IPAddress-->Server--->Application
+
+
+Lesson 3 PATHS: Tells Linux Exactly the path where a folder is located:
+    TYPES:
+        -Absolute path: starts from the beginning of a file System:
+        -relative path: starts from where am currently am
+
+    WHY THIS MATTERS: When deploying:
+        - wrong path = broken app
+        - wrong directory = failed startup
+        - wrong config path = server crash
+        Professionals understand filesystem structure deeply.
+
+Lesson 4:LINUS USERS: Linux is multi-user.
+    A server may have:
+    - admins
+    - developers
+    - services
+    - applications
+    all running separately.
+    e.g run "whoami" to show current Linux User
+
+    VERY IMPORTANT CONCEPT:Every file in Linux has:
+        - an owner
+        - permissions
+    Linux security is built around this.
+
+LESSON 5 — FILE OWNERSHIP:
+    run "ls -l"
+    output:-rw-r--r-- or drwxrwxrwx  or -rwxrwxrwx
+    
+    BREAKDOWN:
+        FIRST CHARACTER(-):means files but if it was (d) means Directory/Folder
+        NEXT 3 CHARACTERS(rw-) or (rwx): permissions for owners meaning read,write,no execute
+        NEXT 3 CHARACTERS(r--): Permissions for GROUP 
+        Last 3 CHARACTERS(r--): Permissions for EVERYONE ELSE
+
+    3 MAIN PERMISSIONS:
+        r=read
+        w=write
+        x=execute
+
+        REAL EXAMPLE: -rwxr-xr--(file)
+            UserType                Permissions
+            -Owner                  read,write,execute                
+            -Group                  read,execute
+            -Others                 read
+        
+        WHY THIS MATTERS IN AWS:
+            Deployment problems often happen because:
+                - Django cannot access files
+                - Nginx lacks permission
+                - SSH key permissions wrong
+                - Gunicorn socket inaccessible
+
+            Linux permissions are everywhere.
+
+
+LESSON 6 — sudo :Some actions require administrator power.
+Linux protects the system.
+
+    "sudo apt update": sudo means run this as an administrator
+
+    IMPORTANT:Without sudo:
+        - you cannot install packages
+        - change protected files
+        - manage services
+
+LESSON 7 — chmod: This changes permissions.
+    EXAMPLE:run "chmod +x script.sh"
+    MEANS:make the script.sh file executable
+
+    REAL WORLD IMPORTANCE:Deployment scripts often fail because:
+        -file isn’t executable:You fix it using chmod.
+
+LESSON 8 — chown: Changes file ownership.
+    EXAMPLE: sudo chown ubuntu:ubuntu app.py
+
+    Meaning:
+        owner becomes ubuntu user
+        group becomes ubuntu group
+
+    THIS BECOMES IMPORTANT LATER
+        Example:
+        - Nginx owns some files
+        - Django owns others
+        - PostgreSQL owns database files
+    Understanding ownership is huge.    
+
+LESSON 9 — PACKAGE MANAGEMENT:Linux installs software using package managers.
+Ubuntu uses:apt
+    EXAMPLE: run "sudo apt install nginx"
+        -This downloads and installs:Nginx
+
+    UPDATE PACKAGES Run:
+        - sudo apt update
+        - sudo apt upgrade
+
+    WHY THIS MATTERS: 
+        AWS servers start almost empty.You install:
+            - Python
+            - PostgreSQL
+            - Nginx
+            - Git
+            - Docker
+        manually.
+
+
+LESSON 10 — PROCESSES: Programs running on Linux are called processes.
+    VIEW RUNNING PROCESSES:
+        - run "ps aux" or top
+
+    BETTER VERSION
+        - Install: "sudo apt htop" then run "htop"
+    
+        This Shows:
+            - CPU usage
+            - memory usage
+            - running processes
+        Like Task Manager on Windows.
+
+    WHY THIS MATTERS:
+        When production crashes:
+            - you inspect processes
+            - memory
+            - CPU
+            - runaway apps
+
+        This is real engineering work.
+
+
+
+NETWORKING Section:
+
+This is where average developers start getting lost.
+
+But once this clicks, AWS, Docker, deployment, APIs, load balancers, and cloud architecture all begin making sense.
+
+This lesson is foundational to becoming dangerous.
+
+
+
+Lesson 11:NETWORKING:this is how computers talk together(multliple computers talking to each other):
+
+
+LESSON 12 — IP ADDRESSES
+
+Every device on a network has an address which shows their identify just like a home address and a phone number,without an IPAddress computers can't find each other
+
+        Types of IP Address:
+            -Private IP Adress:An Address not accessible from the public internet, used in home,offices and private networks e.g 192.168.x.x, 10.x.x.x, 172.x.x.x
+            -Public IP Address: An Address that can be Accessible on globally on the public internet
+            e.g AWS,EC2 Servers Have Public IP's
+
+        VERY IMPORTANT: Your laptop usually has:
+            - private IP internally
+            - router exposes public IP externally
+
+LESSON 13 — PORTS,This is MASSIVE.A commununication door into a computer
+
+    ANALOGY:Think:
+        - IP Address = Apartment Building
+        - Port = Apartment Number
+
+        Example: 192.168.1.5:8000
+            -Means: 
+                - Go to computer 192.168.1.5
+                - Enter through door 8000
+
+        COMMON PORTS:
+
+        | Port | Purpose           |
+        | ---- | ----------------- |
+        | 80   | HTTP              |
+        | 443  | HTTPS             |
+        | 22   | SSH               |
+        | 5432 | PostgreSQL        |
+        | 3306 | MySQL             |
+        | 6379 | Redis             |
+        | 8000 | Django dev server |
+
+        IMPORTANT: One computer can run MANY services because each service uses different ports.
+        Example:
+            Nginx → Port 80
+            Django → Port 8000
+            PostgreSQL → Port 5432
+            Redis → Port 6379
+
+
+LESSON 14 — WHAT HAPPENS WHEN YOU VISIT A WEBSITE: Suppose you visit: google.com
+Here’s what REALLY happens:
+
+    STEP 1 — 
+        DNS LOOKUP:Your browser asks: “What is google.com’s IP address?”
+        DNS responds: 142.250.xxx.xxx
+    
+    STEP 2 — CONNECT TO SERVER: 
+        Browser connects to: 142.250.xxx.xxx:443
+        Port 443 = HTTPS.
+    STEP 3 — REQUEST SENT:Browser sends:GET/
+        Meaning:“Give me the homepage.”
+
+    STEP 4 — SERVER RESPONDS
+        Server sends:
+            - HTML
+            - CSS
+            - JavaScript
+            - images
+        Back to browser.
+        BOOM: That’s the web.
+
+LESSON 15 — HTTP
+    HTTP means:HyperText Transfer Protocol
+    This is the language browsers and servers use to communicate.
+
+    HTTP METHODS:
+        | Method | Purpose        |
+        | ------ | -------------- |
+        | GET    | Retrieve data  |
+        | POST   | Create data    |
+        | PUT    | Update         |
+        | PATCH  | Partial update |
+        | DELETE | Remove data    |
+
+        HyperText Markup Languages:
+
+LESSON 16 — HTTPS: HTTPS = secure HTTP.
+    Encryption protects:
+        - passwords
+        - tokens
+        - banking info
+
+    HTTPS uses:
+        - SSL/TLS certificates
+        - Later you’ll configure this yourself on AWS.
+
+
+LESSON 17 — localhost
+    This is VERY IMPORTANT.
+    127.0.0.1 means: “This same computer.”
+
+    SO WHEN REACT TALKS TO DJANGO: 
+        Example:localhost:8000/api/posts
+        Your computer is literally sending network requests to itself.
+        That’s still networking.
+
+
+LESSON 18 — DNS
+    Humans prefer:google.com
+    instead of: 142.250.xxx.xxx
+    DNS converts:domain names → IP addresses
+
+    AWS CONNECTION Later you’ll use:
+        Amazon Route 53: to manage domains professionally.
+
+
+LESSON 19 — CLIENT & SERVER
+    CLIENT Requests data.
+    Examples:
+        - browser
+        - React app
+        - mobile app
+    SERVER Responds with data.
+    Examples:
+        - Django
+        - Node.js
+        - Flask
+
+    FULL STACK FLOW:
+        React Frontend
+            ↓
+        HTTP Request
+            ↓
+        Django Backend
+            ↓
+        Database
+            ↓
+        Response Back
+
+        This is literally network communication.
+
+LESSON 20 — WHAT IS A REVERSE PROXY?
+    This is HUGE.
+    You’ll use: Nginx for this.
+
+    WITHOUT NGINX: User → Django directly
+    WITH NGINX:
+        User
+        ↓
+        Nginx
+        ↓
+        Django
+
+    WHY USE NGINX? Because Nginx:
+        - handles traffic efficiently
+        - serves static files
+        - improves security
+        - manages HTTPS
+        - acts as gateway
+    
+    THIS IS REAL PRODUCTION ARCHITECTURE: Most beginners never understand this properly.
+
+
+LESSON 21 — WHAT IS CORS?
+
+    You’ve probably seen CORS errors before.Now let’s understand WHY.
+
+    Suppose:
+        - Frontend:localhost:3000
+        - Backend:localhost:8000
+
+    These are DIFFERENT origins.
+
+    Browser security says: “Can frontend safely access backend?”
+    If backend doesn’t allow it:
+    → CORS error.
+    e.g django-cors-headers
+
+
+LESSON 22 — FIREWALLS Servers protect ports.
+
+    Example:
+        - SSH port 22 open
+        - HTTP port 80 open
+        - PostgreSQL blocked publicly
+
+    AWS uses: 
+        -Security Groups
+
+    These are basically cloud firewalls.
+
+    HIS IS HUGE IN AWS: You’ll later configure:
+        | Service | Allowed Port |
+        | ------- | ------------ |
+        | SSH     | 22           |
+        | HTTP    | 80           |
+        | HTTPS   | 443          |
+
+
+
+
+Skills That Make You “Dangerous”
+Not just AWS dashboards.
+The real power is:
+    - System design
+    - Scalability
+    - Security
+    - Automation
+    - Networking
+    - Monitoring
+    - Infrastructure as code
+
+
