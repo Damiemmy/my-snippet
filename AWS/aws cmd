@@ -12,11 +12,13 @@ cat             -to print out data in a file on terminal
 .               -current directory
 ..              -go one folder back e.g cd..
 whoami          -shows the current linux user
-ls -linux       -file Ownership
+ls -linux       -unknown
+ls -l       -file Ownership
 chmod +x script.sh -to make script file executable
 sudo            -carrying out adminitrative task
 apt             -linux package manager for installation e.g sudo apt nginx
 sudo chown ubuntu:ubuntu app.py: changing ownership name
+
 sudo apt upgrade-updating packages
 sudo apt update -updating packages
 ip addr         -view ip address
@@ -25,3 +27,21 @@ sudo apt install curl - package for carrying out HTTP Request
 curl http://127.0.0.1:8000- a raw http request manually
 
 
+ssh -i "C:\aws\django-key.pem" ubuntu@YOUR_PUBLIC_IP
+uname -a        -system information
+sudo apt update && sudo apt upgrade -y
+sudo apt install python3-pip python3-venv -y
+sudo apt install postgresql postgresql-contrib -y
+sudo systemctl status postgresql : for checking status, you should see(running)
+sudo -u postgres psql - switch to  postgresql
+nano config/settings.py - the file you want to open and edit
+CREATE DATABASE airbnb_db;
+CREATE USER airbnb_user WITH PASSWORD 'strongpassword';
+'''
+ALTER ROLE airbnb_user SET client_encoding TO 'utf8';
+ALTER ROLE airbnb_user SET default_transaction_isolation TO 'read committed';
+ALTER ROLE airbnb_user SET timezone TO 'UTC';
+GRANT ALL PRIVILEGES ON DATABASE airbnb_db TO airbnb_user;
+'''
+
+/q                      - exit postgress terminal

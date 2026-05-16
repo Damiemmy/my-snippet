@@ -1,0 +1,38 @@
+Configuring AWS 
+
+sudo apt update && sudo apt upgrade -y
+sudo apt install python3-pip python3-venv -y
+sudo apt install postgresql postgresql-contrib -y
+sudo -u postgres psql
+
+'''
+CREATE DATABASE airbnb_db;
+CREATE USER airbnb_user WITH PASSWORD 'strongpassword';
+ALTER ROLE airbnb_user SET client_encoding TO 'utf8';
+ALTER ROLE airbnb_user SET default_transaction_isolation TO 'read committed';
+ALTER ROLE airbnb_user SET timezone TO 'UTC';
+GRANT ALL PRIVILEGES ON DATABASE airbnb_db TO airbnb_user;
+'''
+or
+'''
+GRANT ALL ON SCHEMA public TO airbnb_user;
+'''
+    WHAT YOU JUST DID: You created:
+        | Item        | Meaning          |
+        | ----------- | ---------------- |
+        | airbnb_db   | Database         |
+        | airbnb_user | Database account |
+        | password    | Authentication   |
+        | privileges  | Access rights    |
+
+NANO:
+    Nano controls:
+        - CTRL + O → Save file
+        - ENTER → Confirm save
+        - CTRL + X → Exit editor
+    Break it down simply:
+        - nano → a terminal-based text editor (used in Linux/Ubuntu servers)
+        - config/settings.py → the file you want to open and edit
+
+Nginix= http-->80--->inbound rules(AWS)
+Django= tcp--->8000--->ipv4(public)
