@@ -49,6 +49,23 @@ NANO:
 Nginix= http-->80--->inbound rules(AWS)
 Django= tcp--->8000--->ipv4(public)
 
+sudo nano /etc/nginx/sites-available/airbnb:
+
+inside editor:
+"server {
+    listen 80;
+
+    server_name 13.60.49.109;
+
+    location / {
+        proxy_pass http://127.0.0.1:8000;
+
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}"
+
+
 🚀 REAL PRODUCTION ARCHITECTURE:
 
 React Frontend
