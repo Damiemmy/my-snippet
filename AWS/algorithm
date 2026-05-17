@@ -1,0 +1,17 @@
+- create ec2 instance
+- connect to server through pem key
+- install python3-pip python3-venv -y
+- install django,psycopg2-binary,gunicorn
+- run sudo apt install postgresql postgresql-contrib -y
+- sudo systemctl status postgres
+- sudo -u postgres psql: entering into progress terminal
+- create database,user,password,ownership,and permission
+- nano airbnb/settings.py: configure database and allowed_host(IPV4)
+- \q
+- sudo apt install nginx -y
+- sudo sytemctl status nginx
+- whoami
+- uname -a
+
+gunicorn --bind 0.0.0.0:8000 config.wsgi
+python3 manage.py runserver 0.0.0.0:8000;

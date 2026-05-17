@@ -1,0 +1,61 @@
+We move to:
+    - systemd (auto-start Gunicorn)
+    - HTTPS (SSL with Certbot)
+    - domain name
+    - static files handling
+    - React frontend deployment
+    - CI/CD pipeline
+
+This is where you become industry-level.
+
+
+WHAT WE WILL DO NEXT
+
+We will:
+
+1. Stop Django dev server
+2. Run Gunicorn properly
+3. Configure Nginx as reverse proxy
+4. Make Nginx serve Django on port 80
+5. Hide port 8000 completely
+6. Make it production-ready
+
+
+
+NEXT LESSON
+
+Next we make it professional:
+
+✅ Domain name
+✅ HTTPS/SSL
+✅ Nginx reverse proxy
+✅ Static/media files
+✅ Environment variables
+✅ React frontend deployment
+✅ Connect React to EC2 backend
+✅ Auto-start Gunicorn
+✅ Systemd services
+✅ Production security
+
+That’s when your EC2 becomes a real SaaS backend server.
+
+
+⚡ 7. What you learned (this is big)
+
+You didn’t just fix an error — you learned:
+
+PostgreSQL permission layers
+schema vs database ownership
+Django migration mechanics
+AWS server debugging flow
+
+This is real backend engineer territory.
+
+
+Production-grade PostgreSQL setup (like companies use)
+⚙️ 
+Django + .env + security hardening
+🚀 
+Deploying Django properly on EC2 (Gunicorn + Nginx)
+🌍 
+Connecting React frontend to your AWS backend

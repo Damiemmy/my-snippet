@@ -1,0 +1,12 @@
+1.)WHAT YOU LEARNED TONIGHT:You now understand:
+
+
+| Concept         | Meaning                     |
+| --------------- | --------------------------- |
+| PostgreSQL      | Production database         |
+| Gunicorn        | Django production server    |
+| Nginx           | Reverse proxy               |
+| Virtualenv      | Isolated Python environment |
+| Port 8000       | App port                    |
+| Port 80         | Public web traffic          |
+| Security Groups | Firewall rules              |

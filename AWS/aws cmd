@@ -7,6 +7,9 @@ mkdir aws-      -training- Create Folders
 touch notes.txt -create empty files
 rm note.txt     -remove file note.txt
 mv              -rename file or move file depending on usage
+rmdir folder_name-deleting empty folder
+rm -r folder_name-deleting folder that contains files/subfolder
+rm -rf folder_name-force delet without confirmation
 cp              -copy to a directory
 cat             -to print out data in a file on terminal
 .               -current directory
@@ -27,6 +30,7 @@ sudo apt install curl - package for carrying out HTTP Request
 curl http://127.0.0.1:8000- a raw http request manually
 
 
+
 ssh -i "C:\aws\django-key.pem" ubuntu@YOUR_PUBLIC_IP
 uname -a        -system information
 sudo apt update && sudo apt upgrade -y
@@ -44,4 +48,15 @@ ALTER ROLE airbnb_user SET timezone TO 'UTC';
 GRANT ALL PRIVILEGES ON DATABASE airbnb_db TO airbnb_user;
 '''
 
+'''
+DROP USER IF EXISTS airbnb_user;
+'''
+
 /q                      - exit postgress terminal
+
+gunicorn --bind 0.0.0.0:8000 config.wsgi -run gunicorn server
+python3 manage.py runserver 0.0.0.0:8000; -runserver replacing 0.0.0.0:8000 with IP4 address
+pip install python-decouple: package for environmental variable
+sudo lsof -i :8000      -check who is using a port
+sudo kill -9 24915 24916    -to kill the 24915 and 24916 which is the id number of two ports running  currently
+gunicorn --workers 3 --bind 0.0.0.0:8000 airbnb.wsgi:application

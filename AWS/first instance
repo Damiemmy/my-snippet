@@ -4,6 +4,7 @@ sudo apt update && sudo apt upgrade -y
 sudo apt install python3-pip python3-venv -y
 sudo apt install postgresql postgresql-contrib -y
 sudo -u postgres psql
+sudo systemctl status postgresql
 
 '''
 CREATE DATABASE airbnb_db;
@@ -17,6 +18,17 @@ or
 '''
 GRANT ALL ON SCHEMA public TO airbnb_user;
 '''
+
+MOST RECOMMENDED(BEST PRACTICES):
+    - CREATE DATABASE airbnb_db;
+    - CREATE USER airbnb_user WITH PASSWORD 'xxx';
+    - ALTER DATABASE airbnb_db OWNER TO airbnb_user;
+    - ALTER SCHEMA public OWNER TO airbnb_user;
+    - GRANT ALL ON SCHEMA public TO airbnb_user;
+
+FINAL HACK:
+    - GRANT ALL PRIVILEGES ON DATABASE airbnb_db TO airbnb_user;
+
     WHAT YOU JUST DID: You created:
         | Item        | Meaning          |
         | ----------- | ---------------- |
@@ -36,3 +48,24 @@ NANO:
 
 Nginix= http-->80--->inbound rules(AWS)
 Django= tcp--->8000--->ipv4(public)
+
+🚀 REAL PRODUCTION ARCHITECTURE:
+
+React Frontend
+       ↓
+Nginx (Reverse Proxy)
+       ↓
+Gunicorn (WSGI Server)
+       ↓
+Django Application
+       ↓
+PostgreSQL Database
+
+🧠 WHY COMPANIES USE THIS
+| Component  | Purpose                      |
+| ---------- | ---------------------------- |
+| React      | Frontend UI                  |
+| Nginx      | Web server + traffic manager |
+| Gunicorn   | Runs Django professionally   |
+| PostgreSQL | Database                     |
+| EC2        | Cloud server                 |
