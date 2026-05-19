@@ -10,3 +10,40 @@
 | Port 8000       | App port                    |
 | Port 80         | Public web traffic          |
 | Security Groups | Firewall rules              |
+
+
+
+Evolving From:
+Internet
+   ↓
+EC2 Public IP
+   ↓
+Nginx
+   ↓
+Gunicorn
+   ↓
+Django
+
+to 
+
+User
+ ↓
+CloudFront CDN
+ ↓
+HTTPS (SSL)
+ ↓
+Domain Name
+ ↓
+Route53 DNS
+ ↓
+Elastic IP
+ ↓
+Nginx
+ ↓
+Gunicorn
+ ↓
+Django
+ ↓
+PostgreSQL
+ ↓
+S3 Storage

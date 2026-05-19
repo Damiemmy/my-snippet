@@ -57,6 +57,16 @@ DROP USER IF EXISTS airbnb_user;
 gunicorn --bind 0.0.0.0:8000 config.wsgi -run gunicorn server
 python3 manage.py runserver 0.0.0.0:8000; -runserver replacing 0.0.0.0:8000 with IP4 address
 pip install python-decouple: package for environmental variable
-sudo lsof -i :8000      -check who is using a port
-sudo kill -9 24915 24916    -to kill the 24915 and 24916 which is the id number of two ports running  currently
+
 gunicorn --workers 3 --bind 0.0.0.0:8000 airbnb.wsgi:application
+gunicorn airbnb.wsgi:application --bind 127.0.0.1:8000
+sudo nginx -t               -to test if nginx is okay
+
+///
+ss -tulnp - to  check for open port 
+sudo lsof -i :8000 - to check for port running on  8000
+sudo apt install net-tools- this package need to be install to use net-tools
+sudo netstat -tulnp - Shows network sockets/statistics great for seeing or listening ports
+sudo lsof -i :8000      -check who is using a port
+sudo kill -9 24915 24916    -to kill the 24915 and 24916 (PID) which is the id number of two ports running  currently
+///

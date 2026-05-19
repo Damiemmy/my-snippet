@@ -1,0 +1,107 @@
+# 🔐 Enable Google 2-Step Verification (2FA) — Step-by-Step Guide
+
+## 🧭 STEP 0 — Prerequisites
+
+Before starting, ensure:
+
+* You are signed into your Google account
+* You have access to your phone number or Authenticator app
+
+---
+
+## 🪜 STEP 1 — Open Google Security Settings
+
+1. Open your browser
+2. Go to: [https://myaccount.google.com/security](https://myaccount.google.com/security)
+3. Scroll to **“How you sign in to Google”**
+
+---
+
+## 🪜 STEP 2 — Locate 2-Step Verification
+
+1. Find **2-Step Verification**
+2. Click on it
+
+---
+
+## 🪜 STEP 3 — Start Setup
+
+1. Click **Get Started**
+2. Re-enter your Google password when prompted
+
+---
+
+## 🪜 STEP 4 — Choose Verification Method
+
+Google will ask how you want to verify your identity.
+
+Choose one:
+
+* 📱 Google Prompt (recommended)
+* 📲 SMS (phone number)
+* 🔐 Google Authenticator App
+
+👉 Recommended for beginners: **SMS**
+
+---
+
+## 🪜 STEP 5 — Verify Phone Number
+
+1. Enter your phone number
+2. Google sends a 6-digit code
+3. Enter the code
+
+---
+
+## 🪜 STEP 6 — Enable 2FA
+
+1. Click **Turn On**
+2. 2-Step Verification will be activated
+
+---
+
+## 🪜 STEP 7 — Confirm Activation
+
+You should see:
+
+* ✅ 2-Step Verification = ON
+
+---
+
+# 🔑 AFTER 2FA (IMPORTANT FOR DEVELOPERS)
+
+## 🪜 STEP 8 — Generate App Password (for Django SMTP)
+
+1. Go to: [https://myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords)
+2. Select:
+
+   * App: Mail
+   * Device: Other (e.g. Django Server)
+3. Click **Generate**
+4. Copy the 16-digit password
+
+---
+
+## ⚠️ KEY RULES
+
+* ❌ Never use your real Gmail password for apps
+* ✅ Use App Password for Django, SMTP, etc.
+* ✅ 2FA must be enabled before App Passwords work
+
+---
+
+# 🧠 ALGORITHM SUMMARY
+
+```
+START
+ → Open Google Security Page
+ → Navigate to 2-Step Verification
+ → Click Get Started
+ → Verify Password
+ → Choose SMS / Authenticator
+ → Verify Code
+ → Enable 2FA
+ → Confirm status = ON
+ → Generate App Password (optional)
+END
+```

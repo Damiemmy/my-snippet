@@ -1,0 +1,103 @@
+src/
+│
+├── App.tsx
+├── main.tsx
+│
+├── context/
+│   └── AuthContext.jsx
+│
+├── services/
+│   └── api.js
+│
+├── layouts/
+│   ├── WebsiteLayout.jsx
+│   └── DashboardLayout.jsx
+│
+├── components/
+│   ├── header/
+│   │   └── Header.jsx
+│   │
+│   ├── footer/
+│   │   └── Footer.jsx
+│   │
+│   ├── navbar/
+│   │   └── Navbar.jsx
+│   │
+│   ├── sidebar/
+│   │   └── Sidebar.jsx
+│   │
+│   ├── listing/
+│   │   ├── ListingCard.jsx
+│   │   ├── ListingFilters.jsx
+│   │   ├── ListingSearch.jsx
+│   │   └── Category.jsx
+│   │
+│   ├── booking/
+│   │   ├── BookingForm.jsx
+│   │   └── ReservationCard.jsx
+│   │
+│   ├── ui/
+│   │   ├── Button.jsx
+│   │   ├── Input.jsx
+│   │   └── Loader.jsx
+│   │
+│   └── shared/
+│       ├── ProtectedRoute.jsx
+│       └── RoleRoute.jsx
+│
+├── pages/
+│   ├── website/
+│   │   ├── Home.jsx
+│   │   ├── ListingsPage.jsx
+│   │   ├── ListingDetailPage.jsx
+│   │   ├── Login.jsx
+│   │   ├── Register.jsx
+│   │   ├── BecomeHost.jsx
+│   │   ├── VerifyEmail.jsx
+│   │   └── EmailSuccess.jsx
+│   │
+│   ├── dashboard/
+│   │   ├── redirect/
+│   │   │   └── DashboardRedirect.jsx
+│   │   │
+│   │   ├── user/
+│   │   │   ├── UserHome.jsx
+│   │   │   ├── Reservations.jsx
+│   │   │   ├── Favorites.jsx
+│   │   │   └── Settings.jsx
+│   │   │
+│   │   ├── host/
+│   │   │   ├── HostHome.jsx
+│   │   │   ├── Properties.jsx
+│   │   │   ├── Reservations.jsx
+│   │   │   └── Settings.jsx
+│   │   │
+│   │   ├── admin/
+│   │       ├── AdminHome.jsx
+│   │       ├── Users.jsx
+│   │       ├── Properties.jsx
+│   │       └── Settings.jsx
+│
+├── hooks/
+│   ├── useAuth.js
+│   ├── useFetch.js
+│   └── useRole.js
+│
+├── utils/
+│   ├── formatDate.js
+│   ├── currency.js
+│   └── constants.js
+│
+├── routes/
+│   ├── WebsiteRoutes.jsx
+│   ├── DashboardRoutes.jsx
+│   └── AppRoutes.jsx
+│
+├── assets/
+│   ├── images/
+│   ├── icons/
+│   └── logos/
+│
+└── styles/
+    ├── globals.css
+    └── animations.css

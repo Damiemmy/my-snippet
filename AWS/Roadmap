@@ -59,3 +59,36 @@ Django + .env + security hardening
 Deploying Django properly on EC2 (Gunicorn + Nginx)
 🌍 
 Connecting React frontend to your AWS backend
+
+
+
+
+
+
+
+
+
+🧠 WHAT YOU SHOULD MASTER NEXT
+AWS Side
+    Elastic IP
+    Route53
+    Domain connection
+    HTTPS with SSL
+    S3 storage
+    CloudFront CDN  
+Backend Side
+    Gunicorn systemd service
+    Static/media files
+    Celery
+    Redis
+    Background tasks
+Security Side
+    fail2ban
+    ufw firewall
+    secret rotation
+    SSH hardening
+
+EMAIL SERIVICES TO USE:
+SendGrid
+Mailgun
+Amazon SES
