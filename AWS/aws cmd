@@ -70,3 +70,17 @@ sudo netstat -tulnp - Shows network sockets/statistics great for seeing or liste
 sudo lsof -i :8000      -check who is using a port
 sudo kill -9 24915 24916    -to kill the 24915 and 24916 (PID) which is the id number of two ports running  currently
 ///
+
+///RECOMENDED
+ss -tulnp           -To see all listening services
+sudo lsof -i :8000  -To check a specific port 
+sudo fuser -k 8000/tcp or sudo kill -9 PID
+
+
+
+| `kill -9 PID`            | `fuser -k 8000/tcp`       |
+| ------------------------ | ------------------------- |
+| Kills by PID             | Kills by PORT             |
+| You must know PID        | You only need the port    |
+| More general-purpose     | More network-port focused |
+| Two-step process usually | One-step shortcut         |
