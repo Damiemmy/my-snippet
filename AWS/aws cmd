@@ -84,3 +84,19 @@ sudo fuser -k 8000/tcp or sudo kill -9 PID
 | You must know PID        | You only need the port    |
 | More general-purpose     | More network-port focused |
 | Two-step process usually | One-step shortcut         |
+
+
+ls -la:
+    This shows:
+        - permissions
+        - owner
+        - hidden files
+        - timestamps
+
+ls -a:
+    Linux treats files like:
+        - .env
+        - .gitignore
+        - .bashrc
+    as hidden configuration files
+    So normal "ls" hides them while "ls -a" or "ls -la" exposes them
