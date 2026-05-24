@@ -100,3 +100,5 @@ ls -a:
         - .bashrc
     as hidden configuration files
     So normal "ls" hides them while "ls -a" or "ls -la" exposes them
+
+psql -U your_user -d your_db -h localhost -W: this test if postgres user is connected

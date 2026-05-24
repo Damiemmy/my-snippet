@@ -1,0 +1,164 @@
+# 🚨 DEV NOTE: HOW TO DEBUG 502 BAD GATEWAY (NGINX + DJANGO)
+
+## 🧠 WHAT 502 MEANS
+
+Nginx is working, but cannot communicate with Gunicorn.
+
+So the problem is ALWAYS one of:
+
+* Gunicorn not running
+* Wrong socket path
+* Permission issue
+* Nginx misconfiguration
+
+---
+
+# 🪜 DEBUGGING PROCESS (STEP-BY-STEP)
+
+## 1. CHECK IF NGINX IS THE ISSUE
+
+```bash
+sudo systemctl status nginx
+```
+
+✔ should be `active (running)`
+
+---
+
+## 2. CHECK GUNICORN STATUS
+
+```bash
+sudo systemctl status gunicorn
+```
+
+If NOT running:
+✔ Fix Gunicorn first (restart or check logs)
+
+---
+
+## 3. CHECK ERROR LOG (MOST IMPORTANT STEP)
+
+```bash
+sudo tail -n 50 /var/log/nginx/error.log
+```
+
+---
+
+## 🔥 WHAT TO LOOK FOR
+
+### Case A: permission denied
+
+```
+(13: Permission denied)
+```
+
+👉 FIX = folder permissions issue
+
+---
+
+### Case B: no such file
+
+```
+connect() to unix:/... failed (2: No such file)
+```
+
+👉 FIX = wrong socket path OR gunicorn not running
+
+---
+
+### Case C: connection refused
+
+```
+connection refused
+```
+
+👉 FIX = gunicorn not running or crashed
+
+---
+
+# 4. CHECK SOCKET FILE
+
+```bash
+ls -l /path/to/gunicorn.sock
+```
+
+✔ must exist
+
+---
+
+# 5. CHECK NGINX CONFIG
+
+```bash
+sudo nginx -t
+```
+
+Then verify:
+
+```nginx
+proxy_pass http://unix:/path/to/gunicorn.sock;
+```
+
+✔ must match EXACT socket path
+
+---
+
+# 6. CHECK GUNICORN LOGS
+
+```bash
+sudo journalctl -u gunicorn --no-pager -n 50
+```
+
+Look for:
+
+* ModuleNotFoundError
+* PermissionError
+* settings errors
+
+---
+
+# 7. CHECK FOLDER PERMISSIONS (VERY IMPORTANT)
+
+```bash
+sudo chmod 755 /home/ubuntu
+sudo chmod 755 /home/ubuntu/project
+sudo chmod 755 /home/ubuntu/project/app
+```
+
+👉 ensures Nginx can reach socket
+
+---
+
+# 8. RESTART EVERYTHING AFTER FIX
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart gunicorn
+sudo systemctl restart nginx
+```
+
+---
+
+# 🧠 FINAL FIX RULES
+
+## IF 502 HAPPENS:
+
+### STEP 1:
+
+Check nginx error log
+
+### STEP 2:
+
+Match error type:
+
+| Error              | Fix                 |
+| ------------------ | ------------------- |
+| Permission denied  | chmod 755 folders   |
+| No such file       | fix socket path     |
+| Connection refused | restart gunicorn    |
+| Bad gateway        | check both services |
+
+---
+
+# 🧩 SIMPLE MINDSET
+
+502 is never random — it is always a connection failure between Nginx and Gunicorn.

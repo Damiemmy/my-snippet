@@ -1,0 +1,8 @@
+How Django ORM converts to SQL (so you stop writing raw SQL)
+How to design real hospital/booking database schema
+How to optimize PostgreSQL for production on AWS
+How to connect React → Django → PostgreSQL cleanly
+
+Just tell me 👍
+
+Memory full

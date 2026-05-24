@@ -15,3 +15,67 @@
 
 gunicorn --bind 0.0.0.0:8000 config.wsgi
 python3 manage.py runserver 0.0.0.0:8000;
+
+
+CONFIGURING/CREATING GUNICORN SERVICE:
+1- run "sudo nano /etc/systemd/system/gunicorn.service" : and paste this file
+
+[Unit]
+Description=gunicorn daemon
+After=network.target
+
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/hms-project/hms
+ExecStart=/home/ubuntu/venv/bin/gunicorn \
+          --workers 3 \
+          --bind unix:/home/ubuntu/hms-project/hms/gunicorn.sock \
+          config.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
+
+2 - run "sudo systemctl daemon-reload" :This RELOAD SYSTEMD
+3 - run "sudo systemctl start gunicorn" :This START GUNICORN
+4 - run "sudo systemctl enable gunicorn" :This ENABLE GUNICORN and ensures your app starts automatically after reboot.
+5 -run "sudo systemctl status gunicorn" : THIS CHECKS IF GUNICORN is running
+6 -run "sudo journalctl -u gunicorn" or
+  -run "sudo journalctl -u gunicorn --no-pager" : This is VERY IMPORTANT.
+It shows:"syntax errors,missing,packages,bad paths,missing environment variables,migration problems
+
+
+NGNIX
+
+-sudo apt update
+-sudo apt install nginx -y
+-sudo nano /etc/nginx/sites-available/hms:paste this on the file but do not copy blindly:
+server {
+    listen 80;
+    server_name 51.21.5.98;
+
+    location = /favicon.ico {
+        access_log off;
+        log_not_found off;
+    }
+
+    # STATIC FILES (correct way)
+    location /static/ {
+        alias /home/ubuntu/hms-project/hms/staticfiles/;
+    }
+
+    # MEDIA FILES (if you use uploads)
+    location /media/ {
+        alias /home/ubuntu/hms-project/hms/media/;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/home/ubuntu/hms-project/hms/gunicorn.sock;
+    }
+}
+
+-sudo ln -s /etc/nginx/sites-available/hms /etc/nginx/sites-enabled
+- sudo nginx -t: for testing the config file
+- sudo systemctl restart nginx
+- sudo systemctl cat gunicorn : to troubleshoot for nginx gateway 502 error checking gurnicorn configuration
