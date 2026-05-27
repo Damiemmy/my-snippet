@@ -102,3 +102,17 @@ ls -a:
     So normal "ls" hides them while "ls -a" or "ls -la" exposes them
 
 psql -U your_user -d your_db -h localhost -W: this test if postgres user is connected
+sudo apt install docker.io -y
+sudo docker run hello-world
+
+systemctl-start,restart,status,stop
+COMMAND FOR ADDING USER(UBUNTU) TO THE DOCKER GROUP: 
+    - run "sudo usermod -aG docker ubuntu" 
+    - refresh group after running "sudo usermod -aG docker ubuntu "
+        - run "exit" : Log out and log back in(Then reconnect SSH):-  option 1
+        - or run "newgrp docker" :(no logout required):            -  option 2
+
+docker build -t django-app .
+docker run -p 8000:8000 django-app
+sudo docker system prune -a
+sudo docker system prune -a --volumes
