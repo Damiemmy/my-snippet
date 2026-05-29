@@ -1,0 +1,5 @@
+go to aws increase volumes to 20GB 
+and run :
+    - sudo growpart /dev/nvme0n1 1
+    - sudo resize2fs /dev/
+verify it works : run "df -h"

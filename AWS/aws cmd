@@ -116,3 +116,5 @@ docker build -t django-app .
 docker run -p 8000:8000 django-app
 sudo docker system prune -a
 sudo docker system prune -a --volumes
+docker run -p 8000:8000 --env-file .env django-app
+sudo apt install docker-compose -y
