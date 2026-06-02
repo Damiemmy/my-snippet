@@ -1,0 +1,43 @@
+# 🧨 Docker EntryPoint Error & Fix
+
+## ❌ Error
+
+Docker failed to start the container because `entrypoint.sh` could not be executed:
+
+```
+exec: "/app/entrypoint.sh": permission denied
+```
+
+This usually happens due to:
+
+* Missing execute permission on the script
+* Windows line endings (CRLF) inside the file
+
+---
+
+## ⚡ Fix
+
+### 1. Remove Windows line endings
+
+```bash
+sed -i 's/\r$//' entrypoint.sh
+```
+
+### 2. Give execute permission
+
+```bash
+chmod +x entrypoint.sh
+```
+
+### 3. Rebuild and restart Docker
+
+```bash
+docker compose build --no-cache
+docker compose up
+```
+
+---
+
+## ✅ Result
+
+The container starts successfully and Django runs via Gunicorn with the entrypoint script working correctly.

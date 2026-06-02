@@ -33,8 +33,7 @@ ExecStart=/home/ubuntu/venv/bin/gunicorn \
           --bind unix:/home/ubuntu/hms-project/hms/gunicorn.sock \
           config.wsgi:application
 
-[Install]
-WantedBy=multi-user.target
+
 
 2 - run "sudo systemctl daemon-reload" :This RELOAD SYSTEMD
 3 - run "sudo systemctl start gunicorn" :This START GUNICORN

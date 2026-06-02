@@ -1,0 +1,14 @@
+Find the source: run "grep -R "\$_r" ."  and run " grep -R "_r" . "
+
+#most times this error comes from secret_key and here's the right fix:
+PROBLEM:
+    docker_compose reading $_r in Secret_key as a variable which is not defined so it throws an error 
+
+BEFORE FIX:
+    SECRET_KEY="django-insecure-2n*u9eco7a4lhy^rsecjsd0fk(l)z$_r*3h36771)@65wteq0y"
+
+AFTER_FIX:
+    SECRET_KEY="django-insecure-2n*u9eco7a4lhy^rsecjsd0fk(l)z$$_r*3h36771)@65wteq0y"
+
+THE FIX:
+    add $ to $_r  to make it "$$_r" in secret Key Values

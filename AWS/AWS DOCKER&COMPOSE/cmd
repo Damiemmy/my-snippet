@@ -1,0 +1,23 @@
+docker compose up --build
+docker compose exec -it web python manage.py migrate
+docker compose exec web python manage.py createsuperuser
+docker compose exec -it web python manage.py createsuperuser
+
+run:
+sudo nano /etc/nginx/sites-available/default
+
+replace with:
+
+server {
+    listen 80;
+    server_name your-ip-or-domain;
+
+    location / {
+        proxy_pass http://127.0.0.1:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+
+finally run :
+sudo systemctl reload nginx

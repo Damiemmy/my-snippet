@@ -10,6 +10,10 @@ mv              -rename file or move file depending on usage
 rmdir folder_name-deleting empty folder
 rm -r folder_name-deleting folder that contains files/subfolder
 rm -rf folder_name-force delet without confirmation
+rsync -av --progress ./ musical_session_bookings/ : used when musical_session_bookings folder is in the samed directory with all file you want to copy into them, this copy all files in the same current directory with musical_session_bookings into same it's folder
+rsync -av --progress --remove-source-files ./ musical_session_bookings/ : to move all files from same directory with musical_session_bookings into it's folder
+rm -rf ./*: to wipe all files and folder in a directory but keeps the current directory
+rm -rf ./: remove the entire file from a directory
 cp              -copy to a directory
 cat             -to print out data in a file on terminal
 .               -current directory
@@ -118,3 +122,39 @@ sudo docker system prune -a
 sudo docker system prune -a --volumes
 docker run -p 8000:8000 --env-file .env django-app
 sudo apt install docker-compose -y
+
+
+grep gunicorn requirements.txt : to check if gunicorn is in requirements.txt file
+echo "gunicorn" >> requirements.txt :  to include gunicorn in requirements.txt file
+find . -name wsgi.py : to find a file called wsgi.py in the project folder
+docker images : view list of docker images
+
+//TO VERIFY WHAT IS RUNNIG ON DOCKER PORT 80000
+sudo ss -tulpn | grep 8000
+docker ps
+
+//CLEAN RESET START FOR DOCKER 
+docker stop $(docker ps -q)
+docker rm $(docker ps -aq)
+docker system prune -a
+git restore --staged . : this is to unstage all files in git
+
+
+//AFTER YOU FIX A FILE AND WHAT TO REBUILD DOCKER COMPOSE QUICKLY:
+docker compose down -v
+docker compose up --build
+
+//production practice
+ALLOWED_HOSTS = [
+    host.strip()
+    for host in os.environ.get('ALLOWED_HOSTS', '').split(',')
+    if host.strip()
+]
+
+//running docker like a dev ops engineer
+docker compose up --build -d
+docker compose logs -f web : for checking logs
+docker compose logs celery
+grep -R "\$_r" .
+grep -R "_r" .     : this means search  for any file that contains _r 
+find . -name "settings.py" : to find a file "settings.py" if it exists
