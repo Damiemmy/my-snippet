@@ -5,7 +5,7 @@ services:
     build: .
     container_name: django_web
     entrypoint: ["sh", "/app/entrypoint.sh"]
-    command: gunicorn Backend.wsgi:application --bind 0.0.0.0:8000
+    command: gunicorn Backend.wsgi:application --bind 0.0.0.0:8000 --workers 4
     volumes:
       - .:/app
     ports:
@@ -15,6 +15,7 @@ services:
     depends_on:
       - db
       - redis
+    restart: always
 
   db:
     image: postgres:16
@@ -26,23 +27,51 @@ services:
       POSTGRES_PASSWORD: strongpassword123
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
+    # ❌ remove in production
+    # ports:
+    #   - "5432:5432"
 
   redis:
     image: redis:7
     container_name: redis_cache
     restart: always
-    ports:
-      - "6379:6379"
+    # ❌ remove in production
+    # ports:
+    #   - "6379:6379"
+
   nginx:
     image: nginx:latest
     container_name: nginx_proxy
+    restart: always
     ports:
       - "80:80"
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - .:/app   # IMPORTANT for static/media access
     depends_on:
       - web
+
+  celery:
+    build: .
+    container_name: celery_worker
+    command: celery -A Backend worker -l info
+    restart: always
+    depends_on:
+      - redis
+      - db
+    env_file:
+      - .env
+
+  celery-beat:
+    build: .
+    container_name: celery_beat
+    command: celery -A Backend beat -l info
+    restart: always
+    depends_on:
+      - redis
+      - db
+    env_file:
+      - .env
+
 volumes:
   postgres_data:

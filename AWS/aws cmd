@@ -158,3 +158,4 @@ docker compose logs celery
 grep -R "\$_r" .
 grep -R "_r" .     : this means search  for any file that contains _r 
 find . -name "settings.py" : to find a file "settings.py" if it exists
+git commit --amend -m "" : to alter commit message

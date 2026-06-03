@@ -64,3 +64,34 @@ ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '127.0.0.1,localhost').split(','
 
 
 
+#5. Phase 2: Connect GitHub to EC2(for deployement)
+ ssh into ec2
+
+#6. Generate Key:
+ssh-keygen -t ed25519 #press Enter repeatedly
+
+#output:
+id_ed25519 → PRIVATE KEY (secret, stays on EC2)
+id_ed25519.pub → PUBLIC KEY (safe to share)
+
+#7. run command:
+cat ~/.ssh/id_ed25519.pub 
+
+#output Public Key:
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILz8/YeTlun9b843S6joChHzbEZOik28p/15i0V9bw8U ubuntu@ip-172-31-46-29
+
+#8. Add it to EC2 authorized keys (IMPORTANT CHECK)
+#run command:
+cat ~/.ssh/authorized_keys
+
+#check if public key is inside most times is not by default so run :
+echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILz8/YeTlun9b843S6joChHzbEZOik28p/15i0V9bw8U ubuntu@ip-172-31-46-29" >> ~/.ssh/authorized_keys
+#this command above adds public key to authorized keys
+
+
+#9. CONFIGURE EC2_HOST,EC2_USER,EC2_SSH_KEY in github action
+EC2_USER=ubuntu
+EC2_HOST=my-public ip
+EC2_SSH_KEY= run command "cat ~/.ssh/id_ed25519" to get EC2_SSH_KEY
+
+
