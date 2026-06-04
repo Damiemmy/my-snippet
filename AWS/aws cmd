@@ -159,3 +159,16 @@ grep -R "\$_r" .
 grep -R "_r" .     : this means search  for any file that contains _r 
 find . -name "settings.py" : to find a file "settings.py" if it exists
 git commit --amend -m "" : to alter commit message
+
+STATIC PROBLEM CMD FIX
+i.)sudo chown -R ubuntu:ubuntu ~/Backend_Ecommerce_Store: this second command  changes ownership
+ii.)git reset --hard origin/main: this  command says "forget everything on the current server and make it exactly like github"
+
+⚙️ Real-world safe order Most reliable sequence:
+    - sudo chown -R ubuntu:ubuntu .
+    - git fetch origin
+    - git reset --hard origin/main
+
+OR if repo is clean:
+    - sudo chown -R ubuntu:ubuntu .
+    - git pull origin main

@@ -258,3 +258,5 @@ docker-compose logs -f
 ✔ Entry-point wait-for-db logic
 ✔ Environment variables (.env)
 ✔ Container isolation
+
+#12 CI/CD Pipeline:
