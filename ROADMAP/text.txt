@@ -1,0 +1,9 @@
+Django
+Django REST Framework
+React
+TypeScript
+PostgreSQL
+Docker
+CI/CD
+Cloud deployment
+System design
