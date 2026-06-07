@@ -1,0 +1,31 @@
+Our Goal
+
+By the end of this mentorship project, you should be able to explain:
+
+Backend
+Why we created every folder
+Why we created every file
+Why we chose ViewSets
+Why we use serializers
+Why we use permissions
+Why we use services
+Why we use Celery
+Why we use Redis
+Why we use PostgreSQL
+Frontend
+Why we created every page
+Why we created every component
+Why Context exists
+Why Axios exists
+Why React Router exists
+DevOps
+Why Docker exists
+Why Nginx exists
+Why GitHub Actions exists
+Why AWS exists
+
+Not just "how."
+
+But why.
+
+That is where confidence comes from.

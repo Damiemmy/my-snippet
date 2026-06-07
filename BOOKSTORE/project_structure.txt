@@ -1,0 +1,247 @@
+bookstore/
+│
+├── backend/
+│   ├── manage.py
+│   │
+│   ├── config/
+│   │   ├── __init__.py
+│   │   ├── settings/
+│   │   │   ├── __init__.py
+│   │   │   ├── base.py
+│   │   │   ├── development.py
+│   │   │   ├── production.py
+│   │   │   └── testing.py
+│   │   │
+│   │   ├── urls.py
+│   │   ├── wsgi.py
+│   │   ├── asgi.py
+│   │   └── celery.py
+│   │
+│   ├── apps/
+│   │
+│   │   ├── users/
+│   │   │   ├── migrations/
+│   │   │   ├── admin.py
+│   │   │   ├── apps.py
+│   │   │   ├── models.py
+│   │   │   ├── serializers.py
+│   │   │   ├── permissions.py
+│   │   │   ├── views.py
+│   │   │   ├── urls.py
+│   │   │   ├── tokens.py
+│   │   │   ├── services.py
+│   │   │   └── tests/
+│   │
+│   │   ├── authentication/
+│   │   │   ├── serializers.py
+│   │   │   ├── views.py
+│   │   │   ├── urls.py
+│   │   │   ├── jwt.py
+│   │   │   └── oauth.py
+│   │
+│   │   ├── books/
+│   │   │   ├── migrations/
+│   │   │   ├── admin.py
+│   │   │   ├── models.py
+│   │   │   ├── serializers.py
+│   │   │   ├── permissions.py
+│   │   │   ├── views.py
+│   │   │   ├── filters.py
+│   │   │   ├── urls.py
+│   │   │   └── tests/
+│   │
+│   │   ├── categories/
+│   │   │   ├── models.py
+│   │   │   ├── serializers.py
+│   │   │   ├── views.py
+│   │   │   └── urls.py
+│   │
+│   │   ├── authors/
+│   │   │   ├── models.py
+│   │   │   ├── serializers.py
+│   │   │   ├── views.py
+│   │   │   └── urls.py
+│   │
+│   │   ├── cart/
+│   │   │   ├── models.py
+│   │   │   ├── serializers.py
+│   │   │   ├── permissions.py
+│   │   │   ├── views.py
+│   │   │   └── tests/
+│   │
+│   │   ├── orders/
+│   │   │   ├── models.py
+│   │   │   ├── serializers.py
+│   │   │   ├── permissions.py
+│   │   │   ├── services.py
+│   │   │   ├── views.py
+│   │   │   ├── tasks.py
+│   │   │   └── tests/
+│   │
+│   │   ├── reviews/
+│   │   │   ├── models.py
+│   │   │   ├── serializers.py
+│   │   │   ├── permissions.py
+│   │   │   ├── views.py
+│   │   │   └── tests/
+│   │
+│   │   ├── wishlist/
+│   │   │   ├── models.py
+│   │   │   ├── serializers.py
+│   │   │   ├── views.py
+│   │   │   └── tests/
+│   │
+│   │   ├── payments/
+│   │   │   ├── models.py
+│   │   │   ├── serializers.py
+│   │   │   ├── services.py
+│   │   │   ├── webhooks.py
+│   │   │   ├── views.py
+│   │   │   └── tests/
+│   │
+│   │   ├── notifications/
+│   │   │   ├── services.py
+│   │   │   ├── tasks.py
+│   │   │   └── emails/
+│   │
+│   │   └── analytics/
+│   │       ├── services.py
+│   │       ├── views.py
+│   │       └── tests/
+│   │
+│   ├── core/
+│   │   ├── permissions.py
+│   │   ├── pagination.py
+│   │   ├── exceptions.py
+│   │   ├── middleware.py
+│   │   ├── validators.py
+│   │   ├── throttling.py
+│   │   ├── responses.py
+│   │   └── utils.py
+│   │
+│   ├── media/
+│   │
+│   ├── static/
+│   │
+│   ├── templates/
+│   │
+│   ├── requirements/
+│   │   ├── base.txt
+│   │   ├── development.txt
+│   │   └── production.txt
+│   │
+│   └── tests/
+│       ├── integration/
+│       └── e2e/
+│
+├── frontend/
+│   ├── public/
+│   │
+│   ├── src/
+│   │
+│   │   ├── api/
+│   │   │   ├── axios.js
+│   │   │   ├── authApi.js
+│   │   │   ├── booksApi.js
+│   │   │   ├── ordersApi.js
+│   │   │   └── usersApi.js
+│   │
+│   │   ├── app/
+│   │   │   ├── store.js
+│   │   │   └── providers.jsx
+│   │
+│   │   ├── pages/
+│   │   │   ├── Home/
+│   │   │   ├── Books/
+│   │   │   ├── BookDetails/
+│   │   │   ├── Cart/
+│   │   │   ├── Checkout/
+│   │   │   ├── Orders/
+│   │   │   ├── Profile/
+│   │   │   ├── Wishlist/
+│   │   │   ├── Login/
+│   │   │   ├── Register/
+│   │   │   └── Admin/
+│   │
+│   │   ├── components/
+│   │   │   ├── ui/
+│   │   │   ├── forms/
+│   │   │   ├── books/
+│   │   │   ├── cart/
+│   │   │   ├── orders/
+│   │   │   └── layout/
+│   │
+│   │   ├── hooks/
+│   │   │   ├── useAuth.js
+│   │   │   ├── useCart.js
+│   │   │   └── useBooks.js
+│   │
+│   │   ├── contexts/
+│   │   │   ├── AuthContext.jsx
+│   │   │   └── CartContext.jsx
+│   │
+│   │   ├── services/
+│   │   │   ├── authService.js
+│   │   │   ├── storageService.js
+│   │   │   └── tokenService.js
+│   │
+│   │   ├── routes/
+│   │   │   ├── ProtectedRoute.jsx
+│   │   │   ├── AdminRoute.jsx
+│   │   │   └── AppRoutes.jsx
+│   │
+│   │   ├── layouts/
+│   │   │   ├── MainLayout.jsx
+│   │   │   └── DashboardLayout.jsx
+│   │
+│   │   ├── utils/
+│   │   │   ├── constants.js
+│   │   │   ├── helpers.js
+│   │   │   └── validators.js
+│   │
+│   │   ├── assets/
+│   │   │   ├── images/
+│   │   │   ├── icons/
+│   │   │   └── fonts/
+│   │
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   │
+│   ├── package.json
+│   ├── vite.config.js
+│   └── .env
+│
+├── docker/
+│   ├── django/
+│   │   └── Dockerfile
+│   │
+│   ├── frontend/
+│   │   └── Dockerfile
+│   │
+│   ├── nginx/
+│   │   ├── Dockerfile
+│   │   └── default.conf
+│   │
+│   └── postgres/
+│       └── init.sql
+│
+├── nginx/
+│   └── nginx.conf
+│
+├── scripts/
+│   ├── wait-for-db.sh
+│   ├── start.sh
+│   └── deploy.sh
+│
+├── .github/
+│   └── workflows/
+│       ├── backend-ci.yml
+│       ├── frontend-ci.yml
+│       └── deploy.yml
+│
+├── .env
+├── .env.example
+├── docker-compose.yml
+├── docker-compose.prod.yml
+├── README.md
+└── Makefile

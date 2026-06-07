@@ -1,0 +1,38 @@
+Django app: A Python package that implements a specific feature of a system (business domain), including models, views, serializers, and logic.
+    - users app → authentication, profiles
+    - books app → book catalog
+    - orders app → purchases
+
+Why we separate apps (REFINED):
+🧠 2. Why we separate apps (REFINED)
+
+    We separate apps because of:
+
+    1. Separation of Concerns
+
+    Each app handles ONE responsibility.
+
+    2. Scalability
+
+    You can grow each feature independently.
+
+    3. Maintainability
+
+    Fixing orders app won’t break books app.
+
+    4. Reusability
+
+    You can reuse apps in other projects.
+
+🧠 3. Authentication vs Authorization (REFINED):
+    ✔️ Authentication:Confirms WHO the user is
+    "Are you Damisa?"
+    Yes → allow login
+
+    ✔️ Authorization: Determines WHAT the user can access
+    Example:User A tries to view User B orders
+    → DENIED
+
+4. ViewSet (CORRECTION + CLARITY): 
+    - A class that automatically provides CRUD operations (Create, Read, Update, Delete) for a model.
+    - Professional says: “ViewSets enforce REST consistency and reduce boilerplate while enabling scalable API design through routers.”

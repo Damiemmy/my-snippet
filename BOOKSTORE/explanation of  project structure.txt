@@ -1,0 +1,117 @@
+Think Like an Engineer:
+
+Problem
+    ↓
+
+Requirements
+    ↓
+
+Architecture
+    ↓
+
+Database
+    ↓
+
+Backend
+    ↓
+
+Frontend
+    ↓
+
+Deployment
+
+
+
+
+Customers Can:
+    - Register
+    - Login
+    - Browse Books
+    - Add to Cart
+    - Checkout
+    - Review Books
+Adminator Users:
+    - Create Books
+    - Delete Books
+    - Update Books
+    - Manage Orders
+
+Therefore:
+    this system needs:
+    - Users
+    - Books
+    - Categories
+    - Authors
+    - Cart
+    - Orders
+    - Reviews
+    - Payments
+
+1.)Why We Created apps/: business domain
+You saw:
+    - backend/apps/
+        users/
+        books/
+        cart/
+        orders/
+
+Why?
+Because apps represent business domains.
+Imagine Amazon.
+
+
+backend/ : 
+    config/
+    apps/
+    core/
+
+These are three different responsibilities:
+
+config:- brain:
+    - settings
+    - urls
+    - wsgi
+    - asgi
+    - celery
+
+
+app-Business:
+    - users/
+    - books/
+    - cart/
+    - orders/
+
+core-shared tools:
+    - permissions
+    - pagination
+    - exceptions
+    - middleware
+    
+
+2.) why we use ViewSet: viewsets combines all 4 apiview that handles:
+GET
+POST
+PUT
+PATCH
+DELETE
+
+into 1 class
+
+3.) why we use PostgreSQL:
+    - good for production
+    - suppports:
+        - Millions of records
+        - Advanced indexing
+        - Performance
+        - Scalability
+
+4.) why we use Docker:
+    - Imagine: You build project it Works on your laptop.
+    - You deploy: Everything breaks.
+    - Why?: Different environment.
+
+5.) why we use Redis: Super fast memory database for quick information retrieval
+
+6.) why celery: for backgroud task, without celery user waits
+
+7.) why nginx: speeds up request without Nginx it would be "internet - django" which is bad, but with nginx "internet-nginx-django" good practice.

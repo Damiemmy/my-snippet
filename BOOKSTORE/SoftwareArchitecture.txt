@@ -1,0 +1,233 @@
+SOFTWARE ARCHITECTURE (THINK LIKE A SENIOR ENGINEER)
+
+❓ What are we building exactly?
+A system where:
+    - Users can register and login
+    - Users can browse books
+    - Users can add books to cart
+    - Users can place orders
+    - Admin can manage books
+    - Users can review books
+    - Payments can be processed (later)
+    - System sends emails in background
+
+🧩 STEP 1 — CORE ENTITIES (THE REAL WORLD OBJECTS)
+
+    Every system is just “things” + “relationships”.
+
+    We identify the “things” first:
+
+    👤 1. User: A person using the system.
+        Two types:
+            - Customer
+            - Admin
+    📚 2. Book: The main product.
+    🏷️ 3. Category: Grouping of books.
+        Example:
+            - Tech
+            - Fiction
+            - Finance
+    ✍️ 4. Author: Who wrote the book.
+    🛒 5. Cart: Temporary storage before buying.
+    📦 6. Order: Final purchase.
+    ⭐ 7. Review: User feedback on books.
+    💖 8. Wishlist: Saved books for later.
+    💳 9. Payment: Money tracking (we simulate first, integrate later)
+
+
+🧠 STEP 2 — RELATIONSHIPS (THIS IS WHERE MOST BEGINNERS FAIL)
+Now we connect the dots.🧠 STEP 2 — RELATIONSHIPS (THIS IS WHERE MOST BEGINNERS FAIL)
+Now we connect the dots.
+
+    👤 USER → BOOK
+
+        A user:does NOT own books
+        but can:
+            - review books
+            - buy books
+            - save books
+
+        So:
+
+            User → Reviews → Book
+            User → Orders → Book
+            User → Wishlist → Book
+
+
+    📚 BOOK → AUTHOR
+
+        One Author → Many Books
+
+        So:
+
+        Author (1) → (∞) Books
+
+    🏷️ BOOK → CATEGORY
+        One Category → Many Books
+    🛒 CART
+
+        Cart belongs to user:
+
+        User (1) → (1) Cart
+        Cart → CartItems → Books
+    📦 ORDER
+        User (1) → (∞) Orders
+        Order → OrderItems → Books
+    ⭐ REVIEW
+        User → writes → Review → Boo
+
+
+🧱 STEP 3 — DATABASE DESIGN (VERY IMPORTANT)
+Now we convert relationships into tables.
+
+    👤 User Table
+
+        We extend Django default user:
+
+        Fields:
+
+        id
+        username
+        email
+        password
+        role (customer/admin)
+        provider (email/google)
+    📚 Book Table
+        id
+        title
+        description
+        price
+        stock
+        image
+        author_id (FK)
+        category_id (FK)
+        created_at
+    ✍️ Author Table
+        id
+        name
+        bio
+    🏷️ Category Table
+        id
+        name
+    🛒 Cart Table
+        id
+        user_id
+        created_at
+    🛒 CartItem Table
+        id
+        cart_id
+        book_id
+        quantity
+    📦 Order Table
+        id
+        user_id
+        status (pending, paid, shipped)
+        total_price
+        created_at
+    📦 OrderItem Table
+        id
+        order_id
+        book_id
+        quantity
+        price_at_purchase
+    ⭐ Review Table
+        id
+        user_id
+        book_id
+        rating (1-5)
+        comment
+        created_at
+    💖 Wishlist Table
+        id
+        user_id
+        book_id
+    💳 Payment Table
+        id
+        order_id
+        amount
+        status
+        provider
+        transaction_id
+
+🧠 STEP 4 — SYSTEM FLOW (HOW EVERYTHING WORKS TOGETHER)
+    🟢 User Journey
+        Register/Login
+        ↓
+        Browse Books
+        ↓
+        Add to Cart
+        ↓
+        Checkout
+        ↓
+        Create Order
+        ↓
+        Payment (later)
+        ↓
+        Order Confirmed
+    🔐 AUTH FLOW (IMPORTANT FOR YOUR PROJECT)
+
+    We will later build:
+
+    1. Email/Password Login
+    2. Google OAuth Login
+    3. JWT Tokens
+
+    Flow:
+
+    Login → Django verifies user → returns JWT → React stores token
+🧠 STEP 5 — BACKEND ARCHITECTURE DECISION
+
+We use:
+
+DRF ViewSets
+
+Because:
+
+Faster development
+Clean structure
+RESTful automatically
+Scales well
+We also use:
+Service Layer Pattern
+
+Instead of putting logic inside views:
+
+views → calls services → handles business logic
+
+Example:
+
+order_service.py
+payment_service.py
+
+🧠 STEP 6 — SECURITY DESIGN (VERY IMPORTANT)
+
+We will enforce:
+
+1. Authentication
+JWT required for most endpoints
+2. Authorization
+Users can only access their own data
+
+Example:
+User A cannot see User B orders
+3. Object-Level Permission
+if obj.user != request.user:
+    deny_access()
+4. Queryset Filtering
+Order.objects.filter(user=request.user)
+🧠 STEP 7 — FINAL ARCHITECTURE SUMMARY
+
+You are building:
+
+Frontend (React)
+        ↓
+API Gateway (Nginx)
+        ↓
+Django REST API
+        ↓
+PostgreSQL
+Redis (cache + Celery)
+Celery (background tasks)
+
+
+
