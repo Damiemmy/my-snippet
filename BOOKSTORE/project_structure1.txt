@@ -245,3 +245,59 @@ bookstore/
 ├── docker-compose.prod.yml
 ├── README.md
 └── Makefile
+
+
+or simpler 
+
+bookstore/
+│
+├── backend/
+│   ├── apps/
+│   │   ├── users/
+│   │   ├── books/
+│   │   ├── cart/
+│   │   ├── orders/
+│   │   └── reviews/
+│   │
+│   ├── config/
+│   ├── templates/
+│   ├── media/
+│   ├── static/
+│   └── manage.py
+│
+├── frontend/
+│   ├── src/
+│   │   ├── app/
+│   │   ├── components/
+│   │   ├── hooks/
+│   │   ├── services/
+│   │   └── utils/
+│
+├── docker-compose.yml
+├── .github/
+├── README.md
+└── docs/
+
+with 
+
+Students
+    │
+    ▼
+React / Next.js Frontend
+    │
+    ▼
+Django REST API
+    │
+    ├────────► PostgreSQL (AWS RDS)
+    │
+    ├────────► Redis
+    │
+    ├────────► Celery
+    │
+    └────────► S3 Bucket
+                (Book Covers & Files)
+
+    AWS EC2
+   │
+   ├── Frontend Container
+   └── Backend Container

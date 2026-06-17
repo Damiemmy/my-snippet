@@ -164,40 +164,36 @@ Now we convert relationships into tables.
         Payment (later)
         ↓
         Order Confirmed
-    🔐 AUTH FLOW (IMPORTANT FOR YOUR PROJECT)
 
+    🔐 AUTH FLOW (IMPORTANT FOR YOUR PROJECT)
     We will later build:
 
-    1. Email/Password Login
-    2. Google OAuth Login
-    3. JWT Tokens
+        1. Email/Password Login
+        2. Google OAuth Login
+        3. JWT Tokens
 
     Flow:
-
     Login → Django verifies user → returns JWT → React stores token
+
 🧠 STEP 5 — BACKEND ARCHITECTURE DECISION
 
-We use:
+    We use:
 
-DRF ViewSets
+    DRF ViewSets
 
-Because:
+    Because:
+        - Faster development
+        - Clean structure
+        - RESTful automatically
+        - Scales well
+        
+    We also use:Service Layer Pattern
+    Instead of putting logic inside views:
+        - views → calls services → handles business logic
 
-Faster development
-Clean structure
-RESTful automatically
-Scales well
-We also use:
-Service Layer Pattern
-
-Instead of putting logic inside views:
-
-views → calls services → handles business logic
-
-Example:
-
-order_service.py
-payment_service.py
+    Example:
+        order_service.py
+        payment_service.py
 
 🧠 STEP 6 — SECURITY DESIGN (VERY IMPORTANT)
 

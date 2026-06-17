@@ -1,0 +1,31 @@
+User
+ ├── id
+ ├── username
+ └── email
+
+Book
+ ├── id
+ ├── title
+ ├── author
+ ├── ISBN
+ ├── stock_quantity
+ └── cover_image
+
+Cart
+ ├── id
+ └── user
+
+CartItem
+ ├── cart
+ ├── book
+ └── quantity
+
+Order
+ ├── user
+ ├── status
+ └── total_price
+
+OrderItem
+ ├── order
+ ├── book
+ └── quantity
