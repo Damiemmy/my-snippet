@@ -155,6 +155,7 @@ ALLOWED_HOSTS = [
 docker compose up --build -d
 docker compose logs -f web : for checking logs
 docker compose logs celery
+docker rm -f postgres: removing a faulty old container to rebuild it
 grep -R "\$_r" .
 grep -R "_r" .     : this means search  for any file that contains _r 
 find . -name "settings.py" : to find a file "settings.py" if it exists
@@ -172,3 +173,8 @@ ii.)git reset --hard origin/main: this  command says "forget everything on the c
 OR if repo is clean:
     - sudo chown -R ubuntu:ubuntu .
     - git pull origin main
+
+
+Database connection error fix:
+    - step 1: run docker compose down -v
+    - step 2 : rundocker compose up -d --build
