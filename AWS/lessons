@@ -47,3 +47,5 @@ Django
 PostgreSQL
  ↓
 S3 Storage
+
+AWS-RDB,S3
