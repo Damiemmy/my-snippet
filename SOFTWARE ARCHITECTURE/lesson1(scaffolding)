@@ -1,0 +1,27 @@
+SCARFOLDING FOLDERS:
+scarffolding creates basic project structures so you can focus on writing the actual features or 
+when and individual says "scaffold the folders", he meant creating the initial directory layout before writing the application logic.
+
+e.g {
+    bookstore/
+├── backend/
+│   ├── accounts/
+│   ├── books/
+│   ├── orders/
+│   ├── payments/
+│   ├── config/
+│   └── requirements/
+├── frontend/
+│   ├── src/
+│   │   ├── app/
+│   │   ├── components/
+│   │   ├── features/
+│   │   ├── hooks/
+│   │   ├── services/
+│   │   └── utils/
+├── docker/
+├── nginx/
+├── scripts/
+├── docs/
+└── docker-compose.yml
+}

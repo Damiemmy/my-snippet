@@ -1,0 +1,82 @@
+                    YOU
+                     │
+      ┌──────────────┴──────────────┐
+      │                             │
+ ChatGPT                     Continue.dev
+ (Senior Mentor)            (Junior Developer)
+      │                             │
+      └──────────────┬──────────────┘
+                     │
+                  VS Code
+                     │
+                 Your Project
+
+What each member does
+CHATGPT
+I do:
+    - architecture
+    - planning
+    - teaching
+    - debugging
+    - reviewing
+    - explaining
+    - mentoring
+
+Continue, It does:
+    - generate code
+    - rename files
+    - edit components
+    - refactor
+    - scaffold folders
+
+ME: I become the engineer.
+    - You decide what gets merged into your project.
+
+
+
+Our Rules:I want us to have rules. 
+
+    - Rule 1 : Never let AI modify code you don't understand.
+    - Rule 2 : Never generate an entire feature in one prompt.
+    - Rule 3 : Every feature must be 
+
+                    Understand
+
+                        ↓
+
+                      Design
+
+                        ↓
+
+                    Implement
+
+                        ↓
+
+                       Test
+
+                        ↓
+
+                      Commit
+
+    -   Rule 4
+        Every time AI writes code...
+        You ask me
+        Why was this written like this?
+        We'll learn together.
+
+    -  Rule 5: Never accept code without testing.
+
+
+   
+3 STAGES OF BECOMING AN ENGINEER:
+    - Stage 1: "I can code."
+        Most people stop here.
+
+    - Stage 2: "I know how software is designed." 
+        Few reach this stage.
+
+    - Stage 3: "I know WHY software is designed that way."
+        - Very few engineers reach here.
+        - That's where architects live.
+        - That's where senior engineers live.
+        - That's where I want to take you.

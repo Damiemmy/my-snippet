@@ -296,7 +296,7 @@ Django REST API
     │
     └────────► S3 Bucket
                 (Book Covers & Files)
-
+then add:
     AWS EC2
    │
    ├── Frontend Container
