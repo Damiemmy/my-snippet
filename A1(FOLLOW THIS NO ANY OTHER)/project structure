@@ -1,0 +1,179 @@
+FRONTEND:
+
+    src/
+
+    │
+    ├── app/
+    │
+    │   ├── router/
+    │   │
+    │   ├── providers/
+    │   │
+    │   ├── layouts/
+    │   │
+    │   ├── guards/
+    │   │
+    │   ├── config/
+    │   │
+    │   └── store/
+    │
+    ├── shared/
+    │
+    │   ├── api/
+    │   │
+    │   ├── components/
+    │   │
+    │   ├── ui/
+    │   │
+    │   ├── forms/
+    │   │
+    │   ├── hooks/
+    │   │
+    │   ├── utils/
+    │   │
+    │   ├── constants/
+    │   │
+    │   ├── types/
+    │   │
+    │   ├── assets/
+    │   │
+    │   ├── icons/
+    │   │
+    │   └── services/
+    │
+    ├── features/
+    │
+    │   ├── auth/
+    │   │
+    │   ├── users/
+    │   │
+    │   ├── books/
+    │   │
+    │   ├── vendors/
+    │   │
+    │   ├── dashboard/
+    │   │
+    │   ├── cart/
+    │   │
+    │   ├── checkout/
+    │   │
+    │   ├── orders/
+    │   │
+    │   ├── analytics/
+    │   │
+    │   ├── ai/
+    │   │
+    │   └── notifications/
+    │
+    ├── styles/
+    │
+    ├── types/
+    │
+    ├── main.tsx
+    │
+    └── vite-env.d.ts
+
+    
+    EACH FEATURE SHOULD HAVE THIS ELEVEN SUBFOLDER: 
+    EXAMPLE:
+        Feature/
+
+            ├── api/
+            ├── components/
+            ├── hooks/
+            ├── pages/
+            ├── services/
+            ├── store/
+            ├── types/
+            ├── utils/
+            ├── validation/
+            ├── constants/
+            └── index.ts
+    
+    EXCEPT THE AI FEATURES THAT CAN HOUSE 13 SUBFOLDER:
+    EXAMPLE:
+        features/
+        └── ai/
+            ├── api/
+            ├── components/
+            ├── hooks/
+            ├── pages/
+            ├── services/
+            ├── store/
+            ├── types/
+            ├── utils/
+            ├── validation/
+            ├── constants/
+            ├── prompts/
+            ├── context/
+            └── index.ts
+
+
+    | Folder        | Responsibility                                                            | Example                             |
+    | ------------- | ------------------------------------------------------------------------- | ----------------------------------- |
+    | `api/`        | Functions that make HTTP requests                                         | `loginApi.ts`, `getBooks.ts`        |
+    | `components/` | UI components used only by that feature                                   | `BookCard.tsx`, `VendorTable.tsx`   |
+    | `hooks/`      | Custom React hooks for that feature                                       | `useBooks.ts`, `useCart.ts`         |
+    | `pages/`      | Route-level pages/screens                                                 | `BooksPage.tsx`, `CheckoutPage.tsx` |
+    | `services/`   | Business logic and data transformation                                    | `bookService.ts`                    |
+    | `store/`      | Feature-specific state (Zustand/Redux, etc.)                              | `cartStore.ts`                      |
+    | `types/`      | TypeScript interfaces and types                                           | `book.types.ts`                     |
+    | `utils/`      | Small helper functions specific to the feature                            | `formatBookPrice.ts`                |
+    | `validation/` | Validation schemas (e.g., Zod)                                            | `bookSchema.ts`                     |
+    | `constants/`  | Feature-specific constants                                                | `bookCategories.ts`                 |
+    | `index.ts`    | Public entry point that re-exports what other parts of the app should use | `export * from "./components";`     |
+
+
+    they can remove the entire features/cart or any feature, folder without hunting through the rest of the application. This is called high cohesion and low coupling, and it's a hallmark of scalable software architecture.
+
+
+    The "golden rules" I want you to live by
+    These are the rules I follow when designing React applications:
+
+        - Pages compose; they don't contain business logic. A page should mainly arrange components and orchestrate the screen.
+        - Components render UI. They should be focused on presentation and user interaction, not networking.
+        - Hooks coordinate React behavior. They manage state, effects, and connect the UI to your business logic.
+        - Services contain business rules. If you're transforming data, enforcing business behavior, or deciding what should happen, it belongs here.
+        - API files only communicate with the server. No data transformation, no UI decisions—just requests and responses.
+        - Stores manage client-side state. They don't fetch data directly or implement business rules.
+        - Utilities are pure functions. Given the same input, they always produce the same output and don't modify external state.
+        - Types define your contracts. They describe the shape of data and keep your codebase type-safe.
+        - Validation schemas define what is acceptable input. Keep validation separate from rendering logic.
+        - Constants eliminate "magic numbers" and repeated strings. If a value is reused or has meaning, give it a name.
+
+BACKEND:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+My recommendation for you
+
+Considering everything we've worked on together—your bookstore SaaS, React + TypeScript, Django REST Framework, Docker, AWS, and your long-term goal of building production software—I would stop searching for new folder structures after this.
+
+Instead, spend your energy mastering:
+
+TypeScript deeply.
+React architecture and state management.
+Django REST Framework design.
+API design.
+Authentication and authorization.
+Testing.
+Docker.
+Database design.
+Performance optimization.
+CI/CD.
+Cloud deployment.
+
+Those skills are what distinguish senior engineers. The folder structure above is a solid, scalable foundation that can comfortably support very large codebases when paired with good engineering practices. It's the consistency, modularity, code quality, testing, and collaboration habits built on top of that structure that impress companies—not the directory tree by itself.

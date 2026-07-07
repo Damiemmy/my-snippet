@@ -80,3 +80,25 @@ Our Rules:I want us to have rules.
         - That's where architects live.
         - That's where senior engineers live.
         - That's where I want to take you.
+
+Our Development Workflow
+
+Every feature will follow this process:
+
+    Step 1 — Architecture (with me)
+    We design it together.
+
+    Step 2 — Review
+    We agree on the approach.
+
+    Step 3 — Continue
+    Continue implements one small piece.
+
+    Step 4 — Review
+    We inspect the generated code.
+
+    Step 5 — Test
+    We verify it works.
+
+    Step 6 — Commit
+    We commit only working code.
