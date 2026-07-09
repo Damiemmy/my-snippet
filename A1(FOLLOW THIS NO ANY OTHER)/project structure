@@ -290,4 +290,4 @@ Those skills are what distinguish senior engineers. The folder structure above i
 
 
 BOOKSTORE ARCHITECTURE:
-    - 
+    - nginx,frontend,backend,database,celery,celery-beat
