@@ -1,0 +1,496 @@
+The FutMxStore- is like a library of information,when students walks into the library, they can find:
+
+    📚 Books
+
+    📄 Lecture Handouts
+
+    📝 Past Questions
+
+    📂 Assignments
+
+    📑 Practical Manuals
+
+    PDFs
+
+These are all resources, but they're not all books.
+
+HERE IS THE MODEL:
+    Academic Resources
+    │
+    ├── Books
+    │     ├── Physical
+    │     └── Digital
+    │
+    ├── Lecture Materials
+    │     ├── Lecture Notes
+    │     ├── Handouts
+    │     ├── Slides
+    │     ├── Practical Manuals
+    │
+    ├── Past Questions
+    │
+    ├── Assignments (future)
+    │
+    └── Tutorials (future)
+
+Book Model:
+
+    title
+
+    author
+
+    isbn
+
+    price
+
+    vendor
+
+    stock
+
+    cover_image
+
+    description
+
+    category
+
+    edition
+
+    publisher
+
+
+MATERIALS MODEL:
+    title
+
+    course
+
+    department
+
+    faculty
+
+    semester
+
+    uploaded_by
+
+    pdf
+
+    material_type
+
+    description
+
+
+PASTQUESTION MODEL:
+    course
+
+    year
+
+    semester
+
+    pdf
+
+    uploaded_by
+
+
+SEARCH-faculty,department,course-code
+CourseHub Detail on a single searcch:
+    - CSC301(Data Structures)
+    - Lecturer(Dr. Ibrahim)
+    - Semester(Second Semester)
+
+
+    - Recommended Books
+        -Introduction to Algorithms
+        -Data Structures in C
+    
+    -Lecture Notes
+        Week 1
+
+        Week 2
+
+        Week 3
+
+    📝 Past Questions
+        - 2022
+        - 2023
+        - 2024
+
+    📢 Announcements
+        - Assignment 2
+        - Quiz
+
+    One page.
+
+    Everything.
+
+
+
+BACKEND RELATIONSHIP:
+
+     Faculty
+        ↓
+     Department
+        ↓
+      Course
+        ↓
+       Book
+      Course
+        ↓
+     Material
+      Course
+        ↓
+    PastQuestion
+
+
+
+
+    MY ARCHITECTURE: This is a seperation of concern for each Django app using Domain Driven Architecture(DDC),keeping the business logic different from others, for scalability and maintainability(making updates on each app independently,updating one app doesn't break the other)
+
+    backend/
+    │
+    ├── config/
+    │
+    ├── apps/
+    │
+    │   ├── authentication/
+    │   ├── users/
+    │   ├── academics/
+    │   ├── marketplace/
+    │   ├── vendors/
+    │   ├── cart/
+    │   ├── orders/
+    │   ├── payments/
+    │   ├── notifications/
+    │   ├── ai/
+    │   ├── analytics/
+    │   ├── reviews/
+    │   ├── search/
+    │   └── dashboard/
+
+    -(Books): belong to the marketplace.
+    -(Courses): belong to academics.
+
+    That separation mirrors your business.
+
+EXPLANATION OF EACH APP:
+
+
+1. Authentication App:Only authentication.
+
+Models:
+    RefreshToken (optional)
+    EmailVerification
+    PasswordResetToken
+    LoginHistory
+
+    No User model here.
+
+2. Users App: This contains everything about people.
+
+    User:
+        - id
+        - username
+        - email
+        - first_name
+        - last_name
+        - phone
+        - avatar
+        - role
+        - is_verified
+        - is_active
+
+
+    StudentProfile
+        - user
+        - matric_number
+        - department
+        - faculty
+        - level
+
+    LecturerProfile
+        - user
+        - staff_id
+        - department
+        - office
+
+    VendorProfile
+        - user
+        - business_name
+        - business_address
+        - verification_status
+        - CourseRepProfile
+        - user
+        - department
+        - level
+    
+3. Academics App (The Heart):This becomes the soul of FutMxStore.
+    Faculty:
+        - name
+        - slug
+        - description
+    Department:
+        - faculty
+        - name
+        - slug
+
+    3. Academics App (The Heart)
+
+    Course
+        - department
+        - code
+        - title
+        - description
+        - level
+        - semester
+        - lecturer
+        
+        Everything links here.
+
+    Material
+        - course
+        - title
+        - description
+        - material_type
+        - file
+        - uploaded_by
+        - visibility
+        - download_count
+        material_type
+            - Lecture Note
+            - Handout
+            - Lab Manual
+            - Slides
+            - Tutorial       
+
+    PastQuestion:
+        - course
+        - year
+        - semester
+        - pdf
+        - uploaded_by
+
+    Announcement:
+        - course
+        - title
+        - body
+        - created_by
+
+    Assignment (Future)
+        - course
+        - title
+        - deadline
+        - attachment
+
+
+4. Marketplace App: Everything commercial. and sales:
+    Book:
+        - vendor
+        - title
+        - author
+        - isbn
+        - edition
+        - publisher
+        - price
+        - stock
+        - cover
+        - description
+
+    Category
+        - name
+        - slug
+    BookImage
+        - book
+        - image
+
+    Wishlist
+        - user
+        - book
+    
+    Coupon(Future integration) .
+    Discount(Future integration) .
+
+
+5. Vendors App: (book sellers)
+    VendorStore
+        - owner
+        - name
+        - description
+        - logo
+        - phone
+
+    VendorVerification
+        - vendor
+        - status
+        - documents
+
+6. Cart App
+    Cart
+        - user
+    CartItem
+        - cart
+        - book
+        - quantity
+
+7. Orders App
+    Order
+        - user
+        - status
+        - total
+        - shipping_address
+    OrderItem
+        - order
+        - book
+        - price
+        - quantity
+
+8. Payments:
+    Payment
+        - order
+        - gateway
+        - reference
+        - amount
+        - status
+
+        Refund(Future integration)
+        
+
+9. Notifications
+    Notification:
+        - recipient
+        - title
+        - message
+        - type
+        - is_read
+
+10. Reviews : Students review books.
+     BookReview:
+        - book
+        - user
+        - rating
+        - comment
+
+    MaterialReview(Future integration)
+
+11. Search
+    you may not even need models. Just search services
+
+12. AI:No models initially
+    (Later)ChatHistory:
+        - user
+        - messages
+    AIRecommendation Future:
+
+13. Analytics
+    BookView
+        - book
+        - user
+        - timestamp
+    MaterialDownload
+        - material
+        - user
+    SearchHistory
+        - user
+        - query
+
+
+Relationships: This is where the beauty appears.
+
+            Faculty
+                │
+            Department
+                │
+            Course
+            ┌───┴──────────────┐
+            │                  │
+            Material       PastQuestion
+            │
+            Announcement
+
+            Vendor
+            │
+            Book
+            │
+            BookImage
+
+            Book
+            │
+            Wishlist
+
+            Book
+            │
+            Review
+
+            Book
+            │
+            CartItem
+            │
+            OrderItem
+
+    Books have NOTHING to do with Materials. Only the Course connects them conceptually.
+
+    
+Dashboard is now Made easy
+
+Student Dashboard
+    - Recent Materials
+    - Recent Books
+    - Recent Orders
+    - Notifications
+
+Vendor Dashboard:
+    - Inventory
+    - Orders
+    - Revenue
+
+Lecturer Dashboard:
+    - Upload Materials
+    - Announcements
+
+Course_Rep Dashboard:
+    - Upload Materials
+    - Announcements
+
+Admin Dashboard
+    - Everything.
+
+Future AI
+
+When AI arrives
+
+Student asks
+
+"I need CSC301 resources."
+
+AI searches
+
+Course
+    ↓
+Books
+
+Materials
+
+Past Questions
+
+Announcements
+
+Everything already exists.
+
+No redesign.
+
+Notice something?
+Every app answers ONE business question.
+
+| App            | Business Question          |
+| -------------- | -------------------------- |
+| authentication | Who are you?               |
+| users          | Who is this person?        |
+| academics      | What are you studying?     |
+| marketplace    | What can you buy?          |
+| vendors        | Who is selling?            |
+| cart           | What are you about to buy? |
+| orders         | What have you bought?      |
+| payments       | How was it paid for?       |
+| notifications  | What should you know?      |
+| reviews        | What do users think?       |
+| analytics      | What is happening?         |
+| search         | How do we find resources?  |
+| dashboard      | What should each role see? |
+| ai             | How can AI help?           |
