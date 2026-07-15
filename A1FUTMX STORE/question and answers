@@ -1,0 +1,147 @@
+1.)Why are we choosing JWT authentication instead of Django's default session authentication for FutMxStore?
+    from out architecture:
+        - Django backend
+        - React frontend (coming later)
+        - Mobile app possibility in the future
+        - Production deployment
+    we use JWT because:
+        1- Our frontend (React) and backend (Django) are separate applications.
+        3- JWT allows the frontend to authenticate independently without relying on Django's server-side sessions.
+        4- JWT is stateless, which makes horizontal scaling easier because the server doesn't need to keep session data.
+        5- The same authentication mechanism can be used later by a mobile application or other clients.
+        2- JWT fits naturally with REST APIs.
+
+    "JWT is well-suited for this architecture."
+
+2.) What risks come with installing libraries "just in case"?
+
+    Every dependency introduces:
+        - Additional security vulnerabilities to monitor.
+        - More packages to update.
+        - Potential version conflicts.
+        - Larger deployment artifacts.
+        - More documentation for the team to understand.
+        - The possibility that the package becomes unmaintained.
+
+    Installing unnecessary libraries increases maintenance overhead, expands the project's attack surface, and can lead to compatibility issues. We should only add dependencies when they solve a current problem."
+
+3.) why use config instead of a futmxstore: good naming convention that describe the this folder it's the application configuration layer
+
+    The config package should remain intentionally "dumb." Its responsibility is to answer questions like:
+
+    Which apps are installed?
+    Which database are we using?
+    Which middleware should run?
+    What are our authentication settings?
+    What are our static and media file settings?
+
+    Notice that none of those decisions are business rules.
+
+    That's an important distinction.
+    Engineering Principle
+    A good configuration layer configures.
+    It does not implement business logic.
+
+    That's Separation of Concerns.
+
+4.)why use "setting/" 
+This separates configuration by environment while keeping shared settings in one place.
+    - base.py contains settings common to all environments.
+    - development.py contains local development overrides.
+    - production.py contains production-specific configuration.
+    This approach gives us a clean path to deployment without cluttering a single settings.py file.
+
+5i.)Why do you think separating base.py, development.py, and production.py is better than using one settings.py?
+    or
+    - using just "settings.py", That works for small projects, but it becomes difficult to manage as environments and configuration grow which poses a treat to scalablity,maintainability and safety(security). now seperate it into base.py,production.py and developement.py separates configuration by environment while keeping shared settings in one place.
+
+    or 
+    - we seperate base.py,production.py,developement.py than using "settings.py" because of different environment configuration, using settings.py is okay for small projects but doesn't scale ,it becomes difficult to maintain as well and as the platform grows due to increase in environment and configuration, but seperating them ensure different environment configuration is met and it ensures safety(security), and a base layer is provided for both development and production environment where the shared setting is. this process provides smooth development an d deployment avoiding cluttering of files in the process 
+
+
+    in conclusion: Scability,maintainability,different environment and security(safety)are the major reason for carrying replacing settings than settings.py. for safety measures taking an instance where all files are in settings.py file and a Developer accidently deploys Debug=True. what happens ?  where the database,emailhost,aws_access_key,static_root,secure_ssl_redirect=True. in production This poses a strong security concern and That single mistake could expose stack traces, internal file paths, and sensitive information to users.finally
+    By seperating settings: we isolate production-specific settings from development-specific ones, reducing the chance of accidental misconfiguration.
+
+
+
+5ii)If we accidentally put business logic into config, what problems might arise?
+    putting a business logic into config might lead is totally wrong as there's no seperation of concerns, for platform to grow all business Logic needs to be in it's achitecturer folder for scalability and maintainability
+
+5iii)Which other parts of FutMxStore do you think should remain purely "configuration" rather than "business logic"?
+    apps.py, urls.py,and probably in the future if we add celery
+
+6i.)Why is investing time in architecture before building features not a waste of time?
+    Spending time on architecture saves you stress and reduce future cost,investing time in architecture safes you tons of stress in project reconfiguration, refactoring, and building unscalable systems.spending time on achitecture is the foundation which other structures rely on" if the foundation is destroy what can the righteous do.
+
+
+6ii.)Which future configuration do you think will first make us appreciate having separate settings files?
+
+
+6iii.)What should we do with the original settings.py—delete it, rename it to base.py, or keep it and import from it? Explain your reasoning.
+
+    we rename it to base.py.reasons is definately because deleting the settings.py is a bad approach and you will loose all configuration, the best way to handle this change is to rename it to base.py and then Extract environment-specific configuration that are for developments and configurations that are for production doing this is another seperation of concern that overides the base.py file in with developement.py file and production.py file e.g
+
+    DEVELOPMENT CAN LOOK LIKE:
+        "from .base import *" and only overrides things like:
+            - DEBUG
+            - DATABASES
+            - EMAIL
+            - CORS
+            - etc.
+        Likewise, production they overide after importing the settings and do not scrap anything out
+    
+7i.)a.)Which files contain it?,b.)What is its current value?,c.)Why do you think all three files need it?
+
+    a.)manage.py, wsgi.py and asgi.py have DJANGO_SETTINGS_MODULE and its current value is config.settings.
+    b.) manage.py:
+        Responsible for development commands.
+            - python manage.py runserver
+            - python manage.py migrate
+            - python manage.py createsuperuser
+            - python manage.py shell
+
+            before django execute a command it needs to know the settings to use and that's why DJANGO_SETTINGS_MODULE is set here 
+
+        wsgi.py:
+            This is for traditional synchronous web servers.
+            Think of servers like:Gunicorn,uWSGI
+            When Gunicorn starts your Django application, it loads wsgi.py.
+        
+        asgi.py:
+            This is for asynchronous servers.
+                Examples:
+                    Daphne
+                    Uvicorn
+                    Hypercorn
+
+                Later, if FutMxStore adds:
+                    - WebSockets
+                    - Live notifications
+                    - Real-time chat
+                    those will run through ASGI.
+
+                Before Django starts...
+                It asks:Which settings module should I load?
+
+7ii.)If Django didn't know which settings module to load, what kinds of failures would you expect when starting the application?
+
+    Django won't start because it doesn't know where the settings configuration is.
+    To make it even more precise:
+    Without the settings module, Django doesn't know things like:
+        - Which apps are installed
+        - Which database to connect to
+        - Which middleware to use
+        - Which authentication backend to load
+        - Where static and media files live
+
+    So Django fails very early in its startup process.
+
+7iii.)Why is it beneficial for staging to be as close to production as possible?
+
+    The team checks that the application meets expectations before production.
+    in addition.Staging isn't just about bugs. It's also about confidence.
+    Think of staging as answering one question:
+
+    "If I deploy this exact build to production today, am I confident it will work?"
+
+    That's the purpose.

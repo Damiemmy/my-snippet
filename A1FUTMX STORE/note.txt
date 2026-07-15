@@ -494,3 +494,42 @@ Every app answers ONE business question.
 | search         | How do we find resources?  |
 | dashboard      | What should each role see? |
 | ai             | How can AI help?           |
+
+
+The backend answers questions like:
+    Who is allowed to perform this action?
+    What data should exist?
+    What rules protect the data?
+    What relationships exist between entities?
+    What happens when something changes?
+
+We separate responsibilities of file.
+
+    Views: receive HTTP requests and return HTTP responses.
+    Services: implement business rules.
+    Selectors: retrieve data from the database.
+    Models: define the data structure.
+    Serializers: validate and transform data.
+
+    This separation keeps each component focused on a single responsibility.
+
+💡 Engineering Insight
+
+One of the biggest shifts from junior to senior engineering is learning to protect boundaries. A clean architecture isn't just about writing good code—it's about ensuring every part of the system has a clear responsibility and stays within it.
+
+💡 Engineering Insight
+
+A senior engineer doesn't judge architecture by how it looks today. They judge it by how easy it will be to change six months from now. That's why we keep asking, "What responsibility does this component have?" before we create it.
+
+💡 Engineering Insight
+
+Here's a habit I'd like you to develop throughout FutMxStore:
+
+Every time you change the structure of the project, stop and verify that the application still starts before making the next change.
+
+💡 Engineering Insight:
+    One of the biggest differences between writing code and engineering software is understanding the startup lifecycle of your application. When you know how Django initializes itself, configuration problems become much easier to diagnose than if you only memorize commands.
+
+💡 Engineering Insight
+
+A recurring theme in professional software engineering is extension over duplication. Whether you're configuring Django, designing classes, or organizing services, you'll often achieve a more maintainable system by building on shared foundations rather than copying existing work.

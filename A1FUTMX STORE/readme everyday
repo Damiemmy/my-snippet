@@ -1,0 +1,79 @@
+1.)Before We Touch the Code Again
+
+I want to introduce you to a habit that has saved me from countless problems.
+
+Every time we're about to create something, ask yourself three questions:
+
+What responsibility does this component have?
+Where should it live?
+Who is allowed to depend on it?
+
+We'll use these questions repeatedly.
+
+For example:
+
+Should JWT settings live in authentication or config?
+Should file upload logic live in academics or common?
+Should search logic live in views or selectors?
+
+These aren't just coding questions—they're architectural questions.
+
+
+2.)Configuration should describe the application, not run the application.e.g(project configuration layer)
+
+3.)Types of logic:Separating these responsibilities is the essence of a clean architecture.
+    - Business logic:Student downloads a material.
+    - Infrastructure logic:Send the file through Nginx.
+    - Framework logic:URL routing.
+    - Configuration:Installed apps.
+4.) Never Refactor Without a Safety Check: Professional engineers don't just change files and hope everything still works.Instead, we follow a small loop:
+
+     Change---Runserver---Verify---Commit
+
+    Every single time.
+
+    Even for tiny refactors.Why?
+    Because if something breaks, we immediately know which change caused it.
+    Imagine making twenty changes before testing.Now Django won't start.
+    Which change caused it?Nobody knows.
+    Now you're debugging twenty changes instead of one.That's why we work incrementally.
+
+4.)🎯 Another Engineering Habit
+
+I want to introduce a habit that you'll follow throughout FutMxStore.
+
+Whenever you're about to write code, ask yourself:
+
+"Am I creating something new, or am I extending something that already exists?"
+
+If you're extending existing behavior, duplication is often a smell.
+
+In this case, development.py shouldn't redefine all settings—it should extend base.py.
+
+5)⭐ The Biggest Improvement
+
+I want to point out something you probably haven't noticed.
+
+Earlier in our mentorship, you often wrote things like:
+
+"because..."
+
+Now your answers follow a structure:
+
+Problem
+
+↓
+
+Reason
+
+↓
+
+Consequence
+
+↓
+
+Conclusion
+
+That's exactly how architecture discussions happen.
+
+Keep that habit.

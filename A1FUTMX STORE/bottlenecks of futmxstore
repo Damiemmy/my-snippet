@@ -1,0 +1,988 @@
+Today 10:16 AM
+
+This is a strong mentoring prompt. It sets clear expectations, prioritizes learning over code generation, and keeps the project focused on shipping an MVP instead of chasing perfection. I would happily use it as the basis for our work together.
+
+There are only a few improvements I'd make to align it even more closely with how professional engineering teams operate and to maximize your chances of launching within one week.
+
+1. Add a Product Mindset
+
+Right now the prompt is engineering-focused. Since FutMxStore is intended for real users, every technical decision should tie back to user value.
+
+Add:
+
+Every feature must answer these three questions before implementation:
+
+Who benefits from this feature?
+What user problem does it solve?
+Is it essential for Version 1?
+
+This prevents building "cool" features that don't move the product forward.
+
+2. Define What "Done" Means
+
+Professional teams have a Definition of Done (DoD). Otherwise, features never truly finish.
+
+Add:
+
+Definition of Done
+
+A feature is considered complete only when:
+
+Business requirements are satisfied
+Code follows project architecture
+Validation is implemented
+Permissions are implemented
+API has been manually tested
+Edge cases are considered
+Error responses are meaningful
+Code is readable
+No duplicated business logic
+Documentation is updated if architecture changed
+3. Add API Standards
+
+Your backend should feel like a professional API from day one.
+
+Add:
+
+API Standards
+
+Every endpoint should have:
+
+Clear URL naming
+Appropriate HTTP verbs
+Proper status codes
+Consistent response format
+Helpful error messages
+Pagination where necessary
+Filtering where necessary
+Searching where necessary
+4. Add Git Workflow
+
+Recruiters love seeing disciplined Git usage.
+
+Add:
+
+Git Workflow
+
+Every feature should follow:
+
+Create feature branch
+Implement feature
+Test feature
+Self-review
+Commit with meaningful message
+Merge
+
+Commit messages should follow:
+
+feat(auth): implement JWT login endpoint
+
+fix(users): prevent duplicate emails
+
+refactor(materials): move filtering into selector
+
+docs(adr): document authentication decision
+5. Add Testing Expectations
+
+You're launching quickly, so don't aim for exhaustive tests, but do make testing part of development.
+
+Add:
+
+Testing Strategy
+
+For Version 1:
+
+Manually test every endpoint with Postman or Bruno
+Verify success and failure cases
+Add automated tests later as time permits
+Never mark an endpoint complete without testing
+6. Add Performance Thinking
+
+It's easier to avoid performance issues than fix them later.
+
+Add:
+
+Performance Mindset
+
+When implementing a feature, consider:
+
+Number of database queries
+Query optimization
+Appropriate indexing
+Pagination
+Avoiding N+1 queries
+File size implications
+Response payload size
+7. Clarify the MVP Data Model
+
+To avoid feature creep, define the minimum viable entities.
+
+For Version 1:
+
+User
+Faculty
+Department
+Level
+Semester
+Course
+Material
+
+Nothing else unless it directly supports the core user journey.
+
+8. Add a One-Week Roadmap
+
+Since the goal is to launch in one week, keep everyone aligned on daily milestones.
+
+Day 1
+
+Project setup
+Authentication
+Users
+
+Day 2
+
+Academic models
+Relationships
+Admin configuration
+
+Day 3
+
+Services
+Selectors
+Serializers
+CRUD APIs
+
+Day 4
+
+Search
+Filtering
+Download functionality
+Permissions
+API testing
+
+Day 5
+
+React setup
+Authentication
+Material listing
+Material details
+
+Day 6
+
+Search UI
+Download flow
+Polish
+Docker integration
+
+Day 7
+
+Bug fixes
+Production configuration
+Deployment
+Launch
+9. Strengthen the "Teach Me" Section
+
+This is one of the most valuable additions.
+
+Add:
+
+Explain Every Abstraction
+
+Whenever introducing:
+
+a design pattern
+a Django feature
+a library
+a folder
+a service
+a selector
+middleware
+permissions
+serializers
+
+Always explain:
+
+Why does it exist?
+What problem does it solve?
+What would happen without it?
+When should it NOT be used?
+10. Add an Engineering Trade-Off Framework
+
+Software engineering is about making informed trade-offs.
+
+Add:
+
+Trade-Off Analysis
+
+Whenever recommending an approach, explain:
+
+Benefits
+Costs
+Complexity
+Maintainability
+Scalability
+Time to implement
+Why it suits Version 1
+11. Add Architecture Guardrails
+
+To keep the codebase clean as it grows, establish clear rules.
+
+Architecture Rules
+Fat models are discouraged.
+Fat views are prohibited.
+Business logic belongs in Services.
+Complex queries belong in Selectors.
+Validation belongs in Serializers or dedicated validators.
+Views should orchestrate, not implement business rules.
+Keep apps independent and loosely coupled.
+Prefer composition over inheritance unless inheritance provides clear value.
+12. Define the Version 1 Success Metric
+
+Go beyond features and define what success looks like for users.
+
+Launch Success Criteria
+
+Version 1 is successful if:
+
+A new student can create an account.
+A student can sign in securely.
+A student can browse materials by academic structure.
+A student can search for a material.
+A student can view material details.
+A student can download a material.
+Common errors are handled gracefully.
+The application is stable enough for real student use.
+One additional recommendation
+
+I would also add one rule that I will personally follow as your mentor:
+
+When I believe you're making an architectural mistake, I will explain why before offering a solution. If the mistake is acceptable technical debt for Version 1, I'll tell you it's a conscious trade-off rather than an error.
+
+This reinforces one of the most important engineering habits: not every imperfection is a bug. Sometimes the right decision is the simplest one that helps you ship, provided you understand the trade-off.
+
+I think your guiding principle captures this well:
+
+Architect for the Future. Implement for the Present.
+
+That's exactly the mindset we should maintain throughout FutMxStore. It will help us build an MVP that solves a real problem today while leaving room to evolve into a larger platform without unnecessary rewrites.
+
+lets build this together starting from the backend
+
+Excellent. From this point forward, I'll act as your Principal Software Architect and mentor—not as someone who writes the entire project for you. My job is to help you think like an engineer while keeping us on track to launch FutMxStore Version 1 within one week.
+
+Before we write any code, we need to align on one principle:
+
+Slow is smooth. Smooth is fast.
+
+Many projects fail because developers start creating models and APIs without first defining the product and architecture. We'll spend a small amount of time designing so implementation goes much faster.
+
+Phase 1 — Backend Foundation
+
+Our backend roadmap will be:
+
+Backend
+│
+├── Project Setup
+│
+├── Authentication Domain
+│
+├── Users Domain
+│
+├── Academics Domain
+│
+├── API Testing
+│
+├── Security Review
+│
+├── Docker
+│
+└── Production Preparation
+
+Everything else (React, Docker integration improvements, deployment polish) comes later.
+
+Step 0 — Clarify the Product
+
+Before we think about Django models, answer this question:
+
+How does a student actually find a material?
+
+Imagine a first-year Computer Science student opens FutMxStore.
+
+What path should they follow?
+
+For example, should it be:
+
+Faculty
+    ↓
+Department
+    ↓
+Level
+    ↓
+Semester
+    ↓
+Course
+    ↓
+Materials
+
+Or something different?
+
+Don't worry about the "right" answer yet. Think about how students at your university naturally search for lecture materials. This decision affects our database design.
+
+Understanding the Core Domain
+
+Based on your mission, I currently see three domains.
+
+1. Authentication
+
+Responsible for identity.
+
+Examples:
+
+Register
+Login
+Refresh Token
+Logout
+Change Password
+
+Notice it knows nothing about academic materials.
+
+2. Users
+
+Responsible for user information.
+
+Examples:
+
+Profile
+Avatar (later)
+Academic affiliation (if needed)
+Preferences (later)
+
+It should not know how materials are stored.
+
+3. Academics
+
+Responsible for academic content.
+
+Examples:
+
+Faculties
+Departments
+Levels
+Semesters
+Courses
+Materials
+
+This is where your main business value lives.
+
+Why Domain Separation?
+
+Imagine six months from now you add:
+
+Marketplace
+Vendors
+AI summaries
+
+If everything lived in one app called core, you'd eventually struggle to maintain it.
+
+Instead, keeping each domain focused means:
+
+Easier maintenance
+Independent evolution
+Better testability
+Lower coupling
+
+This follows Domain-Driven Design and Separation of Concerns.
+
+Proposed Backend Structure
+
+For Version 1, I recommend:
+
+backend/
+│
+├── config/
+│   ├── settings/
+│   ├── urls.py
+│   ├── asgi.py
+│   ├── wsgi.py
+│   └── __init__.py
+│
+├── apps/
+│   ├── authentication/
+│   ├── users/
+│   └── academics/
+│
+├── common/
+│   ├── permissions/
+│   ├── pagination/
+│   ├── exceptions/
+│   ├── validators/
+│   └── utils/
+│
+├── requirements/
+│
+├── manage.py
+│
+└── .env
+Why this structure?
+config/ contains project-wide configuration.
+apps/ contains business domains.
+common/ contains reusable components that aren't tied to a specific domain.
+
+This structure scales well without introducing unnecessary complexity for an MVP.
+
+First Architecture Decision (ADR-001)
+
+We should document our first architecture decision:
+
+Title: Domain-Based Project Structure
+
+Decision:
+Organize the backend by business domains (authentication, users, academics) instead of technical layers.
+
+Reason:
+Business domains change less frequently than implementation details and improve maintainability as the application grows.
+
+We don't need to write the ADR yet, but keep a list of architectural decisions as we make them.
+
+Today's Goal
+
+Our goal is not to build authentication yet.
+
+Our goal is to establish a solid backend foundation.
+
+That means:
+
+Create the Django project.
+Organize the directory structure.
+Configure settings for development.
+Install the core dependencies.
+Create the initial domain apps.
+
+Only after that will we begin implementing authentication.
+
+Your First Assignment
+
+I want you to answer these three questions before we touch the keyboard:
+
+How should students navigate to a material in FutMxStore? Describe the path from opening the app to downloading a file.
+Should every registered user be allowed to upload materials, or should uploading be restricted (for example, to admins or trusted contributors) in Version 1? This impacts our authorization design.
+Do you agree with the proposed backend structure (config/, apps/, common/), or is there anything you'd like to discuss before we create it?
+
+Once you've answered these, we'll move to Lesson 1: Project Setup, where you'll create the Django project and directory structure yourself, and I'll review each step like a senior engineer.
+
+📚 What I Learned Today
+Why we start with architecture before implementation.
+How to identify business domains.
+Why domain-driven organization improves maintainability.
+The importance of defining the user's journey before designing the database.
+📝 Coding Assignment
+
+No code yet. Instead, answer the three architecture questions above. Good software starts with good thinking.
+
+🤔 Reflection Questions
+Why is organizing code by business domain often preferable to organizing it by technical layers?
+Which future features could be added to FutMxStore without changing the current three-domain structure?
+💡 Engineering Insight
+
+A well-designed architecture doesn't eliminate future changes—it makes those changes easier and safer. The goal isn't to predict every future requirement, but to create clear boundaries that let the system evolve.
+
+🚀 Next Step
+
+After your answers, we'll set up the Django project, install the core backend dependencies, and establish the project structure that we'll build on throughout Version 1.
+
+1.)from Faculty ,to Department ,to Level ,to Semester, to Course, to Materials 2.) not every registered user should be allowed to upload materials they would actually be five role for this project in the future and here are they ,customers(people or students),course-rep,lecturer,vendor and admin. 3.) yes  it's okay 
+
+Excellent. These answers tell me you're already thinking beyond just writing code. Now let's evaluate each decision the way a Principal Engineer would.
+
+1. Material Navigation
+
+You chose:
+
+Faculty
+    ↓
+Department
+    ↓
+Level
+    ↓
+Semester
+    ↓
+Course
+    ↓
+Materials
+
+I agree with this for Version 1.
+
+Why?
+
+You're modeling the way students already think.
+
+A student doesn't think:
+
+"Show me all PDFs."
+
+They think:
+
+"I'm in Computer Science, 200 Level, First Semester, CSC 201."
+
+That means our database should mirror the users' mental model.
+
+This is called domain modeling—designing the system around the real-world problem instead of around database tables.
+
+What problem are we solving?
+
+Students spend time asking questions like:
+
+"Who has CSC 201 notes?"
+"Where can I get PHY 113 past questions?"
+"Can someone send me the PDF?"
+
+Instead, FutMxStore should make the path predictable:
+
+Faculty
+ ↓
+Department
+ ↓
+Level
+ ↓
+Semester
+ ↓
+Course
+ ↓
+Materials
+
+That minimizes the number of clicks and the cognitive load.
+
+2. Upload Permissions
+
+You said:
+
+Not every registered user should upload.
+
+This is a very important product decision.
+
+For Version 1, I recommend:
+
+Role	Can Download	Can Upload
+Student (Customer)	✅	❌
+Admin	✅	✅
+
+Why?
+
+Because Version 1 has one objective:
+
+Help students find and download materials.
+
+Adding Course Reps, Lecturers, and Vendors now would introduce:
+
+approval workflows,
+onboarding,
+role management,
+moderation,
+dashboards,
+permission matrices.
+
+All of these are valuable, but they are Version 2 features.
+
+This doesn't mean we ignore them. We design for them without implementing them yet.
+
+Architect for the Future. Implement for the Present.
+
+Instead of building five roles today, we'll design the authentication and authorization so that adding new roles later is straightforward.
+
+One simple approach is to have a role field with values like:
+
+STUDENT
+ADMIN
+
+When Version 2 arrives, we can extend it with:
+
+COURSE_REP
+LECTURER
+VENDOR
+
+without redesigning the authentication system.
+
+This is a good example of leaving room for growth without adding unnecessary complexity today.
+
+3. Backend Structure
+
+You agreed with:
+
+backend/
+│
+├── config/
+├── apps/
+├── common/
+├── requirements/
+├── manage.py
+└── .env
+
+I also recommend one small addition.
+
+backend/
+│
+├── config/
+│
+├── apps/
+│   ├── authentication/
+│   ├── users/
+│   └── academics/
+│
+├── common/
+│   ├── permissions/
+│   ├── exceptions/
+│   ├── pagination/
+│   ├── validators/
+│   └── utils/
+│
+├── media/
+│
+├── static/
+│
+├── requirements/
+│
+├── .env
+│
+├── .gitignore
+│
+└── manage.py
+Why add media/?
+
+Version 1 revolves around downloadable academic materials (PDFs, documents, etc.). Django stores uploaded files using MEDIA_ROOT, so creating this directory from the start keeps file handling organized.
+
+Why add static/?
+
+Even though the React frontend will eventually serve most static assets, Django still uses static files for the admin interface and any backend-managed assets. Keeping a dedicated static/ directory follows Django conventions and simplifies production configuration later.
+
+One More Important Discussion
+
+Before we create any models, I want us to think about the academic hierarchy.
+
+Consider this structure:
+
+Faculty
+    ├── Department
+            ├── Level
+                    ├── Semester
+                            ├── Course
+                                    ├── Material
+
+At first glance it looks correct, but there's a subtle modeling question.
+
+Should a Course belong to a Semester?
+
+For example:
+
+CSC 201
+
+Faculty → Science
+Department → Computer Science
+Level → 200
+Semester → First
+
+Should all of that information be stored directly on the Course, or should some of it belong on the Material?
+
+This is where engineers distinguish between:
+
+Intrinsic properties (what a Course is)
+Contextual properties (when and how a Course is offered)
+
+There's more than one valid design, and we'll explore the trade-offs before creating the models. Getting this right now will save us from painful migrations later.
+
+Lesson 1 — Project Setup
+
+We're ready to start building.
+
+I want you to create the project. I'll review each step.
+
+Step 1: Create the project root
+
+Create a new directory for the backend and initialize your Python environment (virtual environment or whichever workflow you prefer).
+
+Step 2: Install the initial dependencies
+
+Think about the minimum packages we need to begin. We don't need Celery or Redis yet because they don't support the current MVP.
+
+Question for you: What packages do you think we should install before creating the Django project? Try to list them first. Don't worry if you miss one—reasoning through the choices is part of the exercise.
+
+Once you give me your list (or after you've installed them), we'll review it together and proceed to creating the Django project and organizing the directory structure.
+
+📚 What I Learned Today
+How to align the database with the student's natural navigation path.
+Why Version 1 should keep permissions simple while leaving room for future roles.
+Why media/ and static/ belong in the project structure.
+The importance of distinguishing between a domain model and its contextual relationships.
+📝 Coding Assignment
+Create the backend project directory.
+Set up your virtual environment.
+List the packages you believe are required for Version 1 before installing them.
+🤔 Reflection Questions
+Why should we avoid implementing all five user roles in Version 1?
+Why is designing around the user's mental model often more valuable than designing around database convenience?
+💡 Engineering Insight
+
+One of the hardest skills in software engineering is deciding what not to build. Great engineers don't just write clean code—they consistently protect the project from unnecessary complexity.
+
+🚀 Next Step
+
+We'll review your dependency choices, install the core backend packages, create the Django project, and establish the repository structure that will support the rest of FutMxStore Version 1.
+
+am done creating
+
+Excellent. This is where the real engineering begins.
+
+Before we run any commands, I want you to start thinking like a backend engineer rather than someone following a tutorial.
+
+Lesson 2 — Choosing Our Dependencies
+
+A common mistake is to install every package you might need. Professional teams install only what the current milestone requires.
+
+Our current milestone is:
+
+Create a secure backend foundation for Version 1.
+
+Question 1
+
+For this milestone, which packages do you think are essential?
+
+Take a moment to think about it.
+
+Hint: Think about what we've already decided to build:
+
+Django
+REST API
+JWT Authentication
+Environment variables
+PostgreSQL (later)
+CORS (when React is introduced)
+My Recommendation
+
+For Version 1, I recommend installing only these packages:
+
+Package	Why we need it now	Why now?
+Django	The web framework	Core framework
+djangorestframework	Build REST APIs	Core requirement
+djangorestframework-simplejwt	JWT authentication	Authentication is part of V1
+python-decouple (or django-environ)	Manage environment variables	Keeps secrets out of code
+Pillow	Handle uploaded files (e.g., PDFs/images if cover images are added later)	Supports media handling
+
+Notice what's not here:
+
+❌ Celery
+❌ Redis
+❌ pytest
+❌ drf-spectacular
+❌ S3 storage
+❌ Elasticsearch
+
+These are valuable tools, but none of them help us achieve our immediate goal of getting students to register, browse, search, and download materials.
+
+Architectural Decision: python-decouple vs django-environ
+
+There are two common choices for managing environment variables.
+
+Option 1: python-decouple
+
+Pros
+
+Very simple to learn.
+Great for small and medium projects.
+Minimal configuration.
+
+Cons
+
+Less feature-rich than django-environ.
+Option 2: django-environ
+
+Pros
+
+More powerful.
+Excellent for complex deployments.
+Supports advanced environment parsing.
+
+Cons
+
+Slightly steeper learning curve.
+Recommendation for FutMxStore V1
+
+I recommend python-decouple.
+
+Why?
+
+Faster to set up.
+Easy to understand.
+Meets all our current requirements.
+Easy to replace later if the project grows.
+
+This is another example of Architect for the Future. Implement for the Present.
+
+The Commands
+
+Now you can install the core packages:
+
+pip install django
+pip install djangorestframework
+pip install djangorestframework-simplejwt
+pip install python-decouple
+pip install pillow
+
+Or, if you prefer:
+
+pip install django djangorestframework djangorestframework-simplejwt python-decouple pillow
+Why We Haven't Installed django-cors-headers
+
+This is a question I often ask junior engineers.
+
+Why not install it now?
+
+Because we don't have a frontend yet.
+
+CORS only becomes relevant when a browser running your React application makes requests to your Django API from a different origin.
+
+Installing it now isn't harmful, but it isn't necessary either. We should avoid adding dependencies before they solve a real problem.
+
+Senior Engineer Challenge 🧠
+
+Before we create the Django project, answer this:
+
+Why are we choosing JWT authentication instead of Django's default session authentication for FutMxStore?
+
+I'm not looking for a textbook definition. I want you to reason based on our architecture:
+
+Django backend
+React frontend (coming later)
+Mobile app possibility in the future
+Production deployment
+
+Think about how these pieces fit together.
+
+📚 What I Learned Today
+How to evaluate dependencies based on current needs.
+Why minimizing dependencies reduces complexity and maintenance.
+The trade-offs between python-decouple and django-environ.
+Why CORS support can wait until the frontend exists.
+📝 Coding Assignment
+Install the recommended packages.
+Tell me your answer to the JWT vs. session authentication question.
+🤔 Reflection Questions
+What risks come with installing libraries "just in case"?
+Which of today's dependencies would be difficult to replace later, and which are relatively easy to swap?
+💡 Engineering Insight
+
+Every dependency is a long-term commitment. It introduces updates, security patches, documentation to learn, and potential compatibility issues. Great engineers don't ask, "What can I install?" They ask, "What problem does this package solve today?"
+
+🚀 Next Step
+
+Once you've installed the dependencies and answered the JWT question, we'll create the Django project, organize it into our domain-based structure, and configure the initial settings for development.
+
+coding assingment number 2.) because i would be connecting django to a frontend technology, jwt makes this possible. Reflection number 1 , there are no risk but it's better to install them only when they are needed ,Reflecion number 2.)environmental variables package can be changes but django and drf can't be modified
+
+Very good. I can see you're reasoning rather than memorizing, which is exactly what I want. Now let's refine your answers the way a Principal Engineer would during a code review.
+
+Review of Coding Assignment #2
+Your Answer
+
+Because I would be connecting Django to a frontend technology, JWT makes this possible.
+
+My Review
+
+✅ Correct.
+
+But this is only part of the reasoning.
+
+As engineers, we should always ask:
+
+Why is JWT a better fit for our architecture?
+
+A more complete answer would be:
+
+Our frontend (React) and backend (Django) are separate applications.
+JWT allows the frontend to authenticate independently without relying on Django's server-side sessions.
+JWT is stateless, which makes horizontal scaling easier because the server doesn't need to keep session data.
+The same authentication mechanism can be used later by a mobile application or other clients.
+JWT fits naturally with REST APIs.
+
+Notice that we didn't choose JWT because it's "modern." We chose it because it aligns with our system architecture.
+
+A Small Clarification
+
+You said:
+
+"JWT makes this possible."
+
+It's more accurate to say:
+
+"JWT is well-suited for this architecture."
+
+You can connect React to Django using session authentication, but it introduces additional considerations such as CSRF protection and cookie-based session management. JWT is generally a simpler fit for an API-first architecture like FutMxStore.
+
+Reflection Question 1 Review
+Your Answer
+
+There are no risk but it's better to install them only when they are needed.
+
+I want to challenge this, because this is how engineers grow.
+
+There are risks.
+
+Every dependency introduces:
+
+Additional security vulnerabilities to monitor.
+More packages to update.
+Potential version conflicts.
+Larger deployment artifacts.
+More documentation for the team to understand.
+The possibility that the package becomes unmaintained.
+
+A better answer would be:
+
+"Installing unnecessary libraries increases maintenance overhead, expands the project's attack surface, and can lead to compatibility issues. We should only add dependencies when they solve a current problem."
+
+Reflection Question 2 Review
+Your Answer
+
+Environmental variables package can be changed but Django and DRF can't be modified.
+
+✅ That's a good instinct.
+
+Let's analyze it further.
+
+Easy to Replace
+python-decouple
+django-environ
+
+Both solve a similar problem, so switching between them is relatively straightforward.
+
+Harder to Replace
+Django
+Django REST Framework
+
+These are foundational technologies. Replacing either would require significant changes across the entire application.
+
+This is why we choose foundational technologies carefully—they're long-term commitments.
+
+One More Engineering Question
+
+I want to challenge your thinking a bit more.
+
+Suppose FutMxStore grows to 500,000 students.
+
+Would JWT alone make the application scalable?
+
+Think carefully.
+
+Many developers say "JWT scales."
+
+That's only partially true.
+
+What other parts of the system become bottlenecks as traffic grows?
+
+Consider:
+
+Database
+File storage
+Search
+Caching
+Load balancing
+
+This is the kind of systems thinking we'll develop as we build.

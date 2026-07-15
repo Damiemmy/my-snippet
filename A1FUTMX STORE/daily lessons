@@ -1,0 +1,40 @@
+1.)
+📚 What I Learned Today
+config is the application's configuration layer, not its business logic.
+Small project structure decisions can have long-term maintenance benefits.
+Architectural decisions should be intentional and documented.
+Before creating any component, define its responsibility, location, and dependencies.
+
+2.)
+📚 What I Learned Today
+Environment-specific settings improve security as well as maintainability.
+Configuration files should never contain business logic.
+Different layers of the system have distinct responsibilities: business, infrastructure, framework, and configuration.
+Architectural refactoring is an investment that reduces future complexity.
+
+
+3.)
+📚 What I Learned Today
+base.py should contain the shared configuration, while environment-specific files only override what's different.
+DRY applies to configuration files as much as it does to business logic.
+Incremental refactoring with verification after each change is a professional engineering habit.
+Thinking in terms of responsibilities and module boundaries leads to cleaner, more maintainable systems.
+
+4.)📚 What I Learned Today
+Python distinguishes between modules and packages, which affects how Django locates settings.
+Environment-specific settings scale naturally because of Python's import system.
+Staging and testing environments exist to reduce deployment risk and isolate automated tests.
+Admitting "I don't know" is a professional engineering habit that leads to deeper understanding.
+
+5.)📚 What I Learned Today
+manage.py, wsgi.py, and asgi.py are different entry points into the same Django application.
+DJANGO_SETTINGS_MODULE tells each entry point which configuration to load.
+Django cannot initialize without knowing its settings module.
+Staging environments provide confidence before production deployments.
+
+
+6.) 📚 What I Learned Today
+Relative imports (from .base import *) tell Python to import from the current package.
+Wildcard imports are generally discouraged, but they are an accepted pattern for Django settings because the goal is to inherit and override configuration.
+Configuration drift occurs when duplicated environment settings slowly become inconsistent.
+Every structural refactor should be followed immediately by a verification step.

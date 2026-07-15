@@ -291,3 +291,11 @@ Those skills are what distinguish senior engineers. The folder structure above i
 
 BOOKSTORE ARCHITECTURE:
     - nginx,frontend,backend,database,celery,celery-beat
+
+
+The backend answers questions like:
+    Who is allowed to perform this action?
+    What data should exist?
+    What rules protect the data?
+    What relationships exist between entities?
+    What happens when something changes?

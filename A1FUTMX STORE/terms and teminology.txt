@@ -1,0 +1,10 @@
+1.)DRY: do not repeat yourself
+
+2.)CONFIGURATION DRIFT: It means two environments that were supposed to be identical slowly become different over time.That's another reason DRY matters.
+
+3.)Wild Card Import :Many Python style guides discourage wildcard imports.e.g "from utils import *", this import is avoided because we don't know what names enter the namespace. But in Django settings, the goal of development.py is to start with every setting from base.py and then override a few values.
+Here, the wildcard import is intentional and widely accepted.
+
+This is an example of something that's usually discouraged but appropriate in a specific context.
+A good engineer knows the rule and when it's reasonable to make an exception.
+

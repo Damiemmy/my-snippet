@@ -1,0 +1,11 @@
+First Architecture Decision (ADR-001)
+
+We should document our first architecture decision:
+
+Title: Domain-Based Project Structure
+
+Decision:
+Organize the backend by business domains (authentication, users, academics) instead of technical layers.
+
+Reason:
+Business domains change less frequently than implementation details and improve maintainability as the application grows.

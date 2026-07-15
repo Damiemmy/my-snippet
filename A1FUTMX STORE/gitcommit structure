@@ -1,0 +1,14 @@
+Engineering Insight
+
+Here's the convention we'll follow throughout FutMxStore:
+
+| Type       | When to use                            | Example                                                         |
+| ---------- | -------------------------------------- | --------------------------------------------------------------- |
+| `feat`     | New functionality                      | `feat(auth): implement user registration API`                   |
+| `fix`      | Bug fixes                              | `fix(auth): prevent duplicate email registration`               |
+| `refactor` | Improve code without changing behavior | `refactor(academics): extract material filtering into selector` |
+| `docs`     | Documentation changes                  | `docs(adr): document domain-based architecture`                 |
+| `test`     | Tests                                  | `test(auth): add login endpoint tests`                          |
+| `chore`    | Project setup, tooling, dependencies   | `chore(project): initialize Django backend foundation`          |
+| `perf`     | Performance improvements               | `perf(materials): optimize search queries`                      |
+| `style`    | Formatting only                        | `style(auth): apply black formatting`                           |
