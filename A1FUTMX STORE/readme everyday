@@ -77,3 +77,48 @@ Conclusion
 That's exactly how architecture discussions happen.
 
 Keep that habit.
+
+6.)Before adding a setting configuration think what file it should belong to(development,production or base.py)
+    - React development
+    - Production deployment
+    - Security
+    - Shared configuration
+    in conlusion if it depends on development and production then it is a shared settings
+
+7.)For each of these, tell me where it belongs and why:
+
+    INSTALLED_APPS
+    DEBUG
+    SECRET_KEY
+    DATABASES
+    REST_FRAMEWORK
+    ALLOWED_HOSTS
+    STATIC_URL
+    MEDIA_URL
+    SIMPLE_JWT
+    CORS_ALLOWED_ORIGINS
+
+    Don't worry about writing code. I want you to classify each one into:
+
+    - Shared (base.py)
+    - Environment-specific (development.py / production.py)
+    - Environment variable (.env)
+
+    and explain your reasoning.
+
+    This exercise is going to build one of the most valuable skills a backend engineer can have: knowing where configuration belongs before writing it.
+
+
+8.)🎓 A Lesson I Want You to Remember
+
+    Today we discussed where configuration belongs.
+
+    I want to give you a mental model you'll use throughout your career.
+
+    -Whenever you're unsure where a setting belongs, ask three questions:
+        Question 1: Is this true in every environment? yes:
+            ➡️ base.py
+        Question 2: Does this change between development and production?If yes:
+            ➡️ development.py or production.py
+        Question 3:Is this sensitive or unique to a deployment?If yes:
+            ➡️ Environment variable

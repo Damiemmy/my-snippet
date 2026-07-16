@@ -1,0 +1,65 @@
+Imports
+
+↓
+
+Paths
+
+↓
+
+Security
+
+↓
+
+Applications
+
+↓
+
+Middleware
+
+↓
+
+Templates
+
+↓
+
+Database
+
+↓
+
+Authentication
+
+↓
+
+Internationalization
+
+↓
+
+Static Files
+
+↓
+
+Media Files
+
+↓
+
+REST Framework
+
+↓
+
+JWT
+
+↓
+
+Default Auto Field
+
+Notice something:
+    - We're not changing behavior.
+    - We're improving readability.
+
+
+
+| Category                       | Example                                                     | Where it belongs                                                                    |
+| ------------------------------ | ----------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| Shared across all environments | `INSTALLED_APPS`, `MIDDLEWARE`, `REST_FRAMEWORK`            | `base.py`                                                                           |
+| Different between environments | `DEBUG`, `ALLOWED_HOSTS`, `DATABASES`, allowed CORS origins | `development.py` / `production.py`                                                  |
+| Secret or deployment-specific  | `SECRET_KEY`, database passwords, API keys                  | Environment variables (`.env` in development, deployment environment in production) |

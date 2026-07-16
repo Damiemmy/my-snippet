@@ -145,3 +145,81 @@ This separates configuration by environment while keeping shared settings in one
     "If I deploy this exact build to production today, am I confident it will work?"
 
     That's the purpose.
+
+
+8i.) Why is extending base.py better than copying all of its contents into development.py?
+    to avoid violation of Dry principle and Configuration drift,and promotes overriding of neccessary files(few values)
+
+8ii.)If we duplicated every setting into every environment file, what maintenance problems would that create?
+    this causes a configuration drift and violation of dry principle making data inconsistent on both duplicates
+
+9i.)Principal Engineer Challenge: 
+    a-Suppose we change only manage.py Would "python manage.py runserver" work?,
+    b-What about when we deploy with Gunicorn later? , Would the application still work?
+
+    a-If only manage.py is configured, python manage.py runserver will work...
+    b-in production(gunicorn - wsgi - config.settings - module not found), so the application would fail in production
+    in conclusion all three entry points require a Django settings module so they should choose a settings environment to load into the application
+
+9ii.)Why is it acceptable to use from .base import * in Django settings even though wildcard imports are generally discouraged?
+    -its important to use "from .base import *" to avoid violating dry principle and configuration Drift which lead to failure in configuration consistency,deployment reliability,reproducibility and environment parity, wild cards are discourage but generally accepted in some part of the codebase for its intent
+
+
+9ii.)What kinds of production issues could occur if manage.py used development.py but wsgi.py still pointed to the old settings module?
+
+    several issue could occur based on what the developer fails to put in place,taking for instance if settings.py should be renamed to base.py and moved to the settings package before carrying out configuration in wsgi.py file everything would work perfectly well, but if the developer wsgi.py configuration layer file still points to old settings module then they will be nothing to read because a refactory has been made,this will result to missing file path in production which depends on a alot of configurations to function leading to missing database,no installed apps, no middleware,cors-headers,allowed host e.t.c, inconclusion it's important to carryout configuration for a server to run successfully both in development and in production
+
+10i.)Principal Engineer Challenge:Now let's apply that framework.
+    For each of these, tell me where it belongs and why:
+
+    INSTALLED_APPS
+    DEBUG
+    SECRET_KEY
+    DATABASES
+    REST_FRAMEWORK
+    ALLOWED_HOSTS
+    STATIC_URL
+    MEDIA_URL
+    SIMPLE_JWT
+    CORS_ALLOWED_ORIGINS
+
+    Don't worry about writing code. I want you to classify each one into:
+        - Shared (base.py)
+        - Environment-specific (development.py / production.py)
+        - Environment variable (.env)
+    and explain your reasoning.
+
+    ANSWER:
+        | Setting              | Your Answer              |
+        | -------------------- | ------------------------ |
+        | INSTALLED_APPS       | ✅ base.py                |
+        | DATABASES            | ✅ development/production |
+        | REST_FRAMEWORK       | ✅ base.py                |
+        | SIMPLE_JWT           | ✅ base.py                |
+        | MEDIA_URL            | ✅ base.py                |
+        | STATIC_URL           | ✅ base.py                |
+        | DEBUG                | ✅ development/production |
+        | CORS_ALLOWED_ORIGINS | ✅ development/production |
+        | ALLOWED_HOSTS        | ✅ development/production |
+        | SECRET_KEY           | ✅ Environment Variable   |
+
+
+
+
+
+
+
+
+
+
+
+10ii.)
+    a.)Why is it beneficial to distinguish between "using a feature" (e.g., enabling CORS middleware) and "configuring that feature" (e.g., allowed origins)?
+
+        - Configuring a feature means providing information that the feature should operate on. while
+        - using a feature require proper installation and configuration
+
+    b.)How does separating shared configuration from environment-specific overrides support our goal of keeping FutMxStore maintainable as it grows?
+
+    
+

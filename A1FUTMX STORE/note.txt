@@ -533,3 +533,20 @@ Every time you change the structure of the project, stop and verify that the app
 💡 Engineering Insight
 
 A recurring theme in professional software engineering is extension over duplication. Whether you're configuring Django, designing classes, or organizing services, you'll often achieve a more maintainable system by building on shared foundations rather than copying existing work.
+
+💡 Engineering Insight
+
+One thing you'll hear me say often is:
+
+"Code is written once but read hundreds of times."
+
+Most of your future teammates—including future you—will spend far more time reading your configuration than writing it. Organizing it well is an investment in every future debugging session, feature, and deployment.
+
+💡 Engineering Insight
+
+A configuration system is much like a good API: it should make the common case easy and the exceptional case explicit. Shared settings define the application's baseline, while environment-specific overrides make differences intentional rather than accidental.
+
+💡 Engineering Insight
+
+One hallmark of experienced engineers is that they rely on principles more than memory. Frameworks evolve, libraries change, but if you understand why decisions are made, you can adapt to new technologies much more easily than someone who only memorizes patterns.
+

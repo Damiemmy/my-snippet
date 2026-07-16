@@ -38,3 +38,46 @@ Relative imports (from .base import *) tell Python to import from the current pa
 Wildcard imports are generally discouraged, but they are an accepted pattern for Django settings because the goal is to inherit and override configuration.
 Configuration drift occurs when duplicated environment settings slowly become inconsistent.
 Every structural refactor should be followed immediately by a verification step.
+
+
+7.)📚 What I Learned Today
+Shared infrastructure configuration and environment-specific values should be separated.
+CORS setup is shared, but the list of allowed origins typically varies by environment.
+A well-organized configuration communicates intent and reduces cognitive load.
+Environment variables are best reserved for secrets and deployment-specific values.
+
+8.)📚 What I Learned Today
+pathlib.Path is preferred because it is more readable, object-oriented, and cross-platform friendly.
+Admitting uncertainty is a strength in engineering.
+Environment variables should contain deployment-specific or sensitive values.
+A useful question is: "Does this belong to the application or to the deployment?"
+
+9.)📚 What I Learned Today
+Mentorship should adapt as your understanding grows.
+You're ready to move from beginner pacing to intermediate backend engineering discussions.
+Our focus is shifting from framework mechanics to architecture, production readiness, and domain design.
+
+10.)
+A good database design optimizes for:
+
+✅ Data Integrity
+✅ Scalability
+✅ Maintainability
+✅ Query Performance
+✅ Extensibility
+✅ Security
+
+As engineers, we don't optimize only for speed—we optimize for the lifetime of the system.
+
+
+11.)📚 What I Learned Today
+Good backend architecture is built on thoughtful decisions, not just correct code.
+Database design is about integrity, scalability, maintainability, extensibility, security, and performance—not performance alone.
+Documentation such as ADRs and architecture diagrams becomes increasingly valuable as a project grows.
+As your experience grows, mentorship should evolve from explanation to design review.
+
+📚 What I Learned Today
+A strong ADR evaluates options using consistent criteria and ties the decision back to business goals.
+Authentication credentials and user identity are related but distinct concerns.
+It's often better to design for future capabilities than to implement them before they're needed.
+Separating Authentication and Users into different domains is a sound architectural decision.

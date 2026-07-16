@@ -8,3 +8,11 @@ Here, the wildcard import is intentional and widely accepted.
 This is an example of something that's usually discouraged but appropriate in a specific context.
 A good engineer knows the rule and when it's reasonable to make an exception.
 
+4.)Architect for the Future. Implement for the Present.
+
+5.)self-documenting structure:process of organising configuration file into sections (base.py),Each section speaks its configuration intent.
+
+6.)shared configuration:(base.py)
+
+7.)environment specific overides or configuration:to overide an environ(prod/dev)
+8.)Configuring a feature: means providing information that the feature should operate on.
