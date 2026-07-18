@@ -220,6 +220,7 @@ This separates configuration by environment while keeping shared settings in one
         - using a feature require proper installation and configuration
 
     b.)How does separating shared configuration from environment-specific overrides support our goal of keeping FutMxStore maintainable as it grows?
+        - Separating shared configuration from environment specific overrides...reduces duplication, keeps the project maintainable, and makes environment-specific behavior explicit.
 
     
 
