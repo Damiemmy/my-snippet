@@ -81,3 +81,16 @@ A strong ADR evaluates options using consistent criteria and ties the decision b
 Authentication credentials and user identity are related but distinct concerns.
 It's often better to design for future capabilities than to implement them before they're needed.
 Separating Authentication and Users into different domains is a sound architectural decision.
+
+
+📚 What I Learned Today
+A strong ADR evaluates options using consistent criteria and ties the decision back to business goals.
+Authentication credentials and user identity are related but distinct concerns.
+It's often better to design for future capabilities than to implement them before they're needed.
+Separating Authentication and Users into different domains is a sound architectural decision.
+
+📚 What I Learned Today
+AbstractUser provides an excellent balance between flexibility and rapid development.
+Choosing a technology should account for the team's current expertise, not just theoretical capability.
+Email-first authentication aligns well with modern identity providers like Google OAuth.
+The location of a field (e.g., role) should be determined by its responsibility and how it evolves over time.
