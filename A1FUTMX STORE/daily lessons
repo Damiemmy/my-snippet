@@ -94,3 +94,9 @@ AbstractUser provides an excellent balance between flexibility and rapid develop
 Choosing a technology should account for the team's current expertise, not just theoretical capability.
 Email-first authentication aligns well with modern identity providers like Google OAuth.
 The location of a field (e.g., role) should be determined by its responsibility and how it evolves over time.
+
+📚 What I Learned Today
+Environment-specific settings improve security as well as maintainability.
+Configuration files should never contain business logic.
+Different layers of the system have distinct responsibilities: business, infrastructure, framework, and configuration.
+Architectural refactoring is an investment that reduces future complexity.
