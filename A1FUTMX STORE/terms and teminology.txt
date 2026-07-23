@@ -16,3 +16,4 @@ A good engineer knows the rule and when it's reasonable to make an exception.
 
 7.)environment specific overides or configuration:to overide an environ(prod/dev)
 8.)Configuring a feature: means providing information that the feature should operate on.
+9.)Architect for the future implimentation for the present 
