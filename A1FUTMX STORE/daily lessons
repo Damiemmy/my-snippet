@@ -100,3 +100,9 @@ Environment-specific settings improve security as well as maintainability.
 Configuration files should never contain business logic.
 Different layers of the system have distinct responsibilities: business, infrastructure, framework, and configuration.
 Architectural refactoring is an investment that reduces future complexity.
+
+📚 What I Learned Today
+base.py should contain the shared configuration, while environment-specific files only override what's different.
+DRY applies to configuration files as much as it does to business logic.
+Incremental refactoring with verification after each change is a professional engineering habit.
+Thinking in terms of responsibilities and module boundaries leads to cleaner, more maintainable systems.
