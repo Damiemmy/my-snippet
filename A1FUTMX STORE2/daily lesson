@@ -1,0 +1,13 @@
+📚 What I Learned Today
+Migrations are the version history of your database schema, not just files that create tables.
+Services encapsulate business workflows, allowing multiple entry points (API, CLI, admin, background tasks) to reuse the same logic.
+Views should coordinate requests and responses, not implement business rules.
+Designing the workflow before writing code leads to cleaner, more maintainable software.
+
+
+📚 What I Learned Today
+Validation, orchestration, and enforcement happen at different layers.
+Services should return domain objects, while views return HTTP responses.
+Database constraints remain the ultimate guarantee of data integrity.
+Business rules describe what must happen; implementation details describe how it happens.
+

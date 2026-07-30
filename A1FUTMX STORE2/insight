@@ -1,0 +1,3 @@
+💡 Engineering Insight
+
+One of the clearest signs of a well-designed backend is that the business logic can be exercised without an HTTP request. If your services can be called from tests, management commands, background jobs, or APIs with no changes, you've achieved excellent separation of concerns.

@@ -1,0 +1,51 @@
+1.)
+
+View
+
+↓
+
+Service
+
+↓
+
+Manager
+
+↓
+
+Database
+
+2.)
+A serializer should answer:
+
+"Is this request valid?"
+
+It should not answer:
+
+"Should we register this user?"
+
+That's business logic.
+
+3.)selector:Reading Responsibility(They only retrieve. the don't create or update)
+    - Find user by email
+    - Find verified users
+    - Find active users
+    - Find lecturers
+
+4.)view.py: HTTP and nothing more if your view have more than a 100 line then it's a problem
+
+    Receive request
+    ↓
+    Call serializer
+    ↓
+    Call service
+    ↓
+    Return response
+
+
+5.)
+    Serializer → validate request format and provide friendly validation errors.
+    Service → orchestrate the business workflow.
+    Database → enforce uniqueness as the final authority.
+
+6.)
+    

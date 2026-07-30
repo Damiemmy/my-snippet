@@ -1,0 +1,1 @@
+1.)adding : reg_no(blank=True,unique=true null=True) via Student_id.verification process. to enable Ai Features Capability. note this won't be included in the registeration process it should be done after a student send a clean photo of his or her id-Card

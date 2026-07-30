@@ -76,33 +76,61 @@ Database design is about integrity, scalability, maintainability, extensibility,
 Documentation such as ADRs and architecture diagrams becomes increasingly valuable as a project grows.
 As your experience grows, mentorship should evolve from explanation to design review.
 
+12.)
 📚 What I Learned Today
 A strong ADR evaluates options using consistent criteria and ties the decision back to business goals.
 Authentication credentials and user identity are related but distinct concerns.
 It's often better to design for future capabilities than to implement them before they're needed.
 Separating Authentication and Users into different domains is a sound architectural decision.
 
-
+13.)
 📚 What I Learned Today
 A strong ADR evaluates options using consistent criteria and ties the decision back to business goals.
 Authentication credentials and user identity are related but distinct concerns.
 It's often better to design for future capabilities than to implement them before they're needed.
 Separating Authentication and Users into different domains is a sound architectural decision.
 
+14.)
 📚 What I Learned Today
 AbstractUser provides an excellent balance between flexibility and rapid development.
 Choosing a technology should account for the team's current expertise, not just theoretical capability.
 Email-first authentication aligns well with modern identity providers like Google OAuth.
 The location of a field (e.g., role) should be determined by its responsibility and how it evolves over time.
 
+15.)
 📚 What I Learned Today
 Environment-specific settings improve security as well as maintainability.
 Configuration files should never contain business logic.
 Different layers of the system have distinct responsibilities: business, infrastructure, framework, and configuration.
 Architectural refactoring is an investment that reduces future complexity.
 
+16.)
 📚 What I Learned Today
 base.py should contain the shared configuration, while environment-specific files only override what's different.
 DRY applies to configuration files as much as it does to business logic.
 Incremental refactoring with verification after each change is a professional engineering habit.
 Thinking in terms of responsibilities and module boundaries leads to cleaner, more maintainable systems.
+
+17.)
+📚 What I Learned Today
+Database integrity often depends on constraints involving combinations of fields, not just individual fields.
+A custom manager centralizes object creation rules and helps maintain consistency.
+normalize_email() standardizes email addresses; it doesn't validate them.
+Passwords must always be set with set_password() to ensure secure hashing.
+
+18.)
+📚 What I Learned Today
+Modern Django favors UniqueConstraint for composite uniqueness.
+Database constraints are essential for correctness, especially under concurrent requests.
+Clear model documentation and naming improve long-term maintainability.
+A slightly more flexible design can be justified if it directly supports foreseeable business workflows.
+
+
+🚀 Welcome to Phase 2:
+Damisa...Everything we've done so far has been preparation.
+    - Now we start building features.
+    - Not just models.
+    - Not just architecture.
+    - Real business functionality.
+    - Today's feature:
+    - Registration

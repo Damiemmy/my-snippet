@@ -1,0 +1,64 @@
+1.)Now we start building features.
+
+Not just models.
+
+Not just architecture.
+
+Real business functionality.
+
+Today's feature:
+
+Registration
+2.)migrations files: is the history of how your database evolved.
+Those files tell the entire architectural story of your database.
+
+That's why I always inspect migrations.
+Not because Django is wrong.
+
+Because I want to verify that Django understood my intent.
+Senior engineers trust tools—but they verify the output.
+
+3.)
+View
+↓
+Service
+↓
+Manager
+↓
+Database
+
+4.) Registeration Workflow:
+
+Register User
+
+↓
+
+Validate request (Serializer)
+
+↓
+
+Call register_user() service
+
+↓
+
+Normalize business inputs (if needed)
+
+↓
+
+Create user
+
+↓
+
+Assign CUSTOMER role
+
+↓
+
+Trigger verification email (future)
+
+↓
+
+Return created User object
+
+↓
+
+View converts User into HTTP response

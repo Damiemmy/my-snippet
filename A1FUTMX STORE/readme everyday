@@ -122,3 +122,26 @@ Keep that habit.
             ➡️ development.py or production.py
         Question 3:Is this sensitive or unique to a deployment?If yes:
             ➡️ Environment variable
+
+9.)Database constraints also protect you from race conditions.
+
+Imagine two requests reaching your server at the exact same millisecond.
+
+Even if your Python code checks first, both requests could pass the check.
+
+The database constraint is the final line of defense.
+
+
+10.) Application → provides a good user experience and early validation.
+     Database → guarantees correctness.
+
+11.) authentication strategy: the way your authentication app is designed
+
+12.)extending your identity model: adding more fields to my model
+
+13.)A migration is the history of how your database evolved.
+14.) keeping files where they are meant to be preserves clear domain boundaries.
+15.)for instance a Database that contains User Without the UserRole, The system is now inconsistent:This is called a partial write.
+We don't want half of the workflow to succeed. We want:
+Everything succeeds or Nothing succeeds. That principle is called atomicity.
+16.)What Django feature could help us ensure that creating the user and assigning the role either both succeed or both fail?: Database Transactions

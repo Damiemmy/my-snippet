@@ -1,0 +1,34 @@
+1.)This is the design I would approve for FUTMXStore:
+
+✅ AbstractUser as the base model.
+✅ Email as the login identifier (USERNAME_FIELD = "email").
+✅ Keep username as an optional display name.
+✅ Separate Role and UserRole tables using a composite uniqueness constraint on (user, role).
+✅ Allow multiple roles per user.
+✅ Make Student the default role assigned automatically during registration.
+✅ Add or remove additional roles (Vendor, Course Representative, Lecturer, Admin) as users' responsibilities change.
+✅ Keep authorization logic based on roles and permissions, not hard-coded user types.
+
+
+
+2.)
+Then each ADR follows the same format:
+
+Title
+Status
+Context
+Decision
+Rationale
+Consequences
+Alternatives Considered
+References (optional)
+
+That keeps every ADR consistent and easy to skim.
+
+I'd also recommend writing them in Markdown (.md), since GitHub renders them beautifully and you can edit them in VS Code.
+
+3.)
+What is a user? → Custom User Model
+How is a user created? → User Manager
+How are users authorized? → RBAC
+How many roles can a user have? → Multiple Roles

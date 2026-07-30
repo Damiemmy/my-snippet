@@ -224,3 +224,4 @@ This separates configuration by environment while keeping shared settings in one
 
     
 
+principal engineering challenge1.)"i added unique=True to avoid duplicate", 2.) the fix is to my my role foreignkey  in my UserRole on my database design, 3.)object creation logic is better because it draws boundaried and seperation of concerns the model should decribe information of data fields of a user while the manager should handle custom logic when a user is created and what should be engineered or done. reflection questions1.) login (),register(),send_mail(), e.t.c those should go to the service.py file,reflection question 2.) the userRole model containing connected with a foreignKey to the user, it would be harder because during User creation record via registeration or change in role they would be absolotely no rules it should follow to work as espected

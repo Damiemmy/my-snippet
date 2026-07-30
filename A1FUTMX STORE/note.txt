@@ -550,3 +550,6 @@ A configuration system is much like a good API: it should make the common case e
 
 One hallmark of experienced engineers is that they rely on principles more than memory. Frameworks evolve, libraries change, but if you understand why decisions are made, you can adapt to new technologies much more easily than someone who only memorizes patterns.
 
+💡 Engineering Insight
+
+Changing a user model after a project has accumulated data is one of the most disruptive refactors in Django. Spending an extra hour designing it now can save days—or weeks—of migration work later.
