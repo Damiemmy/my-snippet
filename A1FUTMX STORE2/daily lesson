@@ -11,3 +11,15 @@ Services should return domain objects, while views return HTTP responses.
 Database constraints remain the ultimate guarantee of data integrity.
 Business rules describe what must happen; implementation details describe how it happens.
 
+📚 What I Learned Today
+Services should accept plain Python data, not serializer-specific objects.
+confirm_password belongs in validation, not business logic.
+Multi-step business workflows should be wrapped in a database transaction to avoid partial writes.
+Returning domain objects from services keeps them reusable across different entry points.
+
+📚 What You Learned Today
+View = Handles HTTP only.
+Serializer = Validates input and delegates work.
+Service = Owns the complete registration business workflow.
+Manager = Knows how to create User objects.
+Transaction = Ensures that creating the user and assigning the role either both succeed or both fail.
