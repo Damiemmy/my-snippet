@@ -23,3 +23,10 @@ Serializer = Validates input and delegates work.
 Service = Owns the complete registration business workflow.
 Manager = Knows how to create User objects.
 Transaction = Ensures that creating the user and assigning the role either both succeed or both fail.
+
+📚 What I Learned Today
+Migrations are the version history of your database schema, not just files that create tables.
+Services encapsulate business workflows, allowing multiple entry points (API, CLI, admin, background tasks) to reuse the same logic.
+Views should coordinate requests and responses, not implement business rules.
+Designing the workflow before writing code leads to cleaner, more maintainable software.
+
