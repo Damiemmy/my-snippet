@@ -10,3 +10,8 @@ Speed comes from good architecture, not shortcuts. A well-structured feature is 
 💡 Engineering Insight
 
 A clean architecture is one where each layer can be replaced without affecting the others. If you replaced DRF with GraphQL tomorrow, your register_user() service shouldn't need to change at all—that's the power of separation of concerns.
+
+
+💡 Engineering Insight
+
+One of the clearest signs of a well-designed backend is that the business logic can be exercised without an HTTP request. If your services can be called from tests, management commands, background jobs, or APIs with no changes, you've achieved excellent separation of concerns.
