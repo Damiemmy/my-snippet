@@ -1,0 +1,84 @@
+Request Flow(Registeration)
+
+Now let's follow one request.
+
+User sends
+
+{
+    "email":"damisa@gmail.com",
+    "username":"damisa",
+    "password":"123456",
+    "confirm_password":"123456"
+}
+
+↓
+
+View receives request.
+
+↓
+
+View calls serializer.
+
+↓
+
+Serializer validates.
+
+↓
+
+Serializer calls service.
+
+↓
+
+Service opens transaction.
+
+↓
+
+Service creates user.
+
+↓
+
+Service assigns Customer role.
+
+↓
+
+Service returns user.
+
+↓
+
+Serializer returns user.
+
+↓
+
+View sends HTTP Response.
+
+That's the entire architecture.
+
+
+
+2.) RequestFlow(Login)
+Serializer
+
+↓
+
+Login Service
+
+↓
+
+authenticate()
+
+↓
+
+generate JWT
+
+↓
+
+return tokens 
+
+And Note: here are the core responsibilities
+    - authenticate identity
+    - verify account state
+    - generate access token
+    - generate refresh token
+    - future: record login history
+    - future: notify suspicious logins
+    - future: audit logging

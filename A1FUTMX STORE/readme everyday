@@ -146,3 +146,5 @@ We don't want half of the workflow to succeed. We want:
 Everything succeeds or Nothing succeeds. That principle is called atomicity.
 16.)What Django feature could help us ensure that creating the user and assigning the role either both succeed or both fail?: Database Transactions
 17.)13.)A migration is the history of how your database evolved.
+18.)Services return business objects.while,Views return HTTP responses.
+19.)my business rule in my authentication domain is "Every newly registered user becomes a Customer."

@@ -30,3 +30,11 @@ Services encapsulate business workflows, allowing multiple entry points (API, CL
 Views should coordinate requests and responses, not implement business rules.
 Designing the workflow before writing code leads to cleaner, more maintainable software.
 
+
+📚 What I Learned Today
+Don't build abstractions where the framework already provides a solid solution.
+Use a service layer only when there's business behavior to encapsulate.
+Reuse serializers for representation instead of duplicating response logic.
+A /me endpoint is the canonical way for clients to retrieve the authenticated user's profile.
+
+

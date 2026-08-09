@@ -1,0 +1,35 @@
+Faculty
+   │
+   │ 1:N
+   ▼
+Department
+   │
+   │ 1:N
+   ▼
+Level
+   │
+   │ 1:N
+   ▼
+Semester
+   │
+   │ 1:N
+   ▼
+Course
+   │
+   │ 1:N
+   ▼
+Material
+
+This is deliberately simple.
+
+We are not adding:
+
+Institution
+Academic Session
+Lecturer
+Course Rep
+Vendor
+Search indexing
+Recommendation engine
+
+Those can come later.

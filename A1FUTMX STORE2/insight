@@ -15,3 +15,20 @@ A clean architecture is one where each layer can be replaced without affecting t
 💡 Engineering Insight
 
 One of the clearest signs of a well-designed backend is that the business logic can be exercised without an HTTP request. If your services can be called from tests, management commands, background jobs, or APIs with no changes, you've achieved excellent separation of concerns.
+
+
+💡 Engineering Insight
+
+Reference data (like roles, academic levels, or semesters) deserves the same architectural care as your business logic. A reliable system can recreate its essential reference data consistently on any environment—development, staging, or production.
+
+💡 Engineering Insight
+
+Notice how we've ended up with different serializers for different responsibilities:
+
+RegistrationSerializer → validates registration input.
+UserSerializer → represents a user.
+LoginResponseSerializer → represents the login response.
+
+💡 Engineering Insight
+
+A senior engineer isn't measured by how much code they write—they're measured by how much unnecessary code they avoid. Reusing stable framework components while keeping your own business logic isolated leads to systems that are both maintainable and easier to upgrade.

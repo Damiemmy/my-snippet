@@ -1,0 +1,7 @@
+📚 What I Learned Today
+One-to-many relationships put the foreign key on the many side.
+Django ForeignKey represents these relationships.
+related_name gives us convenient reverse relationships.
+UniqueConstraint protects database integrity.
+CASCADE controls what happens to dependent records.
+Domain entities can live together when they form one cohesive bounded domain.
