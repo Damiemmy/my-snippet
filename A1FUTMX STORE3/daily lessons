@@ -5,3 +5,12 @@ related_name gives us convenient reverse relationships.
 UniqueConstraint protects database integrity.
 CASCADE controls what happens to dependent records.
 Domain entities can live together when they form one cohesive bounded domain.
+
+📚 What I Learned Today
+Selectors own reusable database read operations.
+Serializers convert model instances into API representations.
+Views coordinate HTTP requests and responses.
+A read-only ListAPIView is appropriate for our first GET endpoint.
+Not every database query requires a service.
+API capabilities should be deliberately exposed.
+

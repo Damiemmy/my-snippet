@@ -33,3 +33,51 @@ Search indexing
 Recommendation engine
 
 Those can come later.
+
+2.)
+For Faculty get request diagramatic Architecture:
+
+GET /api/academics/faculties/
+            │
+            ▼
+    FacultyListView
+            │
+            ▼
+     get_faculties()
+            │
+            ▼
+       Faculty.objects
+            │
+            ▼
+        Database
+
+    The results travels back to:
+
+        Database
+        ↓
+        Faculty objects
+        ↓
+        FacultySerializer
+        ↓
+        JSON
+        ↓
+        Frontend
+
+This is the exact separation we've been practicing.
+using selector gives us a upper hand as today might become:
+Faculty.objects.all()
+
+while tomorrow could be:
+
+Faculty.objects
+    .select_related(...)
+    .prefetch_related(...)
+    .filter(...)
+    .order_by(...)
+
+
+And eventually there could be permission, visibility, institution, search, or archival rules around academic records.
+
+Centralizing reads gives us a clear place to evolve those queries.
+
+But don't overinterpret this: selectors aren't magic. We don't create a selector for every one-line query just to increase file count. We use them to establish a consistent data-access boundary where it provides value.
