@@ -14,3 +14,8 @@ A read-only ListAPIView is appropriate for our first GET endpoint.
 Not every database query requires a service.
 API capabilities should be deliberately exposed.
 
+📚 What I Learned Today
+select_related() helps prevent unnecessary database queries for foreign-key relationships.
+We can expose related information without duplicating database fields.
+Established architectural patterns should become reusable mental templates.
+We don't need the same depth of explanation for every repetitive endpoint.

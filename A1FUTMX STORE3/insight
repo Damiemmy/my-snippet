@@ -3,3 +3,24 @@
 You're beginning to see an important pattern:
 
 Database design is not just about storing data. It's about enforcing the relationships and rules that make the data trustworthy.
+
+💡 Engineering Insight
+
+We're now building the read path before the write path.
+
+That's intentional. Academics is primarily a content-discovery system in V1. Students need to find materials quickly, so our architecture should optimize our thinking around reliable academic data retrieval first.
+
+
+💡 Engineering Insight
+
+We're entering the point where architecture starts protecting the business rules.
+
+The question isn't merely:
+
+"Where do I put this line of Django code?"
+
+The better question is:
+
+"Who owns this rule?"
+
+That is how I want you thinking as we build the rest of FutMxStore.
