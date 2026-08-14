@@ -19,3 +19,19 @@ select_related() helps prevent unnecessary database queries for foreign-key rela
 We can expose related information without duplicating database fields.
 Established architectural patterns should become reusable mental templates.
 We don't need the same depth of explanation for every repetitive endpoint.
+
+📚 What I Learned Today
+select_related() is an optimization, not something to blindly apply everywhere.
+Authentication and authorization are different concerns.
+Ownership and authorization should be modeled separately.
+A user's role can change without changing historical ownership of their content.
+
+📚 What I Learned Today
+Ownership belongs to the Material model.
+settings.AUTH_USER_MODEL keeps relationships compatible with our custom User model.
+PROTECT can preserve historical content ownership.
+Authorization belongs in permission classes.
+The client must never control ownership.
+Services perform the material-creation workflow.
+Authentication ≠ authorization.
+Role records should be evaluated using their current is_active and is_approved state.

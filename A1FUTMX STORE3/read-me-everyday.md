@@ -15,3 +15,5 @@ HTTP Request
  4.)Optimize based on the data the query actually needs, not because an optimization exists.
 
  5.) rule("Only authorized Course Reps, Lecturers, Vendors, and Admins can upload)
+
+ 6.)The backend—not the frontend—is now deciding who is allowed to perform a sensitive operation.
