@@ -1,0 +1,99 @@
+1.)Source of Data:Data might come from:
+
+    a database
+    CSV files
+    APIs
+    user activity
+    sensors
+    transactions
+    documents
+    images
+    logs
+    
+    Our first job is learning how to bring data into our program and understand it.
+
+    1. Your First Mental Model
+2.)
+Keep this architecture in your head:
+
+              DATA
+                ↓
+        ┌───────────────┐
+        │   Understand   │
+        │     Data       │
+        └───────┬───────┘
+                ↓
+          Clean / Prepare
+                ↓
+             Analyze
+                ↓
+          Learn Patterns
+                ↓
+          Machine Learning
+                ↓
+            Prediction
+
+Notice something important:
+
+Machine learning comes after data preparation.
+
+This is why we're not jumping straight into scikit-learn.
+
+3.)first real data pipeline:
+
+CSV
+ ↓
+Raw data
+ ↓
+Parse
+ ↓
+Convert data types
+ ↓
+Store/process
+ ↓
+Calculate statistics
+ ↓
+Make decision
+
+
+4.)Later, our pipeline becomes:
+
+Database
+ ↓
+Raw data
+ ↓
+Cleaning
+ ↓
+Feature engineering
+ ↓
+Training dataset
+ ↓
+ML algorithm
+ ↓
+Model
+ ↓
+Prediction
+ ↓
+Django/DRF API
+ ↓
+React
+
+5.) and much later:
+
+Users
+ ↓
+Data
+ ↓
+Model
+ ↓
+Prediction
+ ↓
+User feedback
+ ↓
+New data
+ ↓
+Model evaluation
+ ↓
+Retraining
+ ↓
+Better system

@@ -1,0 +1,14 @@
+| Concept      | What it does                   |
+| ------------ | ------------------------------ |
+| `import csv` | Gives Python CSV functionality |
+| `open()`     | Opens a file                   |
+| `with`       | Safely manages the file        |
+| `DictReader` | Reads CSV rows as dictionaries |
+| `for`        | Loops through students         |
+| `int()`      | Converts text to an integer    |
+| `append()`   | Adds an item to a list         |
+| `len()`      | Counts items                   |
+| `sum()`      | Adds numbers                   |
+| `max()`      | Finds largest number           |
+| `min()`      | Finds smallest number          |
+| `if/else`    | Makes a decision               |
