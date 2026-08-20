@@ -1,0 +1,23 @@
+🔥 This is the lesson I want you to absorb
+
+Your first program assumed:
+
+1 student = 1 valid score
+
+Real-world data taught you:
+
+Assumptions can be wrong.
+
+That's one of the most important lessons in data science and AI.
+
+Before training a model, you need to understand:
+
+What does each column mean?
+What values are missing?
+What values are invalid?
+What types are they?
+Are there duplicates?
+Are there outliers?
+What assumptions are we making?
+
+Garbage in → garbage out.

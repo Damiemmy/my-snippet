@@ -81,3 +81,5 @@ And eventually there could be permission, visibility, institution, search, or ar
 Centralizing reads gives us a clear place to evolve those queries.
 
 But don't overinterpret this: selectors aren't magic. We don't create a selector for every one-line query just to increase file count. We use them to establish a consistent data-access boundary where it provides value.
+
+

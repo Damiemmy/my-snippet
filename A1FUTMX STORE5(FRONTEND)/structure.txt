@@ -1,0 +1,28 @@
+src/
+│
+├── api/
+│   ├── client.ts
+│   └── endpoints/
+│
+├── components/
+│   ├── ui/
+│   └── common/
+│
+├── features/
+│   ├── authentication/
+│   ├── academics/
+│   └── materials/
+│
+├── hooks/
+│
+├── layouts/
+│
+├── pages/
+│
+├── routes/
+│
+├── store/
+│
+├── types/
+│
+└── utils/

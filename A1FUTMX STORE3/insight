@@ -24,3 +24,61 @@ The better question is:
 "Who owns this rule?"
 
 That is how I want you thinking as we build the rest of FutMxStore.
+
+
+💡 Engineering Insight
+
+We're deliberately not building download analytics, signed URLs, cloud storage, CDN infrastructure, or Elasticsearch.
+
+Those may become valuable later.
+
+Right now:
+
+Get the material → authorize access → send the file.
+
+That's MVP engineering.
+
+💡 Engineering Insight
+
+We're now moving from:
+
+"Does the endpoint work?"
+
+to:
+
+"How does the endpoint behave when real users arrive?"
+
+That's the transition from coding to engineering.
+
+And we're still obeying:
+
+Architect for the Future. Implement for the Present.
+
+No Elasticsearch.
+No Redis.
+No Celery.
+No microservices.
+
+Just a well-designed API that can launch.
+
+
+
+💡 Engineering Insight
+
+We're at the point where adding more code isn't necessarily progress.
+
+A professional engineer knows when the MVP is sufficiently complete.
+
+Our next major milestone is:
+
+Backend API contract freeze → React + TypeScript
+
+Once your audit passes, we'll stop changing the backend architecture unnecessarily and start consuming it from the frontend.
+
+That is where your TypeScript learning begins—and we'll build the frontend from the API contract we created, not invent a second architecture on the frontend.
+
+🚀 Next Step
+
+Complete the backend audit and answer the three reflection questions.
+
+Then we move into React + TypeScript setup and frontend architecture at an accelerated pace.

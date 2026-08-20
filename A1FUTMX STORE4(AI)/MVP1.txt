@@ -1,0 +1,30 @@
+📝 Your Final Academic Backend Assignment
+Before we move to React, I want you to perform a backend audit, not write another feature.
+
+Check these things manually:
+Authentication
+ - Registration works
+ - Duplicate email rejected
+ - Password is hashed
+ - Login returns JWT
+ - Refresh token works
+ - Protected endpoint rejects unauthenticated users
+Academics
+ - Faculty exists
+ - Department belongs to Faculty
+ - Level belongs to Department
+ - Semester belongs to Level
+ - Course belongs to Semester
+ - Material belongs to Course
+ - Material records uploader
+Materials
+ - Customer cannot upload
+ - Course Rep can upload
+ - Lecturer can upload
+ - Material list works
+ - Pagination works
+ - Search works
+ - Course filtering works
+ - Material detail works
+ - Material download works
+ - Inactive/deactivated users cannot access protected resources
