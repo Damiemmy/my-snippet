@@ -100,3 +100,62 @@ The engineering thinking doesn't.
            Data Engineering
                  │
            YOUR FOUNDATION
+
+5.)
+
+
+
+
+                 AI ENGINEER
+                     │
+       ┌─────────────┼─────────────┐
+       │             │             │
+      ML             DL          GenAI
+       │             │             │
+Statistics       Neural Nets      LLMs
+       │             │             │
+NumPy/Pandas     PyTorch         Transformers
+       │             │             │
+       └─────────────┼─────────────┘
+                     │
+              AI Engineering
+                     │
+          ┌──────────┴──────────┐
+          │                     │
+       Backend               Frontend
+       Django                 React
+       DRF                    TypeScript
+          │                     │
+          └──────────┬──────────┘
+                     │
+              Production AI
+                     │
+        APIs / Docker / Cloud
+        Monitoring / Security
+        Evaluation / Scaling
+
+
+
+DAY 1     Python fundamentals                 ✅
+DAY 2     CSV + raw data                      ✅
+DAY 3     Data cleaning                       ✅
+DAY 4     NumPy fundamentals                  ✅
+DAY 5     Arrays + Boolean masking            ← NOW
+          ↓
+DAY 6     Pandas
+          ↓
+DAY 7     Data analysis project
+          ↓
+PHASE 2   Statistics + Mathematics
+          ↓
+PHASE 3   Machine Learning
+          ↓
+PHASE 4   Deep Learning
+          ↓
+PHASE 5   NLP / Computer Vision
+          ↓
+PHASE 6   LLMs / Generative AI
+          ↓
+PHASE 7   AI Engineering
+          ↓
+PHASE 8   Production AI + Django/DRF + React

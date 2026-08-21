@@ -1,0 +1,25 @@
+✅ Student Performance Intelligence System
+
+that:
+
+CSV
+ ↓
+Data validation
+ ↓
+Data cleaning
+ ↓
+Statistical analysis
+ ↓
+Visualization
+ ↓
+ML model
+ ↓
+Prediction API
+ ↓
+Django/DRF
+ ↓
+React dashboard
+
+That's something worth showing.
+
+And eventually we'll make projects progressively more serious.
