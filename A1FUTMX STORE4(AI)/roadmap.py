@@ -159,3 +159,41 @@ PHASE 6   LLMs / Generative AI
 PHASE 7   AI Engineering
           ↓
 PHASE 8   Production AI + Django/DRF + React
+
+
+
+🏗️ DAY 7 = PROJECT PREPARATION
+
+We're almost ready for your first weekly build.
+
+You've now learned:
+
+Python
+ ↓
+CSV
+ ↓
+Data types
+ ↓
+Missing data concepts
+ ↓
+NumPy
+ ↓
+Arrays
+ ↓
+Vectorization
+ ↓
+Indexing
+ ↓
+Slicing
+ ↓
+Boolean masking
+ ↓
+Multiple conditions
+ ↓
+Pandas
+ ↓
+DataFrames
+ ↓
+Data inspection
+ ↓
+Missing-value detection  ← TODAY

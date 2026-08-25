@@ -97,3 +97,21 @@ Model evaluation
 Retraining
  ↓
 Better system
+
+
+
+6.) my current pipeline:
+
+RAW DATA
+   ↓
+UNDERSTAND
+   ↓
+INSPECT
+   ↓
+CLEAN
+   ↓
+TRANSFORM
+   ↓
+ANALYZE
+   ↓
+ML-READY DATA
