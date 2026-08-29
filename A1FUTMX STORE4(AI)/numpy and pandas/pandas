@@ -28,7 +28,7 @@ duplicate records
 different data types
 dates
 categorical data
-
+c
 Writing everything manually with csv would become painful.
 
 Pandas exists to make working with structured/tabular data much easier.

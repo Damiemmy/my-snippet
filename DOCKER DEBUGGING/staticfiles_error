@@ -1,0 +1,8 @@
+1.)Django static files refusing to load after docker ochestration of backend,frontend,nginx, and postgres:   
+
+#Debug:
+    to confirm that the static files are being collected and served correctly, you can run the following command inside your backend container:
+    - docker compose exec backend python manage.py collectstatic --noinput
+    - docker compose exec backend ls /app/staticfiles/admin/css/base.css
+    Then check whether Nginx can see the exact same file:
+    -docker compose exec nginx ls /static/admin/css/base.css

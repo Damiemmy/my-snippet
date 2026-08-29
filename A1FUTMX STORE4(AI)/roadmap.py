@@ -197,3 +197,58 @@ DataFrames
 Data inspection
  ↓
 Missing-value detection  ← TODAY
+
+
+
+DAY 1
+Python numerical reasoning
+        ↓
+DAY 2–3
+CSV + raw data
+        ↓
+DAY 4
+NumPy fundamentals
+        ↓
+DAY 5
+Boolean masking
+        ↓
+DAY 6
+Pandas DataFrames
+        ↓
+DAY 7
+Data inspection
+        ↓
+DAY 8
+Missing-data strategies
+        ↓
+DAY 9  ← YOU ARE HERE
+Invalid & inconsistent data
+        ↓
+DAY 10+
+Data transformation
+        ↓
+Statistics
+        ↓
+Visualization
+        ↓
+ML mathematics
+        ↓
+Scikit-learn
+        ↓
+First ML model
+        ↓
+Model evaluation
+        ↓
+Feature engineering
+        ↓
+Deep Learning
+        ↓
+PyTorch
+        ↓
+AI Engineering
+        ↓
+Django + DRF + AI
+        ↓
+React + AI
+        ↓
+Production AI systems

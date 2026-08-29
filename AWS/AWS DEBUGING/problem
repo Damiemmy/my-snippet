@@ -64,3 +64,4 @@
             - CREATE TABLE test_table(id INT);
             - If this fails → Django will fail too.
         ✅ PRACTICE 5: Use .env for credentials (VERY IMPORTANT for AWS)
+
