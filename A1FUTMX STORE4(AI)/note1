@@ -115,3 +115,18 @@ TRANSFORM
 ANALYZE
    ↓
 ML-READY DATA
+
+7.)
+Raw Data
+   ↓
+Inspection
+   ↓
+Cleaning
+   ↓
+Transformation
+   ↓
+Features
+   ↓
+ML Model
+   ↓
+Prediction

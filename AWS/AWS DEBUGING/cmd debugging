@@ -1,0 +1,24 @@
+grep -R "backend-ecommerce-store-1.onrender.com" -n frontend
+grep -R "futreg" -n . 
+#  grep is to find "futreg" in all files recursively in the current directory and its subdirectories, and display the line numbers where it is found.
+
+
+#for debugging static files in docker compose, you can use the following commands to check the contents of the static files directory in both the backend and nginx containers:
+docker compose exec backend sh -c "ls -la /app/staticfiles/admin/css/ | head"
+docker compose exec nginx sh -c "ls -la /app/staticfiles/admin/css/ | head"
+
+
+#to old images in developement not displaying in developement:
+docker compose cp ecommerce_buyit_backend/media/. backend:/app/media/
+
+#then verify the images reached the container:
+docker compose exec backend find /app/media/img -type f | head -20
+
+#And verify Nginx sees them too:
+docker compose exec nginx find /app/media/img -type f | head -20
+
+#Then test one old image:
+curl -I http://localhost/media/img/download_21_Pw2sA0v.jpg
+
+#Do not run docker compose down and up again, as it will remove the media files from the container. Instead, use the following command to copy the media files from your local machine to the backend container:
+docker compose cp media/. backend:/app/media/
