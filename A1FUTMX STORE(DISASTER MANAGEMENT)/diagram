@@ -1,0 +1,49 @@
+🎯 Our FUTMxStore launch target
+
+By the end, you'll have:   
+                         STUDENTS
+                            │
+                            ▼
+                    futmxstore.com
+                            │
+                            ▼
+                    ┌──────────────┐
+                    │    Nginx     │
+                    │ HTTPS / Proxy│
+                    └──────┬───────┘
+                           │
+             ┌─────────────┴─────────────┐
+             ▼                           ▼
+        ┌───────────┐               ┌───────────┐
+        │ Frontend  │               │  Django   │
+        │ Next.js   │               │   DRF     │
+        └───────────┘               └─────┬─────┘
+                                          │
+                                          ▼
+                                    ┌───────────┐
+                                    │ PostgreSQL │
+                                    └───────────┘
+
+                          BACKUP
+                            │
+                            ▼
+                    ┌──────────────┐
+                    │ Your PC      │
+                    │              │
+                    │ DB           │
+                    │ Media        │
+                    │ Config       │
+                    └──────────────┘
+
+And later:
+
+
+                         AWS
+                          │
+                 ┌────────┴────────┐
+                 ▼                 ▼
+                EC2                S3
+                 │             Student files
+           Application
+                 │
+                 └─────── backup ───────► Local

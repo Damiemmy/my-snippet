@@ -5,6 +5,8 @@ Move your project into Linux filesystem:
     cd projects
     cp -r /mnt/c/Users/blog/Desktop/myprojects/nextjs/Airbnb/Backend .
     cd Backend
+    rm, rmdir, or rm -rf:(commands for removing folders and file)
+    mv: moves and rename
 
     OR
     cd ~

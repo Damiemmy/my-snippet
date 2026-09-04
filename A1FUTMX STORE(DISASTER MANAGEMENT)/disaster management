@@ -1,0 +1,93 @@
+💰 And this is why I wouldn't spend your money on fancy AWS infrastructure
+
+For your current FUTMxStore:
+
+                 ┌─────────────────────┐
+                 │       GitHub        │
+                 │   Application Code  │
+                 └──────────┬──────────┘
+                            │
+                            ▼
+                    ┌───────────────┐
+                    │ AWS EC2       │
+                    │               │
+                    │ Nginx         │
+                    │ Frontend      │
+                    │ Django        │
+                    │ PostgreSQL    │
+                    └───────┬───────┘
+                            │
+                     Backup │
+                            ▼
+                  ┌──────────────────┐
+                  │ Your local PC    │
+                  │                  │
+                  │ DB backup        │
+                  │ Media backup     │
+                  └──────────────────┘
+
+Later:
+
+                    AWS
+                     │
+             ┌───────┴────────┐
+             ▼                ▼
+            EC2               S3
+             │                 │
+      application          user files
+             │                 │
+             └───────┬─────────┘
+                     │
+                   backup
+                     ▼
+                 Local PC
+
+That gives you cloud portability without cloud-dependent architecture.
+
+And I would keep your frontend in Docker for now
+
+So your production Compose can remain conceptually:
+
+docker-compose.production.yml
+
+nginx
+frontend
+backend
+db
+
+Don't remove the frontend just because you're thinking about disaster recovery.
+
+The important thing is that the frontend is reproducible from your GitHub repository.
+
+The irreplaceable things are:
+
+        CODE → GitHub
+        DATA → PostgreSQL backup
+       FILES → Media backup
+   CONFIG → secure environment backup
+
+Everything else can be rebuilt.
+
+My recommended FUTMxStore principle
+
+Treat EC2 as cattle, not a pet.
+
+If EC2 dies:
+
+No panic.
+
+You don't spend three days trying to resurrect the machine.
+
+You provision another machine, restore:
+
+CODE
++
+DATABASE
++
+MEDIA
++
+CONFIG
+
+and you're back online.
+
+That is the architecture I would build around your 2–3 hour recovery requirement and near-zero budget.

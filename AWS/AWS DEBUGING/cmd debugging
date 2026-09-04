@@ -22,3 +22,10 @@ curl -I http://localhost/media/img/download_21_Pw2sA0v.jpg
 
 #Do not run docker compose down and up again, as it will remove the media files from the container. Instead, use the following command to copy the media files from your local machine to the backend container:
 docker compose cp media/. backend:/app/media/
+
+#NGINX: to recreate nginx after change in configuration run:
+    - docker compose up -d --force-recreate nginx
+
+#GIT: to remove nexted git repository problem
+    - rm -rf ecommerce_buyit_backend/.git
+    - rm -rf ecommerce_buyit_frontend/.git
