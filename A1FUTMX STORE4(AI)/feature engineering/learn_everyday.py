@@ -1,0 +1,2 @@
+Machine learning exists because manually encoding rules becomes impractical as the amount and complexity of data grows.
+Think of LinearRegression as a machine that tries to discover a mathematical relationship between your inputs and output.

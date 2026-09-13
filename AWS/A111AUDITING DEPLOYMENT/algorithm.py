@@ -156,7 +156,6 @@ And importantly: Database unavailable should not appear at the end.
 #13.)🚨 Next: BACKUP BEFORE AWS
 
 This is especially important because of your 2–3 hour recovery goal.
-
 We're going to create two backups:
 
 FUTMxStore Backup

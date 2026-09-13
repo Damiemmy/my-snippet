@@ -1,0 +1,6 @@
+Number of Schools = 15
+Number of Departments = 68
+Number of Programmes = 72
+
+
+user can search for materials, and check their course rep name from the uploaded_by
