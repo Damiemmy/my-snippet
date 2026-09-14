@@ -241,3 +241,76 @@ docker run --rm -p 80:80 \
 
 
 #finally you can check 
+
+#1.)debugging ec2 crash
+
+'''
+A.)first SSH into it and we'll check what happened.
+
+Run:df -h
+
+then:free -h
+
+then:docker system df
+
+and:sudo systemctl status docker
+
+The first two are especially important because a Docker build can consume a lot of disk space and RAM, particularly when you're building both Django and your frontend.
+
+
+B.)Let's first confirm whether the kernel actually killed something because of insufficient memory.
+
+Run this:sudo dmesg -T | grep -Ei 'oom|out of memory|killed process'
+
+Then run:docker images
+
+And:docker compose version
+
+Then:cd rootdirectory and run :
+docker compose ps
+
+
+C.)Most importantly, let's add swap
+Because your instance has 14 GB free, we can safely give Linux a 2 GB swap file.
+
+Run these commands one at a time:
+
+sudo fallocate -l 2G /swapfile
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+
+Then verify: free -h
+
+You should see something similar to:
+Swap:2.0Gi
+
+Finally, make the swap survive an EC2 reboot: echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+
+Why I'm recommending this
+
+Think of RAM as your desk.
+Your t3.micro has a very small desk:
+
+RAM ≈ 1 GB
+
+When Docker/Node/Django builds need more workspace, Linux has nowhere else to put temporary data because:
+
+Swap = 0 GB
+
+Adding:
+
+Swap = 2 GB
+
+doesn't turn the machine into a 3 GB machine—the swap is slower than RAM—but it gives the system breathing room and can prevent an OOM crash during a build.
+
+D.)After finishing the swap commands then run 
+- docker compose build backend --progress=plain :    and for backend
+- docker compose build frontend --progress=plain : for frontend the run the whole container
+
+
+'''
+
+
+#docker cmd for nginx check
+docker exec nginx_proxy nginx -t

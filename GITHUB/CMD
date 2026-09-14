@@ -1,0 +1,21 @@
+!.)For nexted module Causing empty git repository folder:
+git ls-files --stage : to inspect if there is 
+'''
+git rm --cached ecommerce_buyt_backend
+git rm --cached ecommerce_buyt_frontend
+'''
+
+then run this to remove them 
+'''
+rm -rf ecommerce_buyt_backend/.git
+rm -rf ecommerce_buyt_frontend/.git
+'''
+
+
+that's all but if you want to preserve the submodules directory use:
+'''
+git add ecommerce_buyt_backend ecommerce_buyt_frontend
+git commit -m "fix: track backend and frontend as regular directories"
+git push origin main
+
+'''
