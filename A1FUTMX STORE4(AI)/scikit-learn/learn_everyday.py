@@ -1,0 +1,1 @@
+A model is not magic. A model is a mathematical representation of patterns learned from data.
