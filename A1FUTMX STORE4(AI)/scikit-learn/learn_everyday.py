@@ -75,3 +75,99 @@
 
     #FINAL WORD TO REMEMBER: 
     MAE penalizes errors proportionally, while MSE penalizes larger errors disproportionately because they are squared.
+
+-15 random_state & test_size=0.2: random_state makes the random splitting process reproducible. while test_size ensure 80% is available for learning, while 20% is held back to evaluate the model on unseen examples.
+-16 random_state: in some cases might make your data unrealistic e.g
+
+'''
+Let's use a concrete example.
+
+Suppose:
+
+2020
+2021
+2022
+2023
+2024
+2025
+2026
+
+Your real goal:
+
+Predict 2027 students
+
+With a random split, you might accidentally create:
+
+TRAIN
+2020
+2021
+2023
+2025
+2026
+
+TEST
+2022
+2024
+
+Look carefully.
+
+The model is learning from:
+
+2026
+
+while you're testing it on:
+
+2022
+
+But in the real world, you won't have this situation:
+
+"Here's information from 2026. Now predict what happened in 2022."
+
+You're trying to predict the future.
+
+The realistic scenario is:
+
+PAST                         FUTURE
+
+2020 2021 2022 2023 2024 2025 2026
+ |________________________________|
+               TRAIN
+                  ↓
+                MODEL
+                  ↓
+                2027
+                 TEST
+
+That's a much more realistic simulation.
+'''
+
+17. 🔥 Here's the principle I want you to remember
+
+    Your test set should answer:
+
+    "How will my model perform on the kind of data it will encounter after deployment?"
+
+    Not merely:
+
+    "Can my model predict some randomly selected rows?"
+
+    That's a much deeper way of thinking about ML.
+
+18.) 🧠 Your understanding now
+
+    I'd rate your current understanding like this:
+
+    test_size       ✅
+    random_state    ✅
+    why splitting    ✅
+    time-based issue 🟡 → needs this refinement
+
+    The key correction:
+
+    Randomly splitting time-dependent data can produce a test set that doesn't faithfully simulate the future deployment scenario. The problem isn't necessarily that performance becomes lower; the evaluation itself may become misleading.
+
+    And you've now reached an important ML engineering principle:
+
+    The way you evaluate a model should reflect the way the model will actually be used.
+
+    That's the foundation for understanding data leakage, which is the "nastier problem" that comes next.
