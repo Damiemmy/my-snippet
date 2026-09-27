@@ -19,3 +19,20 @@ git commit -m "fix: track backend and frontend as regular directories"
 git push origin main
 
 '''
+
+
+#CONFLICT  IN GIT WHILE PULLING FROM PRODUCTION /GITHUB VERSION TO DEVELOPMENT
+
+1-check what conflicted RUN: git status
+2-check the differeces in conflict files in production/Developme e.g RUN: git diff -- frontend/tailwind.config.js
+3-choose the production/GitHub version with: git checkout --theirs frontend/tailwind.config.js 
+  or choose :git checkout --ours frontend/tailwind.config.js
+  Don't stage it yet.
+  Then display the entire local version:type frontend\tailwind.config.js
+  Then we'll compare it against the production version using:
+    - #production:
+      git show origin/main:frontend/tailwind.config.js
+    - #development:
+      git show HEAD:frontend/src/pages/Home.tsx
+      
+4-Then mark the conflict as resolved: git add frontend/tailwind.config.js

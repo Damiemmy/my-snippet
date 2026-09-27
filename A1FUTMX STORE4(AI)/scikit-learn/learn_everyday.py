@@ -171,3 +171,266 @@ That's a much more realistic simulation.
     The way you evaluate a model should reflect the way the model will actually be used.
 
     That's the foundation for understanding data leakage, which is the "nastier problem" that comes next.
+
+19.) Before saying Model A is better, I'd ask:
+
+    1. Were both evaluated on the SAME dataset?
+    2. Was the SAME evaluation procedure used?
+    3. Was there any data leakage?
+    4. Is the test set representative?
+    5. Is the test set large enough?
+    6. Is MAE appropriate for the problem?
+    7. What does RMSE look like?
+    8. Are there problematic outliers?
+    9. How does each model perform across important subgroups?
+    10. What is the baseline?
+    11. Is the improvement statistically/practically meaningful?
+    12. Are the features available at prediction time?
+
+    That is ML engineering judgment.
+
+
+#🔥 One principle I want permanently installed in your brain
+
+    Never think:
+
+    LOWER METRIC
+        ↓
+    BETTER MODEL
+        ↓
+    DEPLOY
+
+    Think:
+
+                        MODEL
+                        │
+            ┌─────────────┼─────────────┐
+            ↓             ↓             ↓
+    Evaluation      Validity      Reality
+            │             │             │
+    MAE/RMSE       Leakage?       Production?
+            │             │             │
+    Test data      Bias?         Drift?
+            │             │             │
+            └─────────────┼─────────────┘
+                        ↓
+                ENGINEERING JUDGMENT
+
+    That's the difference between knowing scikit-learn and becoming an ML engineer.
+
+20.) Cross-validation does NOT mean:"We have more training data."
+
+It means: We're repeatedly evaluating the model on different held-out portions of the training data.
+
+And importantly:
+
+    FINAL TEST SET:
+    can still remain untouched until the end.
+
+21.)
+
+    ### Training vs Validation vs Test
+
+    * **Training → Learn:** The model learns patterns from the training data.
+    * **Validation → Decide:** I use validation results to choose and improve the model.
+    * **Test → Evaluate:** I use the test set **once at the end** to measure final generalization.
+
+    > **Never optimize for the test set.**
+    > If test results influence my development decisions, the test set is no longer a clean final evaluation.
+
+    **Remember:**
+    **Train = Learn → Validate = Decide → Test = Evaluate**
+22.)MSE and RMSE are sensitive to outlier in the data which is a better metrics for comparison and understand the errors in a data
+
+23.)Baseline = a simple reference model. It tells us whether our ML model provides meaningful predictive value beyond a simple strategy.
+
+    And one subtle point: the baseline doesn't define what is “accurate.” It tells us how much better or worse our model is relative to a simple alternative.
+
+24.)A feature should be useful AND legitimately available at the exact moment the prediction is made.
+
+25.)More features ≠ better model.
+
+You could give a model 100 engineered features and actually make it worse because some are irrelevant, noisy, redundant, or leaking information.
+
+So our pipeline becomes:
+
+        Raw data
+        ↓
+        Understand the problem
+        ↓
+        Engineer candidate features
+        ↓
+        Check availability / leakage
+        ↓
+        Evaluate usefulness
+        ↓
+        Select features
+        ↓
+        Train model
+
+26.)there's one more concept I want you to lock in before we move to model selection:
+
+More features ≠ better model.
+
+You could give a model 100 engineered features and actually make it worse because some are irrelevant, noisy, redundant, or leaking information.
+
+So our pipeline becomes:
+
+Raw data
+   ↓
+Understand the problem
+   ↓
+Engineer candidate features
+   ↓
+Check availability / leakage
+   ↓
+Evaluate usefulness
+   ↓
+Select features
+   ↓
+Train model
+
+27.)
+
+    Feature Engineering
+    │
+    ├── Transformation
+    │   └── attendance → attendance_rate
+    │
+    ├── Ratios
+    │   └── assignment_score / study_hours
+    │
+    ├── Interactions
+    │   └── study_hours × attendance
+    │
+    ├── Aggregations
+    │   └── average_assignment_score
+    │
+    ├── Categorical encoding
+    │   └── department → numerical representation
+    │
+    ├── Scaling
+    │   └── put numerical features on comparable scales
+    │
+    └── Domain features
+        └── features designed from knowledge of the problem
+
+
+
+28.) Before selecting the model,after checking this:
+    1.)Data leakage — did the model get information it shouldn't have had?
+    2.)Metric suitability — is MAE actually appropriate for this problem?
+    3.)Test-set representativeness — does the test data resemble the data the model will encounter in reality?
+
+But add these: investigate
+
+                Candidate Models
+                      │
+              ┌───────┴────────┐
+              ↓                ↓
+        Performance        Engineering
+              │                │
+        ┌─────┼─────┐     ┌────┼─────┐
+        ↓     ↓     ↓     ↓    ↓     ↓
+      MAE   RMSE   CV   Complexity Cost Interpretability
+        │
+        ↓
+   Leakage check
+        ↓
+ Test-set validity
+        ↓
+ Feature availability
+        ↓
+ Generalization
+        ↓
+ Final selection
+
+
+29.) The test set should not become a playground for repeatedly choosing models.
+
+If we keep doing:
+
+try model A → look at test
+try model B → look at test
+try model C → look at test
+change features → look at test
+tune parameters → look at test
+
+we gradually start adapting our development decisions to the test set.
+
+That's exactly why we introduced validation and cross-validation.
+
+
+30.) Hurray! Hurray!! Hurray!!!
+        '''
+
+        Now we connect everything
+
+        You have now learned the pieces:
+
+        Baseline
+        ↓
+        Feature Engineering
+        ↓
+        Candidate Models
+        ↓
+        Cross-Validation / Validation
+        ↓
+        Model Selection
+        ↓
+        Untouched Test Set
+        ↓
+        Final Evaluation
+
+        This is the proper evaluation pipeline we were supposed to reach before starting the project.
+
+        And now we're ready to build it.
+
+        '''
+
+        '''
+31.)🔥 Foundation complete
+
+We've now covered:
+
+                ML DEVELOPMENT
+                     │
+       ┌─────────────┼─────────────┐
+       ↓             ↓             ↓
+   BASELINE     FEATURE ENG.   MODEL SELECTION
+       │             │             │
+       └─────────────┼─────────────┘
+                     ↓
+              EVALUATION
+                     │
+          ┌──────────┼──────────┐
+          ↓          ↓          ↓
+       Metrics    Cross-Val   Leakage
+          │          │          │
+          └──────────┼──────────┘
+                     ↓
+              FINAL TEST
+                     ↓
+             FINAL ASSESSMENT
+        '''
+
+#32.) To Get Categorical Columns in pandas:
+categorical_columns = df.select_dtypes(include="object").columns
+print(categorical_columns)
+
+or 
+
+categorical_columns = df.select_dtypes(
+    include=["object", "category"]
+).columns
+print(categorical_columns)
+
+#33.) To Get the Duplicated percentage of data:
+
+duplicate_percentage=df.duplicated().mean() * 100
+
+#34.) During prediction you would have to drop target from X and include it in Y :
+    target = "score"
+
+    X = df.drop(columns=[target])
+    y = df[target]
