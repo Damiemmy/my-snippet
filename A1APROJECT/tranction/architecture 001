@@ -1,0 +1,130 @@
+                    AUTHENTICATION
+                 User / Role / UserRole
+                         │
+                         ▼
+                       USERS
+          ┌──────────────┼──────────────┐
+          ▼              ▼              ▼
+     UserProfile   BusinessProfile   ProviderProfile
+                                          │
+                                          ▼
+                                     MARKETPLACE
+                                          │
+                 ┌────────────────────────┼──────────────────┐
+                 ▼                        ▼                  ▼
+              Services             ServiceRequest        Portfolio
+                 │                        │
+                 ▼                        ▼
+         ProviderService                Quote
+                                          │
+                                          ▼
+                                      BOOKING
+                                          │
+                                          ▼
+                                       REVIEW
+
+                         NOTIFICATIONS
+                    observes important events
+
+
+
+
+2.)
+
+The flow we originally designed was:
+
+Business owner needs a service → finds provider → sends a request → provider sends a quote → business accepts → booking → service completed → review.
+
+So the key distinction is:
+ServiceRequest = the business is requesting work
+Quote = the provider responds with their price/proposal
+Booking = the business has accepted the provider's quote and hired them
+
+3.)
+
+BUSINESS OWNER
+      │
+      │ 1. Creates ServiceRequest
+      ▼
+ServiceRequest
+      │
+      │ "I need a website"
+      ▼
+SERVICE PROVIDERS
+      │
+      │ 2. Submit Quote
+      ▼
+Quote
+      │
+      │ 3. Business accepts quote
+      ▼
+Booking
+      │
+      │ 4. Service is performed
+      ▼
+COMPLETED
+      │
+      │ 5. Business reviews provider
+      ▼
+Review
+
+
+4.)BusinessProfile
+      │
+      └── ServiceRequest
+              │
+              └── Quote ───────── ProviderProfile
+                    │
+                    │ accepted
+                    ▼
+                  Booking
+                    │
+                    │ completed
+                    ▼
+                  Review
+
+4.)
+
+Business Owner
+      │
+      ▼
+Service Request
+      │
+      ▼
+Providers see request
+      │
+      ▼
+Provider submits Quote
+      │
+      ▼
+Business accepts Quote
+      │
+      ▼
+Booking created
+      │
+      ▼
+Service happens
+      │
+      ▼
+Booking completed
+      │
+      ▼
+Business leaves Review
+
+
+5.)
+Request
+   ↓
+View
+   ↓
+Serializer ── Permission
+   ↓
+Service
+   ↓
+Model
+   ↓
+Database
+
+Selectors ────────────────┐
+      ↑                    │
+      └── read/query logic ┘

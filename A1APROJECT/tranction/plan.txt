@@ -1,0 +1,8 @@
+| Domain        | Models                                                                                         |
+| ------------- | ---------------------------------------------------------------------------------------------- |
+| Authentication| `User`, `Role`, `UserRole`                                                                     |
+| Users         | `UserProfile`, `BusinessProfile`, `ProviderProfile`                                            |
+| Marketplace   | `ServiceCategory`, `Service`, `ProviderService`, `PortfolioProject`, `ServiceRequest`, `Quote` |
+| Booking       | `Booking`                                                                                      |
+| Reviews       | `Review`                                                                                       |
+| Notifications | `Notification`                                                                                 |
