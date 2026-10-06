@@ -127,4 +127,4 @@ Database
 
 Selectors ────────────────┐
       ↑                    │
-      └── read/query logic ┘
+      └── read/query logic ┘git

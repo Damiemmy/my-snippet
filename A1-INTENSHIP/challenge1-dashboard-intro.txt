@@ -1,0 +1,313 @@
+Imagine Alexander gives you this requirement:
+"We need an admin dashboard where managers can see the number of users, messages sent, successful payments, failed payments, total revenue, refunds, and recent activities."
+
+Question 1:What database models would you create?
+Question 2:For each model, tell me the important fields.
+Question 3:Tell me which of these should be stored as actual data and which should be calculated:
+    total_users
+    successful_payments
+    total_revenue
+    failed_payments
+    refund_amount
+    activity_count
+
+Question 4:Suppose there are 2 million activities.
+Would you load all 2 million records into Python to calculate:
+"How many MESSAGE_SENT activities occurred today?"
+Or would you make PostgreSQL calculate it?
+Explain why.
+
+
+MY ANSWER:
+question 1: i would be needing User model,payment model, message model, revenue model and  activity model. question 2. for User model, the important field is,id,email,username,is_active,is_verified,created_at,total_users, while for Payment model,the important field are user,transaction_id,amount,currency,status,created_at, then for the Message Field, user,status,message,created_at, and for the Revenue model, fields include id, successful payments,failed payments,refunded_amount,total revenue.then finally for activity model field users, payments,created_at,modified_at. question 3.) i think all should be calculated from the user model,payment model and activity model, total_user,successful_payments,total_revenue,failed_payments,refund_amount,activity. and stored in their respectful domains question 4. no that would be information overload and might slow the server down personally i think the latest is more than enought, just the latest activity
+
+CORRECTION:
+1.)Summary: Revenue should not be a source of truth,it might lead to data inconsistency between payments model and revenue models because once payment model get's updated you would also have to update the revenue model, that's two source of truth, so remove revenue as it's not important it should b can be calculated from the underlying payment records.
+
+full explanation:1. Your biggest mistake: Revenue should not be a source-of-truth model
+
+You proposed:
+
+    Revenue
+    - successful_payments
+    - failed_payments
+    - refunded_amount
+    - total_revenue
+I would not create that model initially.
+
+Why? Because those are derived metrics.
+
+For example:
+
+    Payment 1 → £100 SUCCESSFUL
+    Payment 2 → £50 SUCCESSFUL
+    Payment 3 → £30 FAILED
+    Payment 4 → £20 REFUNDED
+
+Revenue can be calculated from the underlying payment records.
+
+If you store:
+    total_revenue = £150
+
+you now have two sources of truth:
+    Payments
+        ↓
+    £150
+
+    Revenue table
+        ↓
+    £150
+
+What happens if a payment gets refunded?
+Now you have to remember to update the Revenue record too.
+
+That's how financial systems develop data inconsistency.
+Instead:
+
+Payment records
+       ↓
+PostgreSQL aggregation
+       ↓
+Revenue metric
+       ↓
+Dashboard
+
+
+
+2.)total_users absolutely does not belong on User
+
+Remove: total_users
+A user doesn't need to know how many users exist.
+
+That's a collection-level metric, not a property of an individual user.
+
+    You might have: User.objects.count()
+
+    or a filtered query such as: User.objects.filter(is_active=True).count()
+
+3.)Your Activity model needs redesign
+
+You proposed:
+
+Activity
+- users
+- payments
+- created_at
+- modified_at
+
+This is one of the most important things to correct.
+
+An activity isn't necessarily about a payment.
+
+Consider:
+    User logged in
+    Message sent
+    Message failed
+    Profile updated
+    Payment successful
+    Payment failed
+    Refund issued
+
+So instead:
+
+    Activity
+    ---------
+    id
+    user
+    activity_type
+    metadata
+    created_at
+
+For example:
+
+    id: 92183
+    user: 42
+    activity_type: MESSAGE_SENT
+    metadata: {"message_id": 381}
+    created_at: ...
+
+Another:
+    id: 92184
+    user: 17
+    activity_type: PAYMENT_SUCCESSFUL
+    metadata: {"payment_id": 812}
+    created_at: ...
+
+Now Activity becomes a generic audit/event stream.
+
+
+
+
+
+4.)4. Message needs more thought
+
+You proposed:
+
+Message
+- user
+- status
+- message
+- created_at
+
+That's reasonable as a starting point.But ask yourself:
+    - Which user?
+    - The sender?
+    - The recipient?
+    - The employee receiving the birthday message?
+    - The manager approving it?
+
+This is why real domain modelling requires understanding the business before writing models.
+
+A better starting point might be:
+
+    Message
+    -------
+    id
+    recipient
+    sender
+    content
+    status
+    created_at
+    sent_at
+    delivered_at
+    failed_at
+
+Depending on Belfare's actual domain, we might eventually have:
+
+    Campaign
+    Message
+    Recipient
+    DeliveryAttempt
+
+We won't assume that yet.
+
+5.) Payment model is good but this is also highly recommended
+
+    Payment
+    -------
+    id
+    user
+    provider
+    provider_reference
+    amount
+    currency
+    status
+    created_at
+    updated_at
+
+and eventually "paid_at":
+
+But there's another concept you need to learn very well:
+    transaction_id needs a uniqueness strategy.
+    If the payment provider sends the same transaction twice, we don't want two payments.
+    This leads us into: idempotency.
+
+
+
+6. Your answer to Question 4 needs correction
+
+You said: "the latest is more than enough, just the latest activity"
+This is an important misunderstanding.
+The problem isn't that we shouldn't load 2 million activities.
+The solution isn't simply to retrieve the latest activity.
+
+The requirement was: How many MESSAGE_SENT activities occurred today?
+
+We need all matching records, but we don't need to transfer all of them to Python.
+PostgreSQL should calculate the answer.
+
+Conceptually:
+
+    2,000,000 activities
+            ↓
+        PostgreSQL
+            ↓
+    WHERE activity_type = MESSAGE_SENT
+        AND created_at >= today
+            ↓
+        COUNT()
+            ↓
+        "18,421"
+
+Python receives:
+
+{
+    "count": 18421
+}
+
+    not 18,421 activity objects.
+
+    This is a fundamental backend principle:
+
+    Push data-intensive computation to the database when the database can perform it efficiently.
+
+
+
+7. There's another distinction I want you to learn
+
+This: Recent Activities
+
+and this: Activity Count
+
+are completely different queries.
+
+- in Recent activities: We only need a small page:
+     ORDER BY created_at DESC
+     LIMIT 20
+
+That's where your "latest activity" instinct was correct.
+
+- while in Activity count: We need an aggregate:
+    COUNT(*)
+    we don't need the actual records.
+
+
+8.)So:
+
+Dashboard
+│
+├── KPI
+│   └── COUNT()
+│
+├── Revenue
+│   └── SUM()
+│
+└── Recent Activities
+    └── ORDER BY + LIMIT
+
+This distinction is going to become extremely important as we scale the system.
+
+
+Your corrected domain
+For our training project, we're currently closer to:
+
+┌─────────────┐
+│    User     │
+└──────┬──────┘
+       │
+       ├───────────────┐
+       │               │
+       ▼               ▼
+┌─────────────┐  ┌─────────────┐
+│   Message   │  │   Payment   │
+└──────┬──────┘  └──────┬──────┘
+       │                 │
+       └────────┬────────┘
+                ▼
+         ┌─────────────┐
+         │  Activity   │
+         └─────────────┘
+                │
+                ▼
+         PostgreSQL
+                │
+       ┌────────┴────────┐
+       ▼                 ▼
+   Aggregations      Recent data
+       │                 │
+       └────────┬────────┘
+                ▼
+           Dashboard API
+
+And there is no Revenue model yet.
+Revenue is a metric derived from payments.

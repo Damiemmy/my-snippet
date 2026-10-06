@@ -1,0 +1,21 @@
+Now we're ready for the next challenge
+
+I'm going to give you a realistic requirement.
+
+Belfare requirement:
+    "When a customer pays £100, the payment should appear on the dashboard immediately. If the payment provider sends the webhook twice, we must not count the payment twice. If the payment is later refunded, the dashboard must show the refund and calculate net revenue correctly."
+
+    Design the flow.
+
+I want you to describe what happens from:
+customer clicks Pay → payment provider → Django → PostgreSQL → dashboard
+
+Use something like:
+    1. Customer...
+    2. Provider...
+    3. Django...
+    4. PostgreSQL...
+    5. Dashboard...
+
+Don't worry about code yet.
+This is the point where we're going to build your payment architecture properly.

@@ -1,0 +1,37 @@
+                  CUSTOMER
+                      │
+                      ▼
+                Django API
+                      │
+                      ▼
+              Payment Provider
+                      │
+               payment reference
+                      │
+                      ▼
+              Payment = PENDING
+                      │
+                      │
+                 WEBHOOK
+                      │
+                      ▼
+                Django API
+                      │
+             ┌────────┴────────┐
+             │                 │
+       Idempotency          Verification
+             │                 │
+             └────────┬────────┘
+                      ▼
+                PostgreSQL
+                      │
+          ┌───────────┼───────────┐
+          ▼           ▼           ▼
+       Payment     Activity     Refund
+          │           │           │
+          └───────────┼───────────┘
+                      ▼
+                Dashboard API
+                      │
+                      ▼
+                  Dashboard
