@@ -35,3 +35,30 @@
                       │
                       ▼
                   Dashboard
+
+User
+ │
+ ├───────────────┐
+ │               │
+ ▼               ▼
+Payment        Activity
+ │
+ ├── Refund
+ │
+ └── Payment events/history
+
+ Payment
+   │
+   ├── amount
+   ├── currency
+   ├── status
+   ├── transaction_id
+   └── timestamps
+
+Dashboard
+    │
+    ├── Revenue → SUM(Payments)
+    ├── Refunds → SUM(Refunds)
+    ├── Users → COUNT(User)
+    ├── Activities → COUNT(Activity)
+    └── Recent activity → ORDER BY + LIMIT

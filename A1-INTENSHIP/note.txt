@@ -1,0 +1,98 @@
+1.)Don't get too comfortable with created_at__date
+
+For serious high-volume systems, we'll learn why date extraction can interfere with efficient index usage depending on the database/query plan.
+
+A production-oriented approach is often a range:
+
+start_of_day
+        ↓
+created_at >= start
+        AND
+created_at < end
+
+We'll implement that properly when we build the dashboard selector.
+
+2.)
+
+Now we're building the real thing
+
+Our project architecture will be:
+
+dashboard/
+│
+├── models.py
+├── selectors.py
+├── services.py
+├── serializers.py
+├── views.py
+├── urls.py
+└── tests/
+
+And the request flow:
+
+GET /api/dashboard/overview/
+             │
+             ▼
+           View
+             │
+             ▼
+         Selector
+             │
+             ▼
+        PostgreSQL
+             │
+             ▼
+        Aggregations
+             │
+             ▼
+         Serializer
+             │
+             ▼
+          JSON
+
+We'll build these metrics first:
+
+Dashboard Overview
+──────────────────────────
+        Total users
+        Active users
+        Successful payments
+        Failed payments
+        Gross revenue
+        Successful refunds
+        Net revenue
+        Today's activity count
+        Recent activities
+
+Then we'll add:
+        Revenue by day
+        Payment success rate
+        Payment failure rate
+        Activity breakdown
+        Date filtering
+        Currency filtering
+        Pagination
+
+Then the serious stuff:
+        Indexes
+        N+1 queries
+        EXPLAIN ANALYZE
+        Caching
+        Redis
+        Celery
+        background aggregation
+        payment webhooks
+        idempotency
+        atomic transactions
+        race conditions
+        reconciliation
+        permissions
+        audit logging
+        Docker
+        AWS
+        monitoring
+        testing
+
+That will take us from "I know Django" to "I can reason about a production dashboard/payment backend."
+
+

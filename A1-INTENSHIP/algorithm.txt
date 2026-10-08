@@ -1,0 +1,37 @@
+Stage 1 — Dashboard architecture
+
+Our flow will be:
+
+    GET /api/dashboard/overview/
+            ↓
+        View
+            ↓
+        Selector
+            ↓
+        PostgreSQL
+            ↓
+    Aggregations / Filters
+            ↓
+        Serializer
+            ↓
+          JSON
+            ↓
+        Dashboard
+
+And we’ll build it incrementally:
+    Selectors — database/query engineering
+    Dashboard serializer — shape the response
+    Service layer — business/reporting logic
+    API view + URL
+    Date filtering
+    Currency handling
+    Pagination
+    Indexes + query optimization
+    Tests
+    Payment/refund lifecycle
+    Webhook + idempotency
+    Redis/Celery
+    Auditability
+    Production deployment/monitoring
+
+The important thing is that you won't just copy the code. I'll make you understand why every query exists and what PostgreSQL is actually doing.

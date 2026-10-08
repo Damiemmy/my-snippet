@@ -1,0 +1,101 @@
+Count()
+Sum()
+Avg()
+Q()
+F()
+Case()
+When()
+TruncDay()
+
+indexes
+select_related
+prefetch_related
+pagination
+query optimization
+EXPLAIN
+
+
+1. Requirements
+2. Domain entities
+3. Database schema
+4. Business rules
+5. Permissions
+6. API contracts
+7. Query strategy
+8. Index strategy
+9. Aggregation strategy
+10. Caching strategy
+11. Background processing
+12. Failure handling
+13. Testing
+14. Monitoring
+15. Deployment
+
+Users
+Customers
+Activities
+Messages
+Payments
+Payment Events
+Refunds
+Audit Logs
+Dashboard Metrics
+
+'''
+Hour 6 — Production engineering
+
+Then we'll connect everything to the stack you already know.
+
+                    AWS
+                     │
+              ┌──────▼──────┐
+              │   Nginx     │
+              └──────┬──────┘
+                     │
+              ┌──────▼──────┐
+              │ Django/DRF  │
+              └──────┬──────┘
+                     │
+          ┌──────────┼──────────┐
+          ▼          ▼          ▼
+      PostgreSQL   Worker     Cache
+                    │
+                    ▼
+                 Celery
+
+We'll discuss:
+    Docker
+    PostgreSQL
+    Redis
+    Celery
+    background jobs
+    scheduled reports
+    caching
+    logging
+    monitoring
+    database performance
+    AWS deployment
+    environment variables
+    secrets
+    API security
+    permissions
+    production debugging
+
+    And importantly:
+
+    when NOT to use each technology.
+'''
+
+'''
+Total Users             50,000
+
+Messages Sent          180,420
+
+Successful Payments     8,420
+
+Failed Payments           381
+
+Revenue              £182,450
+
+Refunds               £12,400
+'''
