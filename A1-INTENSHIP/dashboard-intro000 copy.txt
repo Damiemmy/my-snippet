@@ -1,0 +1,135 @@
+                 OPERATIONAL SYSTEM
+                        │
+       ┌────────────────┼────────────────┐
+       │                │                │
+     Users           Activities        Payments
+       │                │                │
+       └────────────────┼────────────────┘
+                        │
+                  PostgreSQL
+                        │
+                        ▼
+                Query / Aggregate
+                        │
+                        ▼
+                   Dashboard
+
+Task1: if someone ask "We need a dashboard showing payment activity."
+
+Your first thought should not be:
+"What fields should the dashboard have?"
+
+Your first thought should be:
+"What events and transactions are producing this information?"
+
+
+1.---------------######Three different kinds of data:----------------------
+
+- A. Entity: Something that exists.
+    User
+    Customer
+    Payment
+    Message
+    Campaign
+
+-B. Event / Activity: Something that happened.
+
+    User logged in
+    Message sent
+    Message failed
+    Payment initiated
+    Payment completed
+    Payment refunded
+    User changed password
+
+-C. Transaction: A financially meaningful operation.
+
+    ₦10,000 payment
+    ₦5,000 refund
+    £20 subscription payment
+
+This distinction becomes extremely useful later.
+
+
+2. ------------------------------ Your first production scenario-----------------
+
+Imagine Belfare has:
+    50,000 users
+    2,000,000 activities
+    800,000 payments
+
+The admin opens:
+    Dashboard → October 2026
+
+They want:
+    Total Users             50,000
+    Messages Sent          180,420
+    Successful Payments     8,420
+    Failed Payments           381
+    Revenue              £182,450
+    Refunds               £12,400
+
+
+Below that:Recent Activity
+    09:41  Payment successful
+    09:39  Birthday message sent
+    09:38  Payment failed
+    09:36  User created
+    09:31  Message delivered
+
+And a graph:
+
+    Revenue
+    │
+    │                 ╭──╮
+    │           ╭─────╯  ╰──╮
+    │      ╭────╯             ╰──
+    │ ─────╯
+    └────────────────────────────
+        1   5   10   15   20   30
+                    October
+
+Now here's the important question: Where does every number come from?
+
+
+
+3----------------------######### Don't create a Dashboard table--------------------
+
+A beginner might think:
+
+class Dashboard(models.Model):
+    total_users = models.IntegerField()
+    total_payments = models.IntegerField()
+    total_revenue = models.DecimalField(...)
+
+This is usually a bad starting point.
+
+
+Why? Because what happens tomorrow? A payment comes in.
+
+Do we update:
+    Payment
+    Dashboard
+    Revenue
+    Successful payments
+    Monthly revenue
+    Daily revenue
+every time?
+    Now imagine ten different dashboard metrics. You've created duplicated state that can become inconsistent.
+
+Instead:
+
+                    PostgreSQL
+                        │
+        ┌───────────────┼───────────────┐
+        ▼               ▼               ▼
+      Users         Activities       Payments
+        │               │               │
+        └───────────────┼───────────────┘
+                        ▼
+                    Aggregation
+                        │
+                        ▼
+                    Dashboard
+
+The dashboard is derived from the underlying data.
