@@ -1,0 +1,19 @@
+#Debugging with python3 manage.py shell
+
+from apps.academics.models import Course, Material
+
+print(list(
+    Course.objects.values("status").annotate(
+        total=__import__("django").db.models.Count("id")
+    )
+))
+
+print(list(
+    Material.objects.values("status").annotate(
+        total=__import__("django").db.models.Count("id")
+    )
+))
+
+#fix after discovering all records where pending
+Course.objects.filter(status="pending").update(status="approved")
+Material.objects.filter(status="pending").update(status="approved")
