@@ -17,3 +17,5 @@ print(list(
 #fix after discovering all records where pending
 Course.objects.filter(status="pending").update(status="approved")
 Material.objects.filter(status="pending").update(status="approved")
+
+

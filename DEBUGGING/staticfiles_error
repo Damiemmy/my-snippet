@@ -6,3 +6,4 @@
     - docker compose exec backend ls /app/staticfiles/admin/css/base.css
     Then check whether Nginx can see the exact same file:
     -docker compose exec nginx ls /static/admin/css/base.css
+
