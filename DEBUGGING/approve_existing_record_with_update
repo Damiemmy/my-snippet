@@ -17,5 +17,6 @@ print(list(
 #fix after discovering all records where pending
 Course.objects.filter(status="pending").update(status="approved")
 Material.objects.filter(status="pending").update(status="approved")
+AcademicSession.objects(year="2025/2026").update(year="2026/2027")
 
 
