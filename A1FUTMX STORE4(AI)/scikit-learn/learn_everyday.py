@@ -434,3 +434,32 @@ duplicate_percentage=df.duplicated().mean() * 100
 
     X = df.drop(columns=[target])
     y = df[target]
+
+#35.)
+The deeper lesson: missing is not the same as invalid
+This distinction is essential throughout data science.
+    - Invalid value: A recorded value violates a domain constraint, such as attendance of 150%.
+    - Missing value: No usable value is present.
+    - Valid value: A recorded value satisfies the applicable constraints.
+    - Suspicious value: A value deserves investigation but cannot yet be classified as invalid.
+
+#36.)
+Mission 3.2 — Choose an imputation strategy
+
+Imputation means replacing missing values with estimated or otherwise chosen values.
+
+Three common approaches:
+
+    Mean imputation
+    Replace missing numerical values with the mean.
+    Useful in some cases, but sensitive to extreme values.
+
+    Median imputation
+    Replace missing numerical values with the median.
+    Often more robust when a feature is skewed or contains outliers.
+
+    Model-based imputation
+    Estimate missing values using other features.
+    Can capture more complex relationships, but introduces additional assumptions and complexity.
+
+We won't choose blindly. We'll inspect the distributions first.
